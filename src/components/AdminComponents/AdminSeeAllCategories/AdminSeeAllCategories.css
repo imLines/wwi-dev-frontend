@@ -1,0 +1,40 @@
+.AdminSeeAllCategories td,
+th {
+    border: 1px solid rgb(190, 190, 190);
+    padding: 5px;
+}
+
+.AdminSeeAllCategories td {
+    text-align: center;
+}
+
+.AdminSeeAllCategories tr:nth-child(even) {
+    background-color: #eee;
+}
+
+.AdminSeeAllCategories th[scope="col"] {
+    background-color: #1F232C;
+    color: #fff;
+}
+
+.AdminSeeAllCategories th[scope="row"] {
+    background-color: #E6F0FE;
+    width: 30%;
+}
+
+
+.AdminSeeAllCategories table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200, 200, 200);
+    letter-spacing: 1px;
+    font-family: sans-serif;
+    font-size: .8rem;
+    width: 100%;
+}
+
+.AdminSeeAllCategories_category-case{
+    width: 60%;
+}
+.AdminSeeAllCategories_option-case{
+    width: 20%;
+}
