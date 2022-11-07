@@ -1,0 +1,14 @@
+.AdminSeeAllPosts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.AdminSeeAllPosts_card-container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    
+    
+}

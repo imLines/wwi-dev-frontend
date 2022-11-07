@@ -1,9 +1,10 @@
 import {Outlet} from 'react-router-dom';
+import AdminNavbar from './AdminNavbar/AdminNavbar';
 
 function Admin(){
     return(
         <>
-            <p>Admin page's</p>
+            <AdminNavbar/>
             <Outlet/>
         </>
     )

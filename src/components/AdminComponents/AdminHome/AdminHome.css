@@ -1,0 +1,18 @@
+.AdminHome{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.AdminHome_link{
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 50px;
+    background-color: #3B58CF;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-weight: 800;
+
+}
+

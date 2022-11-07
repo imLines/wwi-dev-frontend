@@ -13,19 +13,6 @@ function AdminLogin(){
     const handleSubmit = async (event)=>{
         event.preventDefault()
         event.stopPropagation()
-        // const requestOptions = {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({email: email, password: password})
-        // };
-
-        // fetch('/api/v1', requestOptions)
-        // .then(response=>{
-        //     return response.json()
-        // })
-        // .then(mssg=>{
-        //     console.log(mssg)
-        // })
         axios.defaults.baseURL = hostName;
         axios.post('/admin/login', {email, password})
         .then(response=>{

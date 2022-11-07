@@ -1,19 +1,20 @@
 import {Link} from 'react-router-dom';
+import './AdminHome.css';
 
 function AdminHome(){
 
     return(
-        <>
-            <Link to='/admin/newpost'>
-                <button>Créer un post</button>
+        <section className='AdminHome'>
+            <Link className='AdminHome_link' to='/admin/newpost'>
+                Créer un post
             </Link>
-            <Link to=''>
-                <button>Voir tous les posts</button>
+            <Link className='AdminHome_link' to='/admin/post/all'>
+                Voir tous les posts
             </Link>
-            <Link to=''>
-                <button>Voir les nouveaux posts</button>
-            </Link>
-        </>
+            <Link className='AdminHome_link' to=''>
+                Voir les nouveaux posts
+            </Link> 
+        </section>
     )
 };
 

@@ -1,0 +1,41 @@
+.AdminCreatePost{
+    height: auto;
+    width: 100%;
+}
+
+.AdminCreatePost_section-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.AdminCreatePost_label{
+    font-size: 22px;
+}
+
+.AdminCreatePost_category{
+    margin-left: 10px;
+}
+
+
+
+.AdminCreatePost_title{
+    width: 70%;
+    padding: 5px;
+    font-weight: 500;
+    font-size: 15px;
+    margin-left: 10px;
+
+}
+
+.AdminCreatePost_picture{
+    font-size: 15px;
+    margin-left: 10px;
+
+}
+
+.trix{
+    width: 100px;
+}
