@@ -7,16 +7,18 @@ import './AdminSeeAllCategories.css';
 
 function AdminSeeAllCategories(){
     const [categories, setCategories] = useState(null)
+    const [refreshPage, setRefreshPage] = useState(false)
     axios.defaults.baseURL = hostName;
 
     useEffect(()=>{
+        setRefreshPage(true)
         axios.get('/category/all')
         .then(axios=>{
             setCategories(axios.data.categories)
-            console.log(axios.data.categories)
+            setRefreshPage(false)
         }) 
 
-    }, [])
+    }, [refreshPage])
 
     const deleteCategory = (e, categoryId)=>{
         e.preventDefault();
@@ -25,7 +27,9 @@ function AdminSeeAllCategories(){
             try{
                 axios.delete(`/category/delete/${categoryId}`)
                 .then(axios=>{
-                    console.log(axios)
+                   if(axios.status == 200){
+                        setRefreshPage(true)
+                   }
                 })
             }catch(e){
                 console.log(e)
@@ -41,7 +45,9 @@ function AdminSeeAllCategories(){
     }else{
         return(
             <>
-                <Link to='/admin/category/new'>Create new category</Link>
+                <div className="AdminSeeAllCategories_create-category-container">
+                    <Link className="AdminSeeAllCategories_create-category-button" to='/admin/category/new'>Create new category</Link>
+                </div>
                 <section className="AdminSeeAllCategories">
                     <table cellSpacing="0">
                         <tbody>
@@ -53,9 +59,9 @@ function AdminSeeAllCategories(){
                             {categories?.map((element, index)=>{
                                 return(
                                     <tr key={index}>
-                                        <th scope="row"><Link>{element?.name}</Link></th>
-                                        <th scope="row"><Link to={`/admin/manager/products/update/${element.id}`}>Modifier</Link></th>
-                                        <th scope="row"><button onClick={event=>deleteCategory(event, element.id)}>Supprimer</button> </th>
+                                        <th scope="row"><Link className="AdminSeeAllCategories_category-name">{element?.name}</Link></th>
+                                        <th scope="row"><Link to={`/admin/category/update/${element.id}`}>Modifier</Link></th>
+                                        <th scope="row"><button className="AdminSeeAllCategories_delete-button" onClick={event=>deleteCategory(event, element.id)}></button> </th>
                                     </tr>
                                 )
                             })}

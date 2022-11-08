@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import logo from '../../assets/logo-white.png';
+import logo from '../../../assets/logo-white.png';
 import './AdminNavbar.css';
 
 function AdminNavbar(){

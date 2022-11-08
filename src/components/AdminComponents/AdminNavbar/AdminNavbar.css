@@ -28,7 +28,7 @@
 }
 
 .AdminNavbar_hamburger-open{
-    background-image: url('../../assets/icons/navbar/hamburger-close.png');
+    background-image: url('../../../assets/icons/navbar/hamburger-close.png');
     background-position: center;
     background-size: cover;
     border: 2px solid black;
@@ -36,7 +36,7 @@
 }
 
 .AdminNavbar_hamburger-close{
-    background-image: url('../../assets/icons/navbar/hamburger-open.png');
+    background-image: url('../../../assets/icons/navbar/hamburger-open.png');
     background-position: center;
     background-size: cover;
     border: 2px solid black;

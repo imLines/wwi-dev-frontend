@@ -1,3 +1,18 @@
+.AdminSeeAllCategories_create-category-container{
+    text-align: center;
+    margin: 20px;
+}
+.AdminSeeAllCategories_create-category-button{
+    width: 30%;
+    border: 2px solid #3B58CF;
+    border-radius: 30px;
+    background-color: #3B58CF;
+    color: white;
+    font-weight: 700;
+    padding: 10px;
+    text-decoration: none;
+}
+
 .AdminSeeAllCategories td,
 th {
     border: 1px solid rgb(190, 190, 190);
@@ -37,4 +52,21 @@ th {
 }
 .AdminSeeAllCategories_option-case{
     width: 20%;
+}
+
+.AdminSeeAllCategories_category-name{
+    text-decoration: none;
+}
+.AdminSeeAllCategories_category-name:visited{
+    color: inherit;
+}
+
+.AdminSeeAllCategories_delete-button{
+    background-image: url('../../../assets/icons/allOther/delete.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px;
+    border: none;
 }

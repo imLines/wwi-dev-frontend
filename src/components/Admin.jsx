@@ -1,5 +1,5 @@
 import {Outlet} from 'react-router-dom';
-import AdminNavbar from './AdminNavbar/AdminNavbar';
+import AdminNavbar from './AdminComponents/AdminNavbar/AdminNavbar';
 
 function Admin(){
     return(

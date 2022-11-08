@@ -1,5 +1,5 @@
 import { useState } from "react";
-import hostName from '../../config';
+import hostName from '../../../config';
 import axios from "axios";
 import {useNavigate} from 'react-router-dom'
 
