@@ -11,6 +11,7 @@ import AdminCreatePost from './components/AdminComponents/AdminCreatePost/AdminC
 import AdminSeeAllPosts from './components/AdminComponents/AdminSeeAllPosts/AdminSeeAllPosts';
 import AdminSeeOnePost from './components/AdminComponents/AdminSeeOnePost/AdminSeeOnePost';
 import AdminSeeAllCategories from './components/AdminComponents/AdminSeeAllCategories/AdminSeeAllCategories';
+import AdminCreateCategory from './components/AdminCreateCategory/AdminCreateCategory';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route exact path='/admin/newpost' element={<AdminCreatePost/>}/>
           <Route exact path='/admin/post/all' element={<AdminSeeAllPosts/>}/>
           <Route exact path="/admin/category/all" element={<AdminSeeAllCategories/>}/>
+          <Route exact path='/admin/category/new' element={<AdminCreateCategory/>}/>
         </Route>
       </Routes>
     </>
