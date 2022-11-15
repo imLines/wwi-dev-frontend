@@ -3,7 +3,13 @@ import {Routes, Route} from 'react-router-dom';
 
 import ProtectedRoute from './config/Authorization.middleware';
 
-import Reader from './components/Reader';
+import Reader from "./components/Reader";
+import ReaderHome from './components/ReaderComponents/ReaderHome/ReaderHome';
+import ReaderSeeAllPosts from './components/ReaderComponents/ReaderSeeAllPosts/ReaderSeeAllPosts';
+import ReaderAllCategories from './components/ReaderComponents/ReaderAllCategories/ReaderAllCategories';
+import ReaderAllPostOnCategory from './components/ReaderComponents/ReaderAllPostOnCategory/ReaderAllPostOnCategory';
+import ReaderSeeOnePost from './components/ReaderComponents/ReaderSeeOnePost/ReaderSeeOnePost';
+
 import Admin from './components/Admin';
 import AdminLogin from './components/AdminComponents/AdminLogin/AdminLogin';
 import AdminHome from './components/AdminComponents/AdminHome/AdminHome';
@@ -13,29 +19,39 @@ import AdminSeeOnePost from './components/AdminComponents/AdminSeeOnePost/AdminS
 import AdminSeeAllCategories from './components/AdminComponents/AdminSeeAllCategories/AdminSeeAllCategories';
 import AdminCreateCategory from './components/AdminComponents/AdminCreateCategory/AdminCreateCategory';
 import AdminUpdateCategory from './components/AdminComponents/AdminUpdateCategory/AdminUpdateCategory';
+import AdminUpdatePost from './components/AdminComponents/AdminUpdatePost/AdminUpdatePost';
+import AdminAccount from './components/AdminComponents/AdminAccount/AdminAccount';
+
+
 function App() {
 
   return (
     <>
 
       <Routes>
-        <Route path="/reader" element={<Reader/>}>
-
+        <Route exact path="/" element={<ReaderHome/>}/>
+          <Route exact path='/reader/' element={<Reader/>}>
+          <Route exact path='/reader/allposts' element={<ReaderSeeAllPosts/>}/>
+          <Route exact path='/reader/categories' element={<ReaderAllCategories/>}/>
+          <Route exact path="/reader/category/:categoryId" element={<ReaderAllPostOnCategory/>} />
+          <Route exact path='/reader/post/:postId' element={<ReaderSeeOnePost/>} />
         </Route>
 
         <Route exact path='/login' element={<AdminLogin/>}/>
         <Route exact path='/admin' element={<ProtectedRoute><Admin/></ProtectedRoute>}>
+          <Route exact path='/admin/account' element={<AdminAccount/>}/>
           <Route exact path='/admin/home' element={<AdminHome/>}/>
-          <Route exact path='/admin/post/:postId' element={<AdminSeeOnePost/>}/>
           <Route exact path='/admin/newpost' element={<AdminCreatePost/>}/>
           <Route exact path='/admin/post/all' element={<AdminSeeAllPosts/>}/>
           <Route exact path="/admin/category/all" element={<AdminSeeAllCategories/>}/>
           <Route exact path='/admin/category/new' element={<AdminCreateCategory/>}/>
           <Route exact path="/admin/category/update/:categoryId" element={<AdminUpdateCategory/>}/>
+          <Route exact path='/admin/post/update/:postId' element={<AdminUpdatePost/>}/>
+          <Route exact path='/admin/post/:postId' element={<AdminSeeOnePost/>}/>
         </Route>
       </Routes>
     </>
   )
 }
-
+ 
 export default App

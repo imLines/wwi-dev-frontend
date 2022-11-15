@@ -1,9 +1,13 @@
+import { Outlet } from "react-router-dom";
+import ReaderNavbar from "./ReaderComponents/ReaderNavbar/ReaderNavbar";
+
 function Reader(){
     return(
         <>
-            <p>Reader page</p>
+            <ReaderNavbar/>
+            <Outlet/>
         </>
     )
 };
 
-export default Reader;
+export default Reader; 

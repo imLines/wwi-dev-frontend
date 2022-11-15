@@ -2,7 +2,6 @@ import { Editor } from '@tinymce/tinymce-react';
 import hostName from '../../../config';
 import axios from 'axios';
 import './AdminCreatePost.css';
-import { useRef } from 'react';
 
 import { firebase } from "../../../config/firebaseInit";
 
@@ -20,7 +19,6 @@ function AdminCreatePost(){
     const [picture, setPicture] = useState('');
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('');
-    const editorRef = useRef(null);
 
 
     const navigate = useNavigate();
@@ -37,6 +35,7 @@ function AdminCreatePost(){
     const handleSubmit = async (event)=>{
         event.preventDefault()
         event.stopPropagation()
+
         
         const storageRef = firebase.storage().ref(`/${categorySelected}/${title}`);
         storageRef.put(file)
@@ -45,21 +44,22 @@ function AdminCreatePost(){
         })
         .then(url=>{
             setPicture(url)
+            setCategory(categorySelected);
+            axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+            axios.defaults.baseURL = hostName;
+            axios.post('/post/new',  {title, content, picture, category}) 
+            .then(response=>{
+                console.log(response)
+                if(response.status == 200){
+                    navigate('/admin/home')
+                }else{
+                    console.log(response)
+                }
+            })
+
         })
 
-        setCategory(categorySelected);
-        axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-        axios.defaults.baseURL = hostName;
-        console.log(title, content, picture, category)
-        axios.post('/post/new',  {title, content, picture, category}) 
-        .then(response=>{
-            console.log(response)
-            if(response.status == 200){
-                navigate('/admin/home')
-            }else{
-                console.log(response)
-            }
-        })
+
         
     }
    

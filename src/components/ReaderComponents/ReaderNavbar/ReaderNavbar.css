@@ -1,35 +1,33 @@
-.AdminNavbar{
+.ReaderNavbar{
     border-bottom: 2px black solid;
     padding-bottom: 20px;
     margin-bottom: 20px;
     background-color: #1F232C;
 }
 
-
-
-.AdminNavbar_logo{
+.ReaderNavbar_logo{
     width: 250px;
     height: 70px;
 }
 
-.AdminNavBar_header{
+.ReaderNavbar_header{
     display: flex;
     flex-flow: row wrap;
     align-items: center;
 }
 
-.AdminNavbar_p{
+.ReaderNavbar_p{
     font-size: 25px;
     font-weight: 700;
     color: white;
 }
 
-.AdminNavbar_hamburger-button{
+.ReaderNavbar_hamburger-button{
     height: 50px;
     width: 50px; 
 }
 
-.AdminNavbar_hamburger-open{
+.ReaderNavbar_hamburger-open{
     background-image: url('../../../assets/icons/navbar/hamburger-close.png');
     background-position: center;
     background-size: cover;
@@ -37,7 +35,7 @@
     background-color: white;
 }
 
-.AdminNavbar_hamburger-close{
+.ReaderNavbar_hamburger-close{
     background-image: url('../../../assets/icons/navbar/hamburger-open.png');
     background-position: center;
     background-size: cover;
@@ -45,11 +43,11 @@
     background-color: white;
 }
 
-.AdminNavbar_no-see-ul{
+.ReaderNavbar_no-see-ul{
     display: none;
 }
 
-.AdminNavbar_see-ul{
+.ReaderNavbar_see-ul{
     display: block;
     padding: 2%;
     border: 2px solid white;
@@ -60,12 +58,12 @@
     margin-top: 0%;
 }
 
-.AdminNavbar_li{
+.ReaderNavbar_li{
     list-style: none;
     text-decoration: none;
 }
 
-.AdminNavbar_link{
+.ReaderNavbar_link{
     list-style: none;
     text-decoration: none;
     font-size: 24px;
@@ -74,7 +72,7 @@
 
 
 
-.AdminNavbar_hamburger-container{
+.ReaderNavbar_hamburger-container{
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
