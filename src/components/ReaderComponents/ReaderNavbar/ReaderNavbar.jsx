@@ -27,11 +27,11 @@ function ReaderNavbar(){
         <nav className='ReaderNavbar'>
             <div className='ReaderNavbar_header'>
                 <img src={logo} className="ReaderNavbar_logo"/>
+                <button onClick={setHamburger} className={`ReaderNavbar_hamburger-button ${hamburgerApparence}`}></button>
             </div>
             <div className='ReaderNavbar_hamburger-container'>
-                <button onClick={setHamburger} className={`ReaderNavbar_hamburger-button ${hamburgerApparence}`}></button>
                 <ul className={hamburgerContent}>
-                    <NavLink style={({ isActive }) => isActive ? activeStyle : undefined}  to="/.#" className='ReaderNavbar_link' onClick={setHamburger} ><li className='ReaderNavbar_li'>News</li></NavLink>
+                    <NavLink style={({ isActive }) => isActive ? activeStyle : undefined}  to="/reader/news" className='ReaderNavbar_link' onClick={setHamburger} ><li className='ReaderNavbar_li'>News</li></NavLink>
                     <NavLink style={({ isActive }) => isActive ? activeStyle : undefined}  to="/reader/allposts" className='ReaderNavbar_link' onClick={setHamburger} ><li className='ReaderNavbar_li'>See all post</li></NavLink>
                     <NavLink style={({ isActive }) => isActive ? activeStyle : undefined}  to="/reader/categories" className='ReaderNavbar_link' onClick={setHamburger} ><li className='ReaderNavbar_li'>View categories</li></NavLink>
                 </ul>
@@ -40,4 +40,4 @@ function ReaderNavbar(){
     )
 };
 
-export default ReaderNavbar;
+export default ReaderNavbar; 

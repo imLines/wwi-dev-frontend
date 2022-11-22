@@ -1,0 +1,7 @@
+.no-show-popup-copied{
+    display: none;
+}
+
+.show-popup-copied{
+    background-color: red;
+}

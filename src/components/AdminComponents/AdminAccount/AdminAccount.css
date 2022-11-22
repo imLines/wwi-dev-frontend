@@ -1,0 +1,51 @@
+.AdminAccount{
+    display: flex;
+    justify-content: center;
+}
+
+.popup{
+    z-index: 99;
+    position: absolute;
+    border: black solid 3px;
+    border-radius: 30px;
+    background-color: #1F232C;
+    display: flex;
+    flex-flow: wrap column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+
+.close-button{
+    width: 30px;
+    height: 30px;
+    border: solid white 2px;
+    padding: 10px;
+    border-radius: 100%;
+    background-image: url('../../../assets/icons/allOther/white-cross.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #1F232C ;
+    margin-bottom: 20px;
+}
+
+
+.popup p{
+    color: white;
+}
+
+.email-popup-no-see{
+    display: none;
+}
+
+.name-popup-no-see{
+    display: none;
+}
+
+.password-popup-no-see{
+    display: none;
+}
+.blur{
+    filter: blur(10px);
+}

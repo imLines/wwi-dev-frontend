@@ -1,22 +1,22 @@
 .AdminNavbar{
     border-bottom: 2px black solid;
-    padding-bottom: 20px;
     margin-bottom: 20px;
     background-color: #1F232C;
 }
+.AdminNavBar_header{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 30px;
+}
 
-
-
+ 
 .AdminNavbar_logo{
     width: 250px;
     height: 70px;
 }
 
-.AdminNavBar_header{
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-}
 
 .AdminNavbar_p{
     font-size: 25px;
@@ -50,19 +50,21 @@
 }
 
 .AdminNavbar_see-ul{
+    border-top: white 2px solid;
+    padding: 20px;
     display: block;
-    padding: 2%;
-    border: 2px solid white;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin-top: 0%;
+    justify-content: flex-start;
+    
 }
 
 .AdminNavbar_li{
     list-style: none;
     text-decoration: none;
+    margin-top: 15px;
 }
 
 .AdminNavbar_link{
@@ -73,10 +75,3 @@
 }
 
 
-
-.AdminNavbar_hamburger-container{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-end;
-    align-items: center;
-}

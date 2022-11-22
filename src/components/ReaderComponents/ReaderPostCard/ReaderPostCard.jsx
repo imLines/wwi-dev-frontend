@@ -10,9 +10,9 @@ const ReaderPostCard = function({post}){
     }, [])
 
     return( 
-        <Link className='AdminPostCard' to={`/reader/post/${post.id}`}>
-            <img className='AdminPostCard_picture' src={post.picture}/>
-            <div className='AdminPostCard_title-container'>
+        <Link className='ReaderPostCard' to={`/reader/post/${post.id}`}>
+            <img className='ReaderPostCard_picture' src={post.picture}/>
+            <div className='ReaderPostCard_title-container'>
                 <p>{post.title}</p>
             </div>
         </Link>

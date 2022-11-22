@@ -9,6 +9,7 @@ import ReaderSeeAllPosts from './components/ReaderComponents/ReaderSeeAllPosts/R
 import ReaderAllCategories from './components/ReaderComponents/ReaderAllCategories/ReaderAllCategories';
 import ReaderAllPostOnCategory from './components/ReaderComponents/ReaderAllPostOnCategory/ReaderAllPostOnCategory';
 import ReaderSeeOnePost from './components/ReaderComponents/ReaderSeeOnePost/ReaderSeeOnePost';
+import ReaderNoveltyPosts from './components/ReaderComponents/ReaderNoveltyPosts/ReaderNoveltyPosts';
 
 import Admin from './components/Admin';
 import AdminLogin from './components/AdminComponents/AdminLogin/AdminLogin';
@@ -35,6 +36,7 @@ function App() {
           <Route exact path='/reader/categories' element={<ReaderAllCategories/>}/>
           <Route exact path="/reader/category/:categoryId" element={<ReaderAllPostOnCategory/>} />
           <Route exact path='/reader/post/:postId' element={<ReaderSeeOnePost/>} />
+          <Route exact path='/reader/news' element={<ReaderNoveltyPosts/>}/>
         </Route>
 
         <Route exact path='/login' element={<AdminLogin/>}/>

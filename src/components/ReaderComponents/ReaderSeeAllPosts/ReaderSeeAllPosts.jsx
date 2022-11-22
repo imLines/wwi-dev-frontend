@@ -28,7 +28,7 @@ function ReaderSeeAllPosts(){
     }else{
         return( 
             <>
-                <h2>Viewer Mode</h2>
+                <h2>All posts</h2>
                 <section className='AdminSeeAllPosts'>
                     <div className='AdminSeeAllPosts_card-container'>
                         {posts?.map(post=><ReaderPostCard post={post} key={post.id} />)}

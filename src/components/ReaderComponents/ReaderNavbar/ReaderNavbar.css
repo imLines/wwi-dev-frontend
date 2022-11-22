@@ -1,20 +1,22 @@
 .ReaderNavbar{
     border-bottom: 2px black solid;
-    padding-bottom: 20px;
     margin-bottom: 20px;
     background-color: #1F232C;
 }
+.ReaderNavbar_header{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 30px;
+}
 
+ 
 .ReaderNavbar_logo{
     width: 250px;
     height: 70px;
 }
 
-.ReaderNavbar_header{
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-}
 
 .ReaderNavbar_p{
     font-size: 25px;
@@ -48,19 +50,21 @@
 }
 
 .ReaderNavbar_see-ul{
+    border-top: white 2px solid;
+    padding: 20px;
     display: block;
-    padding: 2%;
-    border: 2px solid white;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin-top: 0%;
+    justify-content: flex-start;
+    
 }
 
 .ReaderNavbar_li{
     list-style: none;
     text-decoration: none;
+    margin-top: 15px;
 }
 
 .ReaderNavbar_link{
@@ -71,10 +75,3 @@
 }
 
 
-
-.ReaderNavbar_hamburger-container{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-end;
-    align-items: center;
-}

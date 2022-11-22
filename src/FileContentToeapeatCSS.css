@@ -1,0 +1,33 @@
+/*
+
+    576px pour les téléphones en portrait
+    768px pour les tablettes
+    992px pour les ordinateurs portables
+    1200px pour les grands écrans
+
+*/
+
+/* Mobile  */
+@media screen and (max-width: 576px){
+
+}
+
+/* Mobile portrait */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    
+}
+
+/* Tablette */
+@media screen and (min-width: 769px) and (max-width: 992px){
+
+}
+
+/* Ordinateur portable */
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    
+}
+
+/* Ordinateur  */
+@media screen and (min-width: 1201px){
+    
+}
