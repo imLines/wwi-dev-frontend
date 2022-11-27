@@ -17,5 +17,5 @@ function AdminHome(){
         </section>
     )
 };
-
+ 
 export default AdminHome;

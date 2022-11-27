@@ -25,8 +25,8 @@ function ReaderNoveltyPosts(){
         )
     }else{
         return(
-            <section className="ReaderNewPost">
-                <h2>All new posts</h2>
+            <section className="ReaderNoveltyPosts">
+                <h1>All new posts</h1>
                 <div className="ReaderNoveltyPosts_card-container">
                     {posts?.map(post=><ReaderPostCard post={post} key={post.id} />)}
                 </div>

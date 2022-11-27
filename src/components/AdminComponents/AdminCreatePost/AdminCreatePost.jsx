@@ -2,6 +2,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import hostName from '../../../config';
 import axios from 'axios';
 import './AdminCreatePost.css';
+import hostReactApp from '../../../config/hostReactApp.config';
 
 import { firebase } from "../../../config/firebaseInit";
 
@@ -51,14 +52,20 @@ function AdminCreatePost(){
             .then(response=>{
                 console.log(response)
                 if(response.status == 200){
+                    axios.post('/newsletter/letter/new', {picture, title, url: `${hostReactApp}/reader/post/${response.data.post.id}`}) 
+                        .then(newsletter=>{
+                            console.log(newsletter)
+                        })
+                        .catch((e=>{
+                            alert(e.reponse.data.message)
+                        }))
                     navigate('/admin/home')
+                    console.log(response)
                 }else{
                     console.log(response)
                 }
             })
-
         })
-
 
         
     }

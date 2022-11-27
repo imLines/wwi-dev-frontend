@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import hostName from '../../../config';
 import ReaderPostCard from '../ReaderPostCard/ReaderPostCard';
+import './ReaderSeeAllPosts.css';
 
 function ReaderSeeAllPosts(){
     const [posts, setPosts] = useState(null);
@@ -27,14 +28,12 @@ function ReaderSeeAllPosts(){
         )
     }else{
         return( 
-            <>
-                <h2>All posts</h2>
-                <section className='AdminSeeAllPosts'>
-                    <div className='AdminSeeAllPosts_card-container'>
-                        {posts?.map(post=><ReaderPostCard post={post} key={post.id} />)}
-                    </div>
-                </section> 
-            </>
+            <section  className='ReaderSeeAllPosts'>
+                <h1>All posts</h1>
+                <div className='ReaderSeeAllPosts_card-container'>
+                    {posts?.map(post=><ReaderPostCard post={post} key={post.id} />)}
+                </div>
+            </section> 
         )
     
 

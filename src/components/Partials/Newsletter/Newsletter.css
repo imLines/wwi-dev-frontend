@@ -1,0 +1,33 @@
+.Newsletter{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Newsletter div {
+    display: flex;
+
+}
+
+.Newsletter button{
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: #3B58CF;
+    width: 100px;
+    height: 100%;
+    border-radius: 0px 25px 25px 0px;
+}
+
+.Newsletter input{
+    border-radius: 25px 0px 0px 25px;
+    border: solid white 3px;
+    
+}
+
+.Newsletter_input-button{
+    height: 30px;
+    width: 250px;
+    
+}

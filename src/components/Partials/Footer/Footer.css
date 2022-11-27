@@ -1,0 +1,35 @@
+.Footer {
+    background-color: #1F232C;
+    color: white;
+    height: 200px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.Footer_link-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.Footer_link-container img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.Footer_contact-copy {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 20px;
+    height: 60px;
+    justify-content: space-between;
+}
+
+.Footer_contact-copy a{
+    color: white;
+    font-weight: 700;
+}

@@ -26,7 +26,7 @@ function ReaderNavbar(){
     return(
         <nav className='ReaderNavbar'>
             <div className='ReaderNavbar_header'>
-                <img src={logo} className="ReaderNavbar_logo"/>
+                <a href='/'><img src={logo} className="ReaderNavbar_logo"/></a>
                 <button onClick={setHamburger} className={`ReaderNavbar_hamburger-button ${hamburgerApparence}`}></button>
             </div>
             <div className='ReaderNavbar_hamburger-container'>
@@ -36,8 +36,8 @@ function ReaderNavbar(){
                     <NavLink style={({ isActive }) => isActive ? activeStyle : undefined}  to="/reader/categories" className='ReaderNavbar_link' onClick={setHamburger} ><li className='ReaderNavbar_li'>View categories</li></NavLink>
                 </ul>
             </div> 
-        </nav>
+        </nav> 
     )
-};
+}; 
 
 export default ReaderNavbar; 
