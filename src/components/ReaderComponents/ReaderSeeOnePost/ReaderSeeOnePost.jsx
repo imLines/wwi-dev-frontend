@@ -10,9 +10,10 @@ import {FacebookShareButton, FacebookIcon,
 
 function ReaderSeeOnePost(){
     const [post, setPost] = useState(null);
+    const [dateOfPost, setDateOfPost] = useState(null);
     const [category, setCategory] = useState(null)
     const [pathInLocation, setPathInLocation] = useState('')
-    const [popupCopiedPath, setPopupCopiedPath] = useState('no-show-popup-copied');
+    const [copiedPath, setCopiedPath] = useState('Copy Link');
 
     let {postId} = useParams();
     useEffect(()=>{
@@ -25,9 +26,20 @@ function ReaderSeeOnePost(){
             const responseCategory = await axios.get(`/category/${post.categoryId}`)
             setCategory(responseCategory.data.category)
         }
+        function setDateForBestLook(date){
+            const toDate = new Date(date)
+            setDateOfPost(new Intl.DateTimeFormat("en-GB", {
+                year: "numeric",
+                month: "long",
+                day: "2-digit"
+              }).format(toDate))
+
+        }
+
         if(post == null){
             getPost()
         }else{
+            setDateForBestLook(post.createdAt)
             getCategory()
         }
         setPathInLocation(location.origin+location.pathname)
@@ -35,9 +47,9 @@ function ReaderSeeOnePost(){
 
     function copyLink(){
         navigator.clipboard.writeText(pathInLocation)
-        setPopupCopiedPath('show-popup-copied')
+        setCopiedPath('copied')
         setTimeout(function(){
-            setPopupCopiedPath('no-show-popup-copied')
+            setCopiedPath('Copy Link')
         }, 3000)
     }
 
@@ -51,34 +63,31 @@ function ReaderSeeOnePost(){
     }else{
         return(
             <>
-            <section>
-                <div>
-                    <img src={post.picture}/>
-                    <h2>{category.name}</h2>
-                    <p>{post.author}, created the {post.createdAt}</p>
-                </div>
-                <div>
+            <section className="ReaderSeeOnePost">
+                <div className="ReaderSeeOnePost_header">
                     <h1>{post.title}</h1>
-                    <div dangerouslySetInnerHTML={{__html: post.content}} />
+                    <img src={post.picture}/>
+                    <p>In the category <b>{category.name}</b></p>
+                    <p>Author : <b>{post.author}</b>, created the {dateOfPost}</p>
                 </div>
-                <div>
+                <div className="ReaderSeeOnePost_content-container">
+                    <div className="ReaderSeeOnePost_content" dangerouslySetInnerHTML={{__html: post.content}} />
+                </div>
+                <div className="ReaderSeeOnePost_share-container">
                     <p>Share :</p>
-                    <FacebookShareButton url={pathInLocation}>
+                    <FacebookShareButton className="ReaderSeeOnePost_link" url={pathInLocation}>
                         <FacebookIcon size={40} round={true}/>
                     </FacebookShareButton>
-                    <TwitterShareButton url={pathInLocation}>
+                    <TwitterShareButton className="ReaderSeeOnePost_link" url={pathInLocation}>
                         <TwitterIcon size={40} round={true}/>
                     </TwitterShareButton>
-                    <WhatsappShareButton url={pathInLocation}>
+                    <WhatsappShareButton className="ReaderSeeOnePost_link" url={pathInLocation}>
                         <WhatsappIcon size={40} round={true}/>
                     </WhatsappShareButton>
-                    <div className={popupCopiedPath}>
-                        <p>Copied !</p>
-                    </div>
-                    <button onClick={copyLink}>Copy Link</button>
+                    <button className={`ReaderSeeOnePost_button-copy-link ${copiedPath}`} onClick={copyLink}>{copiedPath}</button>
                 </div>
 
-            </section>
+            </section> 
             </>
         )
     }

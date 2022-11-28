@@ -1,12 +1,11 @@
-/* Mobile  */
 @media screen and (max-width: 576px){
-    .AdminHome{
+    .ReaderAllCategories{
         display: flex;
         flex-flow: column;
         align-items: center;
     }
     
-    .AdminHome_link{
+    .ReaderAllCategories_link{
         width: 50%;
         text-align: center;
         padding: 30px;
@@ -17,19 +16,19 @@
         font-weight: 700;
         border-radius: 30px;
     } 
-    .AdminHome_link:hover{
+    .ReaderAllCategories_link:hover{
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
     }
 }
 
 /* Mobile portrait */
 @media screen and (min-width: 577px) and (max-width: 768px) {
-    .AdminHome{
+    .ReaderAllCategories{
         display: flex;
         flex-flow: column;
         align-items: center;
     }
-    .AdminHome_link{
+    .ReaderAllCategories_link{
         width: 50%;
         text-align: center;
         font-size: 20px;
@@ -41,19 +40,19 @@
         font-weight: 700;
         border-radius: 30px;
     } 
-    .AdminHome_link:hover{
+    .ReaderAllCategories_link:hover{
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
     }   
 }
 
 /* Tablette */
 @media screen and (min-width: 769px) and (max-width: 992px){
-    .AdminHome{
+    .ReaderAllCategories{
         display: flex;
         flex-flow: column;
         align-items: center;
     }
-    .AdminHome_link{
+    .ReaderAllCategories_link{
         width: 40%;
         text-align: center;
         font-size: 20px;
@@ -65,19 +64,19 @@
         font-weight: 700;
         border-radius: 30px;
     } 
-    .AdminHome_link:hover{
+    .ReaderAllCategories_link:hover{
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
     }   
 }
 
 /* Ordinateur portable */
 @media screen and (min-width: 993px) and (max-width: 1200px){
-    .AdminHome{
+    .ReaderAllCategories{
         display: flex;
         flex-flow: column;
         align-items: center;
     }
-    .AdminHome_link{
+    .ReaderAllCategories_link{
         width: 40%;
         text-align: center;
         font-size: 20px;
@@ -89,19 +88,19 @@
         font-weight: 700;
         border-radius: 30px;
     } 
-    .AdminHome_link:hover{
+    .ReaderAllCategories_link:hover{
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
     }     
 }
 
 /* Ordinateur  */
 @media screen and (min-width: 1201px){
-    .AdminHome{
+    .ReaderAllCategories{
         display: flex;
         flex-flow: column;
         align-items: center;
     }
-    .AdminHome_link{
+    .ReaderAllCategories_link{
         width: 30%;
         text-align: center;
         font-size: 20px;
@@ -113,7 +112,7 @@
         font-weight: 700;
         border-radius: 30px;
     } 
-    .AdminHome_link:hover{
+    .ReaderAllCategories_link:hover{
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
     }     
 }

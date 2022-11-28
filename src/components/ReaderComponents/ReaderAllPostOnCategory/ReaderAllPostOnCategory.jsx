@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import ReaderPostCard from "../ReaderPostCard/ReaderPostCard";
 import hostName from '../../../config';
+import './ReaderAllPostOnCategory.css';
 
 
 
@@ -36,18 +37,15 @@ function ReaderAllPostOnCategory(){
     }else{
         return( 
             <>
-                <h2>{category.name}</h2>
-                <p>{category.description}</p>
-                <section className='AdminSeeAllPosts'>
-                    <div className='AdminSeeAllPosts_card-container'>
+                <section className='ReaderAllPostOnCategory'>
+                    <h2>{category.name}</h2>
+                    <p>{category.description}</p>
+                    <div className='ReaderAllPostOnCategory_card-container'>
                         {posts?.map(post=><ReaderPostCard post={post} key={post.id} />)}
                     </div>
                 </section> 
             </>
         )
-    
-
-
     }
 };
 

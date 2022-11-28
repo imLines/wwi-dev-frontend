@@ -35,9 +35,6 @@ function ReaderSeeAllPosts(){
                 </div>
             </section> 
         )
-    
-
-
     }
 };
 

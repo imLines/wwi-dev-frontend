@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import hostName from '../../../config';
+import './ReaderAllCategories.css'
  
 
 function ReaderAllCategories(){
@@ -26,11 +27,11 @@ function ReaderAllCategories(){
         )
     }else{
         return(
-            <>
+            <section className="ReaderAllCategories">
                 {categories?.map((item, index) => {
-                        return   <Link key={index} to={`/reader/category/${item.id}`} >{item.name} : {item.description}</Link>
+                        return   <Link className="ReaderAllCategories_link" key={index} to={`/reader/category/${item.id}`} >{item.name} : {item.description}</Link>
                         })}
-            </>
+            </section>
         )
     }
 };
