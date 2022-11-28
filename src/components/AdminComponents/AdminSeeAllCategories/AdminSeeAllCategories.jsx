@@ -44,22 +44,21 @@ function AdminSeeAllCategories(){
         )
     }else{
         return(
-            <>
-                <div className="AdminSeeAllCategories_create-category-container">
+            <section className="AdminSeeAllCategories">
                     <Link className="AdminSeeAllCategories_create-category-button" to='/admin/category/new'>Create new category</Link>
-                </div>
-                <section className="AdminSeeAllCategories">
                     <table cellSpacing="0">
                         <tbody>
                             <tr>
                                 <th className="AdminSeeAllCategories_category-case" scope="col">Categorie Name</th>
+                                <th className="AdminSeeAllCategories_category-case" scope="col">Categorie Description</th>
                                 <th className="AdminSeeAllCategories_option-case" scope="col">Change</th>
                                 <th className="AdminSeeAllCategories_option-case" scope="col">Delete</th>
                             </tr>
                             {categories?.map((element, index)=>{
                                 return(
                                     <tr key={index}>
-                                        <th scope="row"><Link className="AdminSeeAllCategories_category-name">{element?.name}</Link></th>
+                                        <th scope="row">{element?.name}</th>
+                                        <th scope="row">{element?.description}</th>
                                         <th scope="row"><Link to={`/admin/category/update/${element.id}`}>Modifier</Link></th>
                                         <th scope="row"><button className="AdminSeeAllCategories_delete-button" onClick={event=>deleteCategory(event, element.id)}></button> </th>
                                     </tr>
@@ -68,8 +67,7 @@ function AdminSeeAllCategories(){
 
                         </tbody>
                     </table>
-                </section>
-            </>
+            </section>
         )
     }
 };

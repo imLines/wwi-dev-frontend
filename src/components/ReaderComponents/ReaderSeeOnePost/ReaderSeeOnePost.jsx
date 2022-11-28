@@ -34,7 +34,7 @@ function ReaderSeeOnePost(){
                 day: "2-digit"
               }).format(toDate))
 
-        }
+        } 
 
         if(post == null){
             getPost()

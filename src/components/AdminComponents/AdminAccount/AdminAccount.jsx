@@ -16,9 +16,6 @@ function AdminAccount(){
     const [namePopupSee, setNamePopupSee] = useState('name-popup-no-see');
     const [passwordPopupSee, setPasswordPopupSee] = useState('password-popup-no-see')
     const [backgroundBlur, setBackgroundBlur] = useState('');
-
-
-
     
     useEffect(()=>{
         try{
@@ -92,7 +89,7 @@ function AdminAccount(){
         setPasswordPopupSee('password-popup-no-see')
         setBackgroundBlur('')
     }
-    function changePassword(e){
+    function changePassword(e){ 
         e.preventDefault();
         try{
             if(newPassword == confirmNewPassword){
@@ -110,33 +107,39 @@ function AdminAccount(){
 
     if(admin){
         return(
-            <section className="AdminAccount">
+            <section className="AdminAccount_component">
                 <form onSubmit={changeMail} className={`popup ${emailPopupSee}`}>
-                    <button className="close-button" onClick={closeEmailPopup}></button>
+                    <div className="close-button-container">
+                        <button className="close-button" onClick={closeEmailPopup}></button>
+                    </div>
                     <p>Last Email : {admin?.email}</p>
                     <input type='email' onChange={e=>setNewMail(e.target.value)} placeholder="new adress mail"/>
                     <input type='email' onChange={e=>setConfirmNewMail(e.target.value)} placeholder="confirm new adress mail"/>
-                    <button type="submit">Change email</button>
+                    <button className="AdminAccount_submit" type="submit">Change email</button>
                 </form>
                 <form onSubmit={changeName} className={`popup ${namePopupSee}`}>
-                    <button className="close-button" onClick={closeNamePopup}></button>
+                    <div className="close-button-container">
+                        <button className="close-button" onClick={closeNamePopup}></button>
+                    </div>
                     <p>Last Name : {admin?.name}</p>
                     <input type='text' onChange={e=>setNewName(e.target.value)} placeholder="new name"/>
-                    <button type="submit">Change name</button>
+                    <button className="AdminAccount_submit" type="submit">Change name</button>
                 </form>
                 <form onSubmit={changePassword} className={`popup ${passwordPopupSee}`}>
-                    <button className="close-button" onClick={closePasswordPopup}></button>
+                    <div className="close-button-container">
+                        <button className="close-button" onClick={closePasswordPopup}></button>
+                    </div>
                     <input autoComplete="new-password" type='password' onChange={e=>setNewPassword(e.target.value)} placeholder="new password"/>
                     <input autoComplete="new-password" type='password' onChange={e=>setConfirmNewPassword(e.target.value)} placeholder="confirm new password"/>
-                    <button type="submit">Change password</button>
+                    <button className="AdminAccount_submit" type="submit">Change password</button>
                 </form>
-                <section className={`${backgroundBlur}`}>
+                <section className={`AdminAccount ${backgroundBlur}`}>
                     <h2>account setting of {admin?.name}</h2>
                     <p>Email : {admin?.email}</p>
                     <p>Name : {admin?.name}</p>
-                    <button onClick={emailPopup}>Modifie email</button>
-                    <button onClick={namePopup}>Modifie Name</button>
-                    <button onClick={passwordPopup}>Modifie password</button>
+                    <button className="AdminAccount_button-select-change" onClick={emailPopup}>Modifie email</button>
+                    <button className="AdminAccount_button-select-change" onClick={namePopup}>Modifie Name</button>
+                    <button className="AdminAccount_button-select-change" onClick={passwordPopup}>Modifie password</button>
                 </section>
             </section>
         )

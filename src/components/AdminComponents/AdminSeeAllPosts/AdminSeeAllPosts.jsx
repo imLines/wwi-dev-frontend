@@ -8,7 +8,7 @@ import './AdminSeeAllPosts.css';
 function AdminSeeAllPosts(){
     const [posts, setPosts] = useState(null);
     const [managerMod, setManagerMode] = useState(false);
-    const [refreshPage, setRefreshPage] = useState(false)
+    const [refreshPage, setRefreshPage] = useState(false);
     useEffect(()=>{
         setRefreshPage(true)
         axios.defaults.baseURL = hostName;
@@ -32,9 +32,18 @@ function AdminSeeAllPosts(){
             setManagerMode(false)
         }
     }
+    function setDateForBestLook(date){
+        const toDate = new Date(date)
+        const dateGoodFormat = new Intl.DateTimeFormat("en-GB", {
+            year: "numeric",
+            month: "long",
+            day: "2-digit"
+          }).format(toDate)
+          return dateGoodFormat
+    }
 
     const deletePost = (e, postId)=>{
-        if(window.confirm("You're sur to delete this category ?")){
+        if(window.confirm("You're sur to delete this post ?")){
             e.preventDefault();
             e.stopPropagation();
             try{
@@ -58,9 +67,9 @@ function AdminSeeAllPosts(){
         return(
             <section className="AdminSeeAllPostsManagerMode">
                 <h2>Manager Mode</h2>
-                <button onClick={changeMod}>Change Mode</button>
-                <table>
-                    <tbody>
+                <button className='AdminSeeAllPosts_change-mode' onClick={changeMod}>Change Mode</button>
+                <table cellSpacing="0">
+                    <tbody >
                         <tr>
                             <th scope="col">Title</th>
                             <th scope="col">created At</th>
@@ -71,7 +80,7 @@ function AdminSeeAllPosts(){
                             return(
                                 <tr key={index}>
                                     <th scope="row"><Link to={`/admin/post/${element.id}`}>{element?.title}</Link></th>
-                                    <th scope="row">{element?.createdAt}</th>
+                                    <th scope="row">{setDateForBestLook(element?.createdAt)}</th>
                                     <th scope="row"><Link to={`/admin/post/update/${element.id}`}>Modifier</Link></th>
                                     <th scope="row"><button className='AdminSeeAllPostsManagerMode_delete-button' onClick={event=>deletePost(event, element.id)}></button> </th>
                                 </tr>
@@ -84,15 +93,14 @@ function AdminSeeAllPosts(){
         )
     }else if(!managerMod){
         return( 
-            <>
-                <h2>Viewer Mode</h2>
-                <button onClick={changeMod}>Change Mode</button>
-                <section className='AdminSeeAllPosts'>
+            <section className='AdminSeeAllPosts'>
+                <h1>All posts</h1>
+                <h3>Viewer Mode</h3>
+                <button className='AdminSeeAllPosts_change-mode' onClick={changeMod}>Change Mode</button>
                     <div className='AdminSeeAllPosts_card-container'>
                         {posts?.map(post=><AdminPostCard post={post} key={post.id} />)}
                     </div>
-                </section> 
-            </>
+            </section>
         )
     
 

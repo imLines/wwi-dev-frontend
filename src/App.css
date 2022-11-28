@@ -4,15 +4,11 @@
     margin: 0%;
     font-family: "Roboto Condensed";
 }
-
-
-
 body{
     position: relative;
     padding-bottom: 200px;
     min-height: 70vh;
 }
-
 
 /*ERROR STYLE */
 .errorMessage{

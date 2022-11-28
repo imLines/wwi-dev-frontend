@@ -1,32 +1,171 @@
-.AdminPostCard{
-    height: 200px;
-    width: 300px;
-    display: flex;
-    justify-content: center;
-    flex-flow: column;
-    align-items: center;
-    text-decoration: none;
-    margin-bottom: 30px;
+/* Mobile  */
+@media screen and (max-width: 576px){
+    .AdminPostCard{
+        height: 200px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+        align-items: center;
+        text-decoration: none;
+        margin: 30px;
+    }
+    .AdminPostCard_picture{
+        border: 1px solid black;
+        width: 100%;
+        height: 100%;
+    }
+    .AdminPostCard_title-container p{
+        margin: 0px;
+        color: white;
+        margin: 5px;
+    }
+    .AdminPostCard_title-container{
+        width: 100%;
+        font-size: 20px;
+        height: auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        background-color: #3B58CF;
+        border: 1px solid black;
+    }
 }
 
-.AdminPostCard_picture{
-    border: 1px solid black;
-    width: 300px;
-    height: 170px;
+/* Mobile portrait */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    .AdminPostCard{
+        height: 200px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+        align-items: center;
+        text-decoration: none;
+        margin: 30px;
+    }
+    .AdminPostCard_picture{
+        border: 1px solid black;
+        width: 100%;
+        height: 100%;
+    }
+    .AdminPostCard_title-container p{
+        margin: 0px;
+        color: white;
+        margin: 5px;
+    }
+    .AdminPostCard_title-container{
+        width: 100%;
+        font-size: 20px;
+        height: auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        background-color: #3B58CF;
+        border: 1px solid black;
+    }
 }
-.AdminPostCard_title-container p{
-    margin: 0px;
-    color: white;
-    margin: 5px;
-}
-.AdminPostCard_title-container{
-    width: 100%;
-    font-size: 20px;
-    height: auto;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    background-color: #3B58CF;
-    border: 1px solid black;
 
+/* Tablette */
+@media screen and (min-width: 769px) and (max-width: 992px){
+    .AdminPostCard{
+        height: 200px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+        align-items: center;
+        text-decoration: none;
+        margin: 30px;
+    }
+    .AdminPostCard_picture{
+        border: 1px solid black;
+        width: 100%;
+        height: 100%;
+    }
+    .AdminPostCard_title-container p{
+        margin: 0px;
+        color: white;
+        margin: 5px;
+    }
+    .AdminPostCard_title-container{
+        width: 100%;
+        font-size: 20px;
+        height: auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        background-color: #3B58CF;
+        border: 1px solid black;
+    }
+} 
+
+/* Ordinateur portable */
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    .AdminPostCard{
+        height: 250px;
+        width: 350px;
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+        align-items: center;
+        text-decoration: none;
+        margin: 30px;
+    }
+    .AdminPostCard_picture{
+        border: 1px solid black;
+        width: 100%;
+        height: 100%;
+    }
+    .AdminPostCard_title-container p{
+        margin: 0px;
+        color: white;
+        margin: 5px;
+        font-size: 25px;
+    }
+    .AdminPostCard_title-container{
+        width: 100%;
+        font-size: 20px;
+        height: auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        background-color: #3B58CF;
+        border: 1px solid black;
+    } 
+}
+
+/* Ordinateur  */
+@media screen and (min-width: 1201px){
+    .AdminPostCard{
+        height: 250px;
+        width: 350px;
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+        align-items: center;
+        text-decoration: none;
+        margin: 30px;
+    }
+    .AdminPostCard_picture{
+        border: 1px solid black;
+        width: 100%;
+        height: 100%;
+    }
+    .AdminPostCard_title-container p{
+        margin: 0px;
+        color: white;
+        margin: 5px;
+        font-size: 25px;
+    }
+    .AdminPostCard_title-container{
+        width: 100%;
+        font-size: 20px;
+        height: auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        background-color: #3B58CF;
+        border: 1px solid black;
+    } 
 }

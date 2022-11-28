@@ -6,7 +6,7 @@ const AdminPostCard = function({post}){
     const [data, setData]= useState('');
 
     useEffect(()=>{
-        setData(post.content)
+        setData(post.content) 
     }, [])
 
     return( 

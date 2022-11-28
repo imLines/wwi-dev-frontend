@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import hostName from "../../../config";
 import './AdminSeeOnePost.css';
@@ -8,6 +8,9 @@ import AdminNavbar from "../AdminNavbar/AdminNavbar";
 function AdminSeeOnePost(){
     const [post, setPost] = useState(null);
     const [category, setCategory] = useState(null)
+    const [dateOfPost, setDateOfPost] = useState(null)
+
+    const navigate = useNavigate();
 
     let {postId} = useParams();
     useEffect(()=>{
@@ -24,9 +27,24 @@ function AdminSeeOnePost(){
         if(post == null){
             getPost()
         }else{
+            function setDateForBestLook(date){
+                const toDate = new Date(date)
+                setDateOfPost(new Intl.DateTimeFormat("en-GB", {
+                    year: "numeric",
+                    month: "long",
+                    day: "2-digit"
+                  }).format(toDate))
+    
+            } 
+            setDateForBestLook(post.createdAt)
             getCategory()
         }
     }, [post, category])
+
+
+    function modifiePost(){
+        navigate(`/admin/post/update/${post.id}`)
+    }
 
     if(post == null || category == null){
         return(
@@ -36,21 +54,17 @@ function AdminSeeOnePost(){
         )
     }else{
         return(
-            <>
-                <section>
-                    <div>
-                        <img src={post.picture}/>
-                        <h2>{category.name}</h2>
-                        <p>{post.author}, created the {post.createdAt}</p>
-                    </div>
-                    <div>
-                        <h1>{post.title}</h1>
-                        <div dangerouslySetInnerHTML={{__html: post.content}} />
-                    </div>
-
-                </section>
+            <section className="AdminSeeOnePost">
+                <div className="AdminSeeOnePost_header"> 
+                    <h1>{post.title}</h1>
+                    <img src={post.picture}/>
+                    <h2>{category.name}</h2>
+                    <p>{post.author}, created the {dateOfPost}</p>
+                </div>
+                <div dangerouslySetInnerHTML={{__html: post.content}} />
+                <button onClick={modifiePost}>Update this post</button>
+            </section>
             
-            </>
         )
     }
 

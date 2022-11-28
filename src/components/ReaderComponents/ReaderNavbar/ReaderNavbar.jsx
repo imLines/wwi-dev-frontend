@@ -17,7 +17,7 @@ function ReaderNavbar(){
         }
     }
 
-    let activeStyle = {
+    let activeStyle = { 
         color: "#3B58CF",
       };
     

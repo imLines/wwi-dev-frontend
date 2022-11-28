@@ -23,9 +23,9 @@ function AdminNavbar(){
      
     return( 
         <nav className='AdminNavbar'>
-            <div className='AdminNavBar_header'> 
+            <div className='AdminNavbar_header'> 
                 <div>
-                    <img src={logo} className="AdminNavbar_logo"/>
+                    <a href='/admin/home'><img src={logo} className="AdminNavbar_logo"/></a>
                     <p className='AdminNavbar_p'>Admin Workspace</p>
                 </div>
                 <button onClick={setHamburger} className={`AdminNavbar_hamburger-button ${hamburgerApparence}`}></button>

@@ -15,7 +15,7 @@ const ReaderPostCard = function({post}){
             <div className='ReaderPostCard_title-container'>
                 <p>{post.title}</p>
             </div>
-        </Link>
+        </Link> 
     );
 }; 
 
