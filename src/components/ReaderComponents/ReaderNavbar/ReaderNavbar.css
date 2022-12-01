@@ -2,7 +2,6 @@
 @media screen and (max-width: 576px){
     .ReaderNavbar{
         border-bottom: 2px black solid;
-        margin-bottom: 20px;
         background-color: #1F232C;
     }
     .ReaderNavbar_header{
@@ -69,7 +68,6 @@
 @media screen and (min-width: 577px) and (max-width: 768px) {
     .ReaderNavbar{
         border-bottom: 2px black solid;
-        margin-bottom: 20px;
         background-color: #1F232C;
     }
     .ReaderNavbar_header{
@@ -136,7 +134,6 @@
 @media screen and (min-width: 769px) and (max-width: 992px){
     .ReaderNavbar{
         border-bottom: 2px black solid;
-        margin-bottom: 20px;
         background-color: #1F232C;
     }
     .ReaderNavbar_header{
@@ -182,7 +179,6 @@
 @media screen and (min-width: 993px) and (max-width: 1200px){
     .ReaderNavbar{
         border-bottom: 2px black solid;
-        margin-bottom: 20px;
         background-color: #1F232C;
     }
     .ReaderNavbar_header{
@@ -228,7 +224,6 @@
 @media screen and (min-width: 1201px){
     .ReaderNavbar{
         border-bottom: 2px black solid;
-        margin-bottom: 20px;
         background-color: #1F232C;
     }
     .ReaderNavbar_header{

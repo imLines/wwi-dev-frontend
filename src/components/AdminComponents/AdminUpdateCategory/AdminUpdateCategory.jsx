@@ -4,12 +4,18 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import hostName from '../../../config';
+import './AdminUpdateCategory.css';
 
 
 function AdminUpdateCategory(){
     const [name, setName] = useState(null);
     const [description, setDescription] = useState(null);
     const [category, setCategory] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('')
+    const [errorInput, setErrorInput] = useState('')
+
+    
+
     axios.defaults.baseURL = hostName;
     const navigate = useNavigate();
     let {categoryId} = useParams();
@@ -39,6 +45,12 @@ function AdminUpdateCategory(){
                     console.log(axios.status)
                 }
             })
+            .catch((e)=>{
+                if(e.response.status == 400){
+                    setErrorInput('error-input')
+                    setErrorMessage(e.response.data.message)
+                }
+            })
         }catch(e){
             console.log(e)
         }
@@ -50,17 +62,18 @@ function AdminUpdateCategory(){
             </>
         )
     }else{
-        return(
+        return( 
             <>
                 <form className="AdminUpdateCategory" onSubmit={handleSubmit}>
                     <h1>Change this category</h1>
-                    <div>
+                    <p className='errorMessage'>{errorMessage}</p>
+                    <div className="AdminUpdateCategory_section">
                         <label htmlFor="name">Name :</label>
-                        <input name="name" defaultValue={category.name} onChange={e=>setName(e.target.value)} type="text" />
+                        <input className={`${errorInput}`} name="name" defaultValue={category.name} onChange={e=>setName(e.target.value)} type="text" />
                     </div>
-                    <div>
+                    <div className="AdminUpdateCategory_section">
                         <label htmlFor="description">Description :</label>
-                        <input name="description" defaultValue={category.description} onChange={e=>setDescription(e.target.value)} type="text" />
+                        <textarea className={`${errorInput}`} name="description" defaultValue={category.description} onChange={e=>setDescription(e.target.value)} type="text" />
                     </div>
                     <button type="submit">Change this category</button>
                 </form>

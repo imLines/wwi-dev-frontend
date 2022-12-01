@@ -5,7 +5,7 @@ import './AdminCreatePost.css';
 import hostReactApp from '../../../config/hostReactApp.config';
 
 import { firebase } from "../../../config/firebaseInit";
-
+ 
 
 
 import {useEffect, useState} from 'react'; 
@@ -19,8 +19,8 @@ function AdminCreatePost(){
     const [categorySelected, setCategorySelected] = useState('');
     const [picture, setPicture] = useState('');
     const [content, setContent] = useState('');
-    const [category, setCategory] = useState('');
 
+    const [errorInputCategory, setErrorInputCategory] = useState('')
 
     const navigate = useNavigate();
 
@@ -37,22 +37,28 @@ function AdminCreatePost(){
         event.preventDefault()
         event.stopPropagation()
 
-        
-        const storageRef = firebase.storage().ref(`/${categorySelected}/${title}`);
-        storageRef.put(file)
-        .then((snapshot) => {
-            return snapshot.ref.getDownloadURL();  
-        })
-        .then(url=>{
-            setPicture(url)
-            setCategory(categorySelected);
+        setErrorInputCategory('')
+        if(categorySelected == ''){
+            return setErrorInput('error-input')
+        }
+        async function firebaseRun(){
+            const storageRef = firebase.storage().ref(`/${categorySelected}/${title}`)
+            const snapshot = await storageRef.put(file)
+            const url = await snapshot.ref.getDownloadURL();
+            return url
+            console.log("Picture : "+picture)
+            console.log('URL :'+url)
+
+        }        
+        async function SendPost(){
+            const urlByFirebase = await firebaseRun()
+            setPicture(urlByFirebase)
             axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
             axios.defaults.baseURL = hostName;
-            axios.post('/post/new',  {title, content, picture, category}) 
+            axios.post('/post/new',  {title, content, picture: urlByFirebase, category: categorySelected, novelty: true}) 
             .then(response=>{
-                console.log(response)
                 if(response.status == 200){
-                    axios.post('/newsletter/letter/new', {picture, title, url: `${hostReactApp}/reader/post/${response.data.post.id}`}) 
+                    axios.post('/newsletter/letter/new', {picture: urlByFirebase, title, url: `${hostReactApp}/reader/post/${response.data.post.id}`}) 
                         .then(newsletter=>{
                             console.log(newsletter)
                         })
@@ -65,33 +71,36 @@ function AdminCreatePost(){
                     console.log(response)
                 }
             })
-        })
+            .catch((e)=>{
+                console.log(e)
+            })
+        }
+        SendPost()
 
-        
     }
-   
-   
+
+           
     return(
         <form className="AdminCreatePost" onSubmit={handleSubmit}>
             <div className="AdminCreatePost_section-container">
-                <label className="AdminCreatePost_label" htmlFor="category">Choose a category :</label>
-                <select  name="category" value={categorySelected} className="AdminCreatePost_category" onChange={event=>setCategorySelected(event.target.value)}>
-                        <option value={undefined}>Select a catégorie</option>
+                <label htmlFor="category">Choose a category :</label>
+                <select  name="category" value={categorySelected} className={`AdminCreatePost_category ${errorInputCategory}`} onChange={event=>setCategorySelected(event.target.value)}>
+                        <option value=''>Select a catégorie</option>
                         {allCategories?.map((e, key) => {
                         return <option key={key}  value={e.name}>{e.name}</option>;
                         })}
                 </select>
             </div>
             <div className="AdminCreatePost_section-container">
-                <label className="AdminCreatePost_label" htmlFor="title">Choose a title :</label>
-                <input className="AdminCreatePost_title" name="title" type='text' onChange={event=>setTitle(event.target.value)}/>
+                <label htmlFor="title">Choose a title :</label>
+                <input required className="AdminCreatePost_title-input" name="title" type='text' onChange={event=>setTitle(event.target.value)}/>
             </div>
             <div className="AdminCreatePost_section-container">
-                <label className="AdminCreatePost_label" htmlFor="backgroundPicture">Choose a background picture :</label>
-                <input className="AdminCreatePost_picture" type='file' accept=".png,.jpg,.svg" name='backgroundPicture' onChange={event=>setFile(event.target.files[0])}/>
+                <label htmlFor="backgroundPicture">Choose a background picture :</label>
+                <input required className="AdminCreatePost_picture" type='file' accept=".png,.jpg,.svg" name='backgroundPicture' onChange={event=>setFile(event.target.files[0])}/>
             </div>
-            <div>
-                <label></label>
+            <div className="AdminCreatePost_section-container">
+                <label>Content :</label>
                 <Editor
                     apiKey='36er56ob38xx53aijhqghyl1y0h44x9qv1k5auqe8pkrcfzv'
                     init={{
@@ -109,7 +118,9 @@ function AdminCreatePost(){
                     />
 
             </div>
-            <button type='submit'>Send</button>
+            <div className='AdminCreatePost_button-container'>
+                <button type='submit'>Send</button>
+            </div>
         </form>
     )
 

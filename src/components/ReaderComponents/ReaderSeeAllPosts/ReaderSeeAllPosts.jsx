@@ -5,26 +5,33 @@ import hostName from '../../../config';
 import ReaderPostCard from '../ReaderPostCard/ReaderPostCard';
 import './ReaderSeeAllPosts.css';
 
+import Loading from '../../Partials/Loading/Loading';
+
 function ReaderSeeAllPosts(){
+    const [loading, setLoading] = useState(true)
     const [posts, setPosts] = useState(null);
     useEffect(()=>{
         axios.defaults.baseURL = hostName;
         axios.get('/post/all')
-        .then(posts=>{
-            if(posts){
-                setPosts(posts.data.posts)
+        .then(response=>{
+            if(response.status == 200){
+                setLoading(false)
+            }
+            if(response){
+                setPosts(response.data.posts)
             }else{
                 alert('no post')
             }
         }) 
+        .catch((e)=>{
+            console.log(e)
+        })
     }, []) 
 
 
-    if(posts == null){
+    if(loading == true){
         return(
-            <>
-                <p>Chargement</p>
-            </>
+            <Loading/>
         )
     }else{
         return( 

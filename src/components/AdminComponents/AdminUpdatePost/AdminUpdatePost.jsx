@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Editor } from '@tinymce/tinymce-react';
 import { firebase } from "../../../config/firebaseInit";
 
-
+import './AdminUpdatePost.css';
 import hostName from '../../../config';
 import { useState } from "react";
 
@@ -13,16 +13,19 @@ import { useState } from "react";
 function AdminUpdatePost(){
     const [post, setPost] = useState(null);
     const [allCategories, setAllCategories] = useState(null);
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState(post?.title);
     const [file, setFile] = useState('');
-    const [categorySelected, setCategorySelected] = useState('any');
-    const [picture, setPicture] = useState('');
-    const [content, setContent] = useState('');
-    const [category, setCategory] = useState('');
-    const [novelty, setNovelty] = useState(true)
+    const [categorySelected, setCategorySelected] = useState('');
+    const [picture, setPicture] = useState(post?.picture);
+    const [content, setContent] = useState(post?.content);
+
+    const navigate = useNavigate();
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+    axios.defaults.baseURL = hostName;
 
     let {postId} = useParams();
     axios.defaults.baseURL = hostName;
+
     useEffect(()=>{
         async function getPost(){
             const response = await axios.get(`/post/${postId}`)
@@ -54,64 +57,73 @@ function AdminUpdatePost(){
         setFile(null)
     }
 
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        e.stopPropagation();
-        setCategory(categorySelected)
-        if(file != null){
-            const storageRef = firebase.storage().ref(`/${categorySelected}/${title}`);
-            storageRef.put(file)
-            .then((snapshot) => {
-                return snapshot.ref.getDownloadURL();  
-            })
-            .then(url=>{
-                setPicture(url)
-            })
+    const handleSubmit = async (event)=>{
+        event.preventDefault()
+        event.stopPropagation()        
+        async function firebaseRun(){
+            if(file == ''){
+                return
+            }
+            const storageRef = firebase.storage().ref(`/${categorySelected}/${title}`)
+            const snapshot = await storageRef.put(file)
+            const url = await snapshot.ref.getDownloadURL();
+            return url
+        }        
+        async function SendPost(){
+            try{
+                if(file != ''){
+                    const urlByFirebase = await firebaseRun()
+                    setPicture(urlByFirebase)
+                }
+                axios.put(`/post/update/${postId}`, {title, content, picture, category: categorySelected}) 
+                .then(response=>{
+                    if(response.status == 200){
+                        navigate('/admin/home')
+                        console.log(response)
+                    }else{
+                        console.log(response)
+                    }
+                })
+                .catch((e)=>{
+                    console.log(e)
+                })
+            }catch(e){
+                console.log(e)
+            }
         }
-        console.log(title, category, content, picture)
-        axios.put(`/post/update/${post.id}`, {title, novelty, category, content, picture})
-        .then(axios=>{
-            console.log(axios)
-        })
+        SendPost()
+
     }
 
     if(post == null || allCategories == ''){
-        return(
+        return( 
             <>
                 <p>Please wait...</p>
             </>
         )
     }else{
         return(
-            <form  onSubmit={handleSubmit}>
-            <div>
+            <form className="AdminUpdatePost"  onSubmit={handleSubmit}>
+            <div className="AdminUpdatePost_section-container">
                 <label htmlFor="category">Choose a category :</label>
-                <select required name="category" value={categorySelected} onChange={event=>setCategorySelected(event.target.value)}>
-                        <option value={'any'}>Select a catégorie</option>
+                <select required className={`AdminUpdatePost_category `} name="category" value={categorySelected} onChange={event=>setCategorySelected(event.target.value)}>
+                        <option value='' >Select a catégorie</option>
                         {allCategories?.map((e, key) => {
                         return <option key={key}  value={e.name}>{e.name}</option>;
                         })}
                 </select>
             </div>
-            <div>
+            <div className="AdminUpdatePost_section-container">
                 <label htmlFor="title">Choose a title :</label>
-                <input required defaultValue={post.title} name="title" type='text' onChange={event=>setTitle(event.target.value)}/>
+                <input className="AdminUpdatePost_title-input" required defaultValue={post.title} name="title" type='text' onChange={event=>setTitle(event.target.value)}/>
             </div>
-            <div>
+            <div className="AdminUpdatePost_section-container">
                 <label htmlFor="backgroundPicture">Choose a background picture :</label>
                 <input id="backgroundPicture" type='file' accept=".png,.jpg,.svg" name='backgroundPicture' onChange={event=>setFile(event.target.files[0])}/>
                 <button type="button" onClick={deletePicture}>Delete picture</button>
             </div>
-            <div>
-                <img src={post.picture}/>
-            </div>
-            <div>
-                <label htmlFor="novelty">Novelty</label> <br/>
-                Yes<input name="novelty" type='radio' value={true} onChange={e=>setNovelty(e.target.value)}/>
-                No<input name="novelty" type='radio' value={false}/>
-            </div>
-            <div>
-                <label></label>
+            <div className="AdminUpdatePost_section-container">
+                <label>Content : </label>
                 <Editor
                     required
                     apiKey='36er56ob38xx53aijhqghyl1y0h44x9qv1k5auqe8pkrcfzv'
@@ -131,7 +143,9 @@ function AdminUpdatePost(){
                     />
 
             </div>
-            <button type='submit'>Send</button>
+            <div className="AdminUpdatePost_button-container">
+                <button className="AdminUpdatePost_button-send" type='submit'>Send</button>
+            </div>
         </form>
         )
     }

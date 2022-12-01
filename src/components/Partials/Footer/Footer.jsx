@@ -6,18 +6,20 @@ import Newsletter from '../Newsletter/Newsletter';
 
 function Footer(){
     return(
-        <footer className='Footer'>
+        <>
+            <footer className='Footer'>
             <Newsletter/>
-            <div className='Footer_link-container'>
-                <a href='https://tony-hubert.tech'><img src={worldWideWeb}/></a>
-                <a href='https://github.com/imLines'><img src={github}/></a>
-                <a href='https://twitter.com/ouictoons'><img src={twitter}/></a>
-            </div>
-            <div className='Footer_contact-copy'>
-                <p>A question ? A request ? <a href='/contact'> Contact me ! </a></p>
-                <p>wwiDEV &copy; all right reserved - by imLines</p>
-            </div>
-        </footer>
+                <div className='Footer_link-container'>
+                    <a href='https://tony-hubert.tech'><img src={worldWideWeb}/></a>
+                    <a href='https://github.com/imLines'><img src={github}/></a>
+                    <a href='https://twitter.com/ouictoons'><img src={twitter}/></a>
+                </div>
+                <div className='Footer_contact-copy'>
+                    <p>A question ? A request ? <a href='/contact'> Contact me ! </a></p>
+                    <p className='copyright'>wwiDEV &copy; all right reserved - by imLines</p>
+                </div>
+            </footer> 
+        </>
     )
 };
 
