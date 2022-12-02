@@ -1,14 +1,11 @@
 
 
-/* Mobile  */
 @media screen and (max-width: 576px){
     .Footer {
         background-color: #1F232C;
         color: white;
         height: 200px;
         width: 100%;
-        position: absolute;
-        bottom: 0;
         padding-top: 20px;
     }
     
@@ -40,15 +37,12 @@
     }
 }
 
-/* Mobile portrait */
 @media screen and (min-width: 577px) and (max-width: 768px) {
     .Footer {
         background-color: #1F232C;
         color: white;
         height: 200px;
         width: 100%;
-        position: absolute;
-        bottom: 0;
         padding-top: 20px;
     }
     
@@ -81,15 +75,12 @@
     }
 }
 
-/* Tablette */
 @media screen and (min-width: 769px) and (max-width: 992px){
     .Footer {
         background-color: #1F232C;
         color: white;
         height: 220px;
         width: 100%;
-        position: absolute;
-        bottom: 0;
         padding-top: 20px;
     }
     
@@ -123,15 +114,12 @@
     }
 }
 
-/* Ordinateur portable */
 @media screen and (min-width: 993px) and (max-width: 1200px){
     .Footer {
         background-color: #1F232C;
         color: white;
         height: 220px;
         width: 100%;
-        position: absolute;
-        bottom: 0;
         padding-top: 20px;
     }
     
@@ -165,15 +153,12 @@
     }
 }
 
-/* Ordinateur  */
 @media screen and (min-width: 1201px){
     .Footer {
         background-color: #1F232C;
         color: white;
         height: 220px;
         width: 100%;
-        position: absolute;
-        bottom: 0;
         padding-top: 20px;
     }
     

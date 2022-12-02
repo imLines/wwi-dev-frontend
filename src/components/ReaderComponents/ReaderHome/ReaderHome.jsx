@@ -7,7 +7,7 @@ function ReaderHome(){
     return(
         <>
             <ReaderNavbar/>
-            <section className='ReaderHome'>
+            <section className='ReaderHome main'>
                 <h1>Welcome to wwiDEV</h1>
                 <div className='ReaderHome_img-paragraphe'>
                     <img src={avatar}/>

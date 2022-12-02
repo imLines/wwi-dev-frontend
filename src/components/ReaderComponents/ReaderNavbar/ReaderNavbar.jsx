@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import logo from '../../../assets/logo-white.png';
 import './ReaderNavbar.css'
@@ -26,11 +26,12 @@ function ReaderNavbar(){
     return(
         <nav className='ReaderNavbar'>
             <div className='ReaderNavbar_header'>
-                <a href='/'><img src={logo} className="ReaderNavbar_logo"/></a>
+                <Link to="/"><img src={logo} className="ReaderNavbar_logo"/></Link>
                 <button onClick={setHamburger} className={`ReaderNavbar_hamburger-button ${hamburgerApparence}`}></button>
             </div>
             <div className='ReaderNavbar_hamburger-container'>
                 <ul className={hamburgerContent}>
+                    <NavLink style={({ isActive }) => isActive ? activeStyle : undefined}  end to="/" className='ReaderNavbar_link' onClick={setHamburger} ><li className='ReaderNavbar_li'>Home</li></NavLink>
                     <NavLink style={({ isActive }) => isActive ? activeStyle : undefined}  to="/reader/news" className='ReaderNavbar_link' onClick={setHamburger} ><li className='ReaderNavbar_li'>News</li></NavLink>
                     <NavLink style={({ isActive }) => isActive ? activeStyle : undefined}  to="/reader/allposts" className='ReaderNavbar_link' onClick={setHamburger} ><li className='ReaderNavbar_li'>See all post</li></NavLink>
                     <NavLink style={({ isActive }) => isActive ? activeStyle : undefined}  to="/reader/categories" className='ReaderNavbar_link' onClick={setHamburger} ><li className='ReaderNavbar_li'>View categories</li></NavLink>

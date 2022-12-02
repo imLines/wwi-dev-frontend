@@ -37,7 +37,7 @@ function ReaderAllPostOnCategory(){
     }else{
         return( 
             <>
-                <section className='ReaderAllPostOnCategory'>
+                <section className='ReaderAllPostOnCategory main'>
                     <h2>{category.name}</h2>
                     <p>{category.description}</p>
                     <div className='ReaderAllPostOnCategory_card-container'>

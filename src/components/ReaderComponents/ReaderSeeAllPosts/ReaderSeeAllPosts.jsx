@@ -35,7 +35,7 @@ function ReaderSeeAllPosts(){
         )
     }else{
         return( 
-            <section  className='ReaderSeeAllPosts'>
+            <section  className='ReaderSeeAllPosts main'>
                 <h1>All posts</h1>
                 <div className='ReaderSeeAllPosts_card-container'>
                     {posts?.map(post=><ReaderPostCard post={post} key={post.id} />)}

@@ -23,6 +23,7 @@ import AdminUpdateCategory from './components/AdminComponents/AdminUpdateCategor
 import AdminUpdatePost from './components/AdminComponents/AdminUpdatePost/AdminUpdatePost';
 import AdminAccount from './components/AdminComponents/AdminAccount/AdminAccount';
 
+import NoFound from './components/Partials/NoFound/NoFound';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
     <>
 
       <Routes>
+        <Route path='*' element={<NoFound/>}/>
         <Route exact path="/" element={<ReaderHome/>}/>
           <Route exact path='/reader/' element={<Reader/>}>
           <Route exact path='/reader/allposts' element={<ReaderSeeAllPosts/>}/>
