@@ -1,5 +1,9 @@
 import './App.css';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate} from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from "axios";
+import hostName from './config';
+
 
 import ProtectedRoute from './config/Authorization.middleware';
 
@@ -23,40 +27,66 @@ import AdminUpdateCategory from './components/AdminComponents/AdminUpdateCategor
 import AdminUpdatePost from './components/AdminComponents/AdminUpdatePost/AdminUpdatePost';
 import AdminAccount from './components/AdminComponents/AdminAccount/AdminAccount';
 
-import NoFound from './components/Partials/NoFound/NoFound';
-
+import NoFound from './components/Other/NoFound/NoFound';
+import ErrorServer from './components/Other/ErrorServer/ErrorServer';
+import { useState } from 'react';
 
 function App() {
+  const [errorConnection, setErrorConnection] = useState(false)
+  const navigate = useNavigate();
+  axios.defaults.baseURL = hostName;
 
-  return (
-    <>
+  useEffect(()=>{
+    try{
+      axios.get('/')
+      .then(response=>{
+  
+      })
+      .catch((e)=>{
+        console.log(e)
+        setErrorConnection(true)
+      })
 
-      <Routes>
-        <Route path='*' element={<NoFound/>}/>
-        <Route exact path="/" element={<ReaderHome/>}/>
-          <Route exact path='/reader/' element={<Reader/>}>
-          <Route exact path='/reader/allposts' element={<ReaderSeeAllPosts/>}/>
-          <Route exact path='/reader/categories' element={<ReaderAllCategories/>}/>
-          <Route exact path="/reader/category/:categoryId" element={<ReaderAllPostOnCategory/>} />
-          <Route exact path='/reader/post/:postId' element={<ReaderSeeOnePost/>} />
-          <Route exact path='/reader/news' element={<ReaderNoveltyPosts/>}/>
-        </Route>
+    }catch(e){
+    }
+  }, [])
 
-        <Route exact path='/login' element={<AdminLogin/>}/>
-        <Route exact path='/admin' element={<ProtectedRoute><Admin/></ProtectedRoute>}>
-          <Route exact path='/admin/account' element={<AdminAccount/>}/>
-          <Route exact path='/admin/home' element={<AdminHome/>}/>
-          <Route exact path='/admin/newpost' element={<AdminCreatePost/>}/>
-          <Route exact path='/admin/post/all' element={<AdminSeeAllPosts/>}/>
-          <Route exact path="/admin/category/all" element={<AdminSeeAllCategories/>}/>
-          <Route exact path='/admin/category/new' element={<AdminCreateCategory/>}/>
-          <Route exact path="/admin/category/update/:categoryId" element={<AdminUpdateCategory/>}/>
-          <Route exact path='/admin/post/update/:postId' element={<AdminUpdatePost/>}/>
-          <Route exact path='/admin/post/:postId' element={<AdminSeeOnePost/>}/>
-        </Route>
-      </Routes>
-    </>
-  )
+  if(errorConnection == true){
+    return(
+      <ErrorServer/>
+    )
+  }else{
+    return (
+      <>
+  
+        <Routes>
+          <Route path='*' element={<NoFound/>}/>
+          <Route exact path="/" element={<ReaderHome/>}/>
+            <Route exact path='/reader/' element={<Reader/>}>
+            <Route exact path='/reader/allposts' element={<ReaderSeeAllPosts/>}/>
+            <Route exact path='/reader/categories' element={<ReaderAllCategories/>}/>
+            <Route exact path="/reader/category/:categoryId" element={<ReaderAllPostOnCategory/>} />
+            <Route exact path='/reader/post/:postId' element={<ReaderSeeOnePost/>} />
+            <Route exact path='/reader/news' element={<ReaderNoveltyPosts/>}/>
+          </Route>
+  
+          <Route exact path='/login' element={<AdminLogin/>}/>
+          <Route exact path='/admin' element={<ProtectedRoute><Admin/></ProtectedRoute>}>
+            <Route exact path='/admin/account' element={<AdminAccount/>}/>
+            <Route exact path='/admin/home' element={<AdminHome/>}/>
+            <Route exact path='/admin/newpost' element={<AdminCreatePost/>}/>
+            <Route exact path='/admin/post/all' element={<AdminSeeAllPosts/>}/>
+            <Route exact path="/admin/category/all" element={<AdminSeeAllCategories/>}/>
+            <Route exact path='/admin/category/new' element={<AdminCreateCategory/>}/>
+            <Route exact path="/admin/category/update/:categoryId" element={<AdminUpdateCategory/>}/>
+            <Route exact path='/admin/post/update/:postId' element={<AdminUpdatePost/>}/>
+            <Route exact path='/admin/post/:postId' element={<AdminSeeOnePost/>}/>
+          </Route>
+        </Routes>
+      </>
+    )
+  }
+
 }
  
 export default App

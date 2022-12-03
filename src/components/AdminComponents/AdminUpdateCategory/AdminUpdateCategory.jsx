@@ -64,7 +64,7 @@ function AdminUpdateCategory(){
     }else{
         return( 
             <>
-                <form className="AdminUpdateCategory" onSubmit={handleSubmit}>
+                <form className="AdminUpdateCategory main" onSubmit={handleSubmit}>
                     <h1>Change this category</h1>
                     <p className='errorMessage'>{errorMessage}</p>
                     <div className="AdminUpdateCategory_section">

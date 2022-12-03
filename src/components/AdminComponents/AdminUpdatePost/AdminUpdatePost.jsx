@@ -103,7 +103,7 @@ function AdminUpdatePost(){
         )
     }else{
         return(
-            <form className="AdminUpdatePost"  onSubmit={handleSubmit}>
+            <form className="AdminUpdatePost main"  onSubmit={handleSubmit}>
             <div className="AdminUpdatePost_section-container">
                 <label htmlFor="category">Choose a category :</label>
                 <select required className={`AdminUpdatePost_category `} name="category" value={categorySelected} onChange={event=>setCategorySelected(event.target.value)}>

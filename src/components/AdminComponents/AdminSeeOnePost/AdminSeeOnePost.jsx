@@ -54,7 +54,7 @@ function AdminSeeOnePost(){
         )
     }else{
         return(
-            <section className="AdminSeeOnePost">
+            <section className="AdminSeeOnePost main">
                 <div className="AdminSeeOnePost_header"> 
                     <h1>{post.title}</h1>
                     <img src={post.picture}/>

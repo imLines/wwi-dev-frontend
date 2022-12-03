@@ -1,0 +1,23 @@
+.NoFound{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1F232C;
+}
+.NoFound img{
+    width: 50%;
+    height: auto;
+}
+.NoFound h1{
+    color: white;
+    font-size: 20vw;
+    font-weight: 800;
+}
+.NoFound p{
+    color: white;
+    font-weight: 800;
+    font-size: 5vw;
+}

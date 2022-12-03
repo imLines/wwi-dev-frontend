@@ -10,7 +10,7 @@ const AdminPostCard = function({post}){
     }, [])
 
     return( 
-        <Link className='AdminPostCard' to={`/admin/post/${post.id}`}>
+        <Link className='AdminPostCard main' to={`/admin/post/${post.id}`}>
             <img className='AdminPostCard_picture' src={post.picture}/>
             <div className='AdminPostCard_title-container'>
                 <p>{post.title}</p>

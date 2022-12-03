@@ -44,7 +44,7 @@ function AdminSeeAllCategories(){
         )
     }else{
         return(
-            <section className="AdminSeeAllCategories">
+            <section className="AdminSeeAllCategories main">
                     <Link className="AdminSeeAllCategories_create-category-button" to='/admin/category/new'>Create new category</Link>
                     <table cellSpacing="0">
                         <tbody>

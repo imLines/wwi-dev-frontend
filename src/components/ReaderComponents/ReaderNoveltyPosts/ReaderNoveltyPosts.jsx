@@ -6,13 +6,15 @@ import './ReaderNoveltyPosts.css';
 import hostName from '../../../config';
 import Loading from "../../Partials/Loading/Loading";
 import Newsletter from "../../Partials/Newsletter/Newsletter";
+import { useNavigate } from "react-router-dom";
 
 
 function ReaderNoveltyPosts(){
     const [loading, setLoading] = useState(true)
     const [noFoundNoveltyPosts, setNoFoundNoveltyPosts] = useState(false)
     const [posts, setPosts] = useState(null)
-
+    
+    const navigate = useNavigate();
     axios.defaults.baseURL = hostName;
     useEffect(()=>{
         axios.get('/post/novelty') 
@@ -30,6 +32,7 @@ function ReaderNoveltyPosts(){
             }
             setLoading(false)
         })
+
     }, [])
 
 

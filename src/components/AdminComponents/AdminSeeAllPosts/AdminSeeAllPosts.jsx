@@ -65,7 +65,7 @@ function AdminSeeAllPosts(){
         )
     }else if(managerMod){
         return(
-            <section className="AdminSeeAllPostsManagerMode">
+            <section className="AdminSeeAllPostsManagerMode main">
                 <h2>Manager Mode</h2>
                 <button className='AdminSeeAllPosts_change-mode' onClick={changeMod}>Change Mode</button>
                 <table cellSpacing="0">
@@ -93,7 +93,7 @@ function AdminSeeAllPosts(){
         )
     }else if(!managerMod){
         return( 
-            <section className='AdminSeeAllPosts'>
+            <section className='AdminSeeAllPosts main'>
                 <h1>All posts</h1>
                 <h3>Viewer Mode</h3>
                 <button className='AdminSeeAllPosts_change-mode' onClick={changeMod}>Change Mode</button>

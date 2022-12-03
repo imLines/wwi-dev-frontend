@@ -124,8 +124,8 @@
         border: 10px solid #f3f3f3;
         border-top: 10px solid #3B58CF;
         border-radius: 50%;
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
         animation: custom-loading 2s linear infinite;
     }
     @keyframes custom-loading {
@@ -169,8 +169,8 @@
         border: 10px solid #f3f3f3;
         border-top: 10px solid #3B58CF;
         border-radius: 50%;
-        width: 200px;
-        height: 200px;
+        width: 100px;
+        height: 100px;
         animation: custom-loading 2s linear infinite;
     }
     @keyframes custom-loading {
@@ -214,8 +214,8 @@
         border: 10px solid #f3f3f3;
         border-top: 10px solid #3B58CF;
         border-radius: 50%;
-        width: 250px;
-        height: 250px;
+        width: 100px;
+        height: 100px;
         animation: custom-loading 2s linear infinite;
     }
     @keyframes custom-loading {

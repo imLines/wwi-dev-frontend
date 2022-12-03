@@ -2,9 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import hostName from '../../../config';
+import Loading from "../../Partials/Loading/Loading";
 import './AdminAccount.css'
 
 function AdminAccount(){
+    const [loading, setLoading] = useState(true)
     const [admin, setAdmin] = useState(null);
     const [newMail, setNewMail] = useState('')
     const [confirmNewMail, setConfirmNewMail] = useState('');
@@ -24,7 +26,10 @@ function AdminAccount(){
             
             async function getAdmin(){
                 const response = await axios.get('/admin/info');
-                setAdmin(response.data.admin)
+                if(response.status == 200){
+                    setAdmin(response.data.admin)
+                    setLoading(false)
+                }
             }
             getAdmin()
         }catch(e){
@@ -44,6 +49,7 @@ function AdminAccount(){
     async function changeMail(e){
         e.preventDefault()
         try{
+            setLoading(true)
             if(confirmNewMail == newMail){
                 axios.put(`/admin/update/${admin.id}`, {email: newMail, password: admin.password, name: admin.name})
                 .then(response=>{
@@ -53,6 +59,7 @@ function AdminAccount(){
                 })      
             }
         }catch(e){
+            setLoading(false)
             console.log(e)
         }
     }
@@ -69,6 +76,7 @@ function AdminAccount(){
     async function changeName(e){
         e.preventDefault();
         try{
+            setLoading(true)
             axios.put(`/admin/update/${admin.id}`, {name: newName, password: admin.password, email: admin.email})
             .then(response=>{
                 if(response.status == 200){
@@ -76,6 +84,7 @@ function AdminAccount(){
                 }
             })
         }catch(e){
+            setLoading(false)
             console.log(e)
         }
     }
@@ -92,10 +101,12 @@ function AdminAccount(){
     function changePassword(e){ 
         e.preventDefault();
         try{
+            setLoading(true)
             if(newPassword == confirmNewPassword){
                 axios.put(`/admin/update/${admin.id}`, {name: admin.name, password: newPassword, email: admin.email})
                 .then(response=>{
                     if(response.status == 200){
+                        setLoading(false)
                         location.reload();
                     }
                 })
@@ -105,9 +116,9 @@ function AdminAccount(){
         }
     }
 
-    if(admin){
+    if(loading == false){
         return(
-            <section className="AdminAccount_component">
+            <section className="AdminAccount_component main">
                 <form onSubmit={changeMail} className={`popup ${emailPopupSee}`}>
                     <div className="close-button-container">
                         <button className="close-button" onClick={closeEmailPopup}></button>
@@ -145,9 +156,7 @@ function AdminAccount(){
         )
     }else{
         return(
-            <>
-                <p>Chargement...</p>
-            </>
+            <Loading/>
         )
     }
 

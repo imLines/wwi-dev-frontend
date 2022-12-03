@@ -4,7 +4,7 @@ import './AdminHome.css';
 function AdminHome(){
 
     return(
-        <section className='AdminHome'>
+        <section className='AdminHome main'>
             <Link className='AdminHome_link' to='/admin/newpost'>
                 Créer un post
             </Link>

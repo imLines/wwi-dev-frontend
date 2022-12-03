@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import hostName from '../../../config';
-import Footer from "../../Partials/Footer/Footer";
 import Loading from "../../Partials/Loading/Loading";
 import './ReaderAllCategories.css'
  

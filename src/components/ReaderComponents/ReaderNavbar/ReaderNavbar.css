@@ -1,3 +1,10 @@
+@keyframes slideToBottom{
+    from{height: 0vh;}
+    to{height: 100vh;}
+}
+
+
+
 /* Mobile  */
 @media screen and (max-width: 576px){
     .ReaderNavbar{
@@ -24,6 +31,10 @@
         height: 50px;
         width: 50px; 
     }
+    
+    .ReaderNavbar_hamburger-button:active:after{
+        transform: rotate(360deg);
+    }
     .ReaderNavbar_hamburger-open{
         background-image: url('../../../assets/icons/navbar/hamburger-close.png');
         background-position: center;
@@ -48,8 +59,10 @@
         height: 100vh;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center; 
         justify-content: flex-start;
+        animation-name: slideToBottom;
+        animation-duration: 1s ;
     }
     .ReaderNavbar_li{
         list-style: none;
@@ -62,6 +75,12 @@
         font-size: 24px;
         color: white;
     }    
+    .ReaderNavbar_hamburger-container{
+        background-color: #1F232C;
+        position: fixed;
+        width: 100%;
+    }
+    
 }
 
 /* Mobile portrait */
@@ -128,6 +147,11 @@
         font-size: 24px;
         color: white;
     }    
+    .ReaderNavbar_hamburger-container{
+        background-color: #1F232C;
+        position: fixed;
+        width: 100%;
+    }
 }
 
 /* Tablette */
