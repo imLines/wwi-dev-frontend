@@ -7,14 +7,16 @@ import { firebase } from "../../../config/firebaseInit";
 import './AdminUpdatePost.css';
 import hostName from '../../../config';
 import { useState } from "react";
+import Loading from "../../Partials/Loading/Loading";
 
 
 
 function AdminUpdatePost(){
+    const [loading, setLoading] = useState(true);
     const [post, setPost] = useState(null);
     const [allCategories, setAllCategories] = useState(null);
     const [title, setTitle] = useState(post?.title);
-    const [file, setFile] = useState('');
+    const [file, setFile] = useState(null);
     const [categorySelected, setCategorySelected] = useState('');
     const [picture, setPicture] = useState(post?.picture);
     const [content, setContent] = useState(post?.content);
@@ -27,24 +29,51 @@ function AdminUpdatePost(){
     axios.defaults.baseURL = hostName;
 
     useEffect(()=>{
-        async function getPost(){
-            const response = await axios.get(`/post/${postId}`)
-            setPost(response.data.post)
+        // async function getPost(){
+        //     const response = await axios.get(`/post/${postId}`)
+        //     setPost(response.data.post)
 
-        }
-        async function getAllCategory(){
-            const response = await axios.get('/category/all')
-            setAllCategories(response.data.categories)
+        // }
+        // async function getAllCategory(){
+        //     const response = await axios.get('/category/all')
+        //     setAllCategories(response.data.categories)
 
-        }
-        getPost();
-        getAllCategory();
-        if(post == null){
-            getPost()
-        }else{
-            setPicture(post.picture)
-            setTitle(post.title)
-            setContent(post.content)
+        // }
+        // getPost();
+        // getAllCategory();
+        // if(post == null){
+        //     getPost()
+        // }else{
+        //     setPicture(post.picture)
+        //     setTitle(post.title)
+        //     setContent(post.content)
+        // }
+
+        try{
+            axios.get(`/post/${postId}`)
+            .then(responseGetPost=>{
+                setPost(responseGetPost.data.post);
+                setPicture(responseGetPost.data.post.picture);
+                setTitle(responseGetPost.data.post.title);
+                setContent(responseGetPost.data.post.content);
+                axios.get('/category/all')
+                .then(responseGetCategory=>{
+                    setAllCategories(responseGetCategory.data.categories);
+                    setLoading(false);
+                })
+                .catch((e)=>{
+                    console.log(e);
+                    setLoading(false)
+                })
+            })
+            .catch((e)=>{
+                console.log(e);
+                setLoading(false);
+            })
+        }catch(e){
+            console.log(e);
+            setLoading(false);
+            location.reload();
         }
     
     }, [])
@@ -59,47 +88,63 @@ function AdminUpdatePost(){
 
     const handleSubmit = async (event)=>{
         event.preventDefault()
-        event.stopPropagation()        
-        async function firebaseRun(){
-            if(file == ''){
-                return
-            }
-            const storageRef = firebase.storage().ref(`/${categorySelected}/${title}`)
-            const snapshot = await storageRef.put(file)
-            const url = await snapshot.ref.getDownloadURL();
-            return url
-        }        
-        async function SendPost(){
-            try{
-                if(file != ''){
-                    const urlByFirebase = await firebaseRun()
-                    setPicture(urlByFirebase)
-                }
+        event.stopPropagation()  
+        try{ 
+            setLoading(true)
+            async function firebaseRun(){
+                const storageRef = firebase.storage().ref(`/${categorySelected}/${title}`)
+                const snapshot = await storageRef.put(file)
+                const url = await snapshot.ref.getDownloadURL();
+                return url
+            }        
+            if(file != null){
+                firebaseRun()
+                .then(urlOfFirebase=>{
+                    axios.put(`/post/update/${postId}`, {title, content, picture: urlOfFirebase, category: categorySelected}) 
+                    .then(response=>{
+                        if(response.status == 200){
+                            navigate('/admin/home')
+                            console.log(response)
+                        }else{
+                            setLoading(false)
+                            console.log(response)
+                        }
+                    })
+                    .catch((e)=>{
+                        setLoading(false)
+                        location.reload()
+                        console.log(e)
+                    })
+                })
+            }else{
                 axios.put(`/post/update/${postId}`, {title, content, picture, category: categorySelected}) 
                 .then(response=>{
                     if(response.status == 200){
                         navigate('/admin/home')
                         console.log(response)
                     }else{
+                        setLoading(false)
                         console.log(response)
                     }
                 })
                 .catch((e)=>{
+                    setLoading(false)
                     console.log(e)
+                    location.reload()
                 })
-            }catch(e){
-                console.log(e)
             }
+        }catch(e){
+            setLoading(false)
+            console.log(e)
+            location.reload()
         }
-        SendPost()
-
     }
 
-    if(post == null || allCategories == ''){
+    
+
+    if(loading == true){
         return( 
-            <>
-                <p>Please wait...</p>
-            </>
+            <Loading/>
         )
     }else{
         return(

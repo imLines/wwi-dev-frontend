@@ -86,7 +86,7 @@ function AdminCreatePost(){
                 })
                 .catch((e)=>{
                     console.log(e)
-                    setLoading(false)
+                    setLoading(false) 
                 })
             }
             SendPost()

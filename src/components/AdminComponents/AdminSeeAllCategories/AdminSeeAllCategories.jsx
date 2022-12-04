@@ -6,17 +6,26 @@ import './AdminSeeAllCategories.css';
 
 
 function AdminSeeAllCategories(){
+    const [loading, setLoading] = useState(true)
     const [categories, setCategories] = useState(null)
     const [refreshPage, setRefreshPage] = useState(false)
     axios.defaults.baseURL = hostName;
 
     useEffect(()=>{
-        setRefreshPage(true)
-        axios.get('/category/all')
-        .then(axios=>{
-            setCategories(axios.data.categories)
-            setRefreshPage(false)
-        }) 
+        try{
+            setRefreshPage(true)
+            axios.get('/category/all')
+            .then(axios=>{
+                setCategories(axios.data.categories)
+                setRefreshPage(false)
+            }) 
+            .catch((e)=>{
+                console.log(e)
+                setLoading(false)
+            })
+        }catch(e){
+            location.reload()
+        }
 
     }, [refreshPage])
 

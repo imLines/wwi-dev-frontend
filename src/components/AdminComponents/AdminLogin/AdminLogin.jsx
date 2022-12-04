@@ -7,7 +7,7 @@ import hostName from '../../../config';
 import Loading from '../../Partials/Loading/Loading';
  
 function AdminLogin(){
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false) 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('')
@@ -15,20 +15,24 @@ function AdminLogin(){
     const navigate = useNavigate();
 
     const handleSubmit = async (event)=>{
-        event.preventDefault()
-        event.stopPropagation()
-        setLoading(true)
-        axios.defaults.baseURL = hostName;
-        axios.post('/admin/login', {email, password})
-        .then(response=>{
-            localStorage.setItem('token', response.data.token)
-            navigate('/admin/home')
-        })
-        .catch((e=>{
-            setErrorMessage(e.response.data.message);
-            setErrorInput('error-input')
-            console.log(errorInput)
-        }))
+        try{
+            event.preventDefault()
+            event.stopPropagation()
+            setLoading(true)
+            axios.defaults.baseURL = hostName;
+            axios.post('/admin/login', {email, password})
+            .then(response=>{
+                localStorage.setItem('token', response.data.token)
+                navigate('/admin/home')
+            })
+            .catch((e=>{
+                setErrorMessage(e.response.data.message);
+                setErrorInput('error-input')
+                console.log(errorInput)
+            }))
+        }catch(e){
+            location.reload()
+        }
     }
 
     if(loading == true){

@@ -3,7 +3,7 @@ import hostName from '../../../config';
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import './AdminCreateCategory.css';
-import Loading from "../../Partials/Loading/Loading";
+import Loading from "../../Partials/Loading/Loading"; 
 
 
 function AdminCreateCategory(){

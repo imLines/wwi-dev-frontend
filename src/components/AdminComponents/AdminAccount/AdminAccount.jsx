@@ -6,7 +6,7 @@ import Loading from "../../Partials/Loading/Loading";
 import './AdminAccount.css'
 
 function AdminAccount(){
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true) 
     const [admin, setAdmin] = useState(null);
     const [newMail, setNewMail] = useState('')
     const [confirmNewMail, setConfirmNewMail] = useState('');

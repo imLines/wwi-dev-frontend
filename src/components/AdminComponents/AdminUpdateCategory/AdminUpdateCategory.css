@@ -217,11 +217,11 @@
         flex-flow: column;
         align-items: center;
     }
-    .AdminCreateCategory h1{
+    .AdminUpdateCategory h1{
         margin-bottom: 30px;
         text-decoration: underline 2px;
     }
-    .AdminCreateCategory_section{
+    .AdminUpdateCategory_section{
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -229,24 +229,24 @@
         margin-bottom: 20px;
         width: 80%;   
     }
-    .AdminCreateCategory_section label{
+    .AdminUpdateCategory_section label{
         font-weight: 700;
     }
-    .AdminCreateCategory input{
+    .AdminUpdateCategory input{
         border-radius: 15px;
         border: solid black 1px;
         padding: 10px;
         width: 40%;
         margin-left: 20px;
     }
-    .AdminCreateCategory textarea{
+    .AdminUpdateCategory textarea{
         border-radius: 15px;
         border: solid black 1px;
         padding: 10px;
         margin-top: 5px;
         margin-left: 20px;
     }
-    .AdminCreateCategory button{
+    .AdminUpdateCategory button{
         background: linear-gradient(0.55turn,#3B58CF, #1F232C);
         color: white;
         border: none;
@@ -256,7 +256,7 @@
         border-radius: 10px;
         margin-top: 20px;
     }
-    .AdminCreateCategory button:hover{
+    .AdminUpdateCategory button:hover{
         cursor: pointer;
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
     }

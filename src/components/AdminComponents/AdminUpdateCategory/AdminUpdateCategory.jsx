@@ -5,9 +5,11 @@ import axios from "axios";
 
 import hostName from '../../../config';
 import './AdminUpdateCategory.css';
+import Loading from "../../Partials/Loading/Loading";
 
 
 function AdminUpdateCategory(){
+    const [loading, setLoading] = useState(true)
     const [name, setName] = useState(null);
     const [description, setDescription] = useState(null);
     const [category, setCategory] = useState(null);
@@ -23,13 +25,20 @@ function AdminUpdateCategory(){
     useEffect(()=>{
         try{
             axios.get(`/category/${categoryId}`)
-            .then(axios=>{
-                setCategory(axios.data.category)
-                setName(axios.data.category.name)
-                setDescription(axios.data.category.description)
+            .then(response=>{
+                setCategory(response.data.category);
+                setName(response.data.category.name);
+                setDescription(response.data.category.description);
+                setLoading(false);
             }) 
+            .catch((e)=>{
+                setLoading(false)
+                console.log(e)
+            })
         }catch(e){
-            console.log(e)
+            setLoading(false);
+            console.log(e);
+            location.reload();
         }
     },[])
 
@@ -37,11 +46,13 @@ function AdminUpdateCategory(){
         e.preventDefault();
         e.stopPropagation();
         try{
+            setLoading(true)
             axios.put(`/category/update/${categoryId}`, {name, description})
             .then(axios=>{
                 if(axios.status === 200){
                     navigate('/admin/category/all')
                 }else{
+                    setLoading(false)
                     console.log(axios.status)
                 }
             })
@@ -49,35 +60,33 @@ function AdminUpdateCategory(){
                 if(e.response.status == 400){
                     setErrorInput('error-input')
                     setErrorMessage(e.response.data.message)
+                    setLoading(false)
                 }
             })
         }catch(e){
             console.log(e)
+            location.reload()
         }
     }
-    if(category == null){
+    if(loading == true){
         return(
-            <>
-                <p>Chargement</p>
-            </>
+            <Loading/>
         )
     }else{
         return( 
-            <>
-                <form className="AdminUpdateCategory main" onSubmit={handleSubmit}>
-                    <h1>Change this category</h1>
-                    <p className='errorMessage'>{errorMessage}</p>
-                    <div className="AdminUpdateCategory_section">
-                        <label htmlFor="name">Name :</label>
-                        <input className={`${errorInput}`} name="name" defaultValue={category.name} onChange={e=>setName(e.target.value)} type="text" />
-                    </div>
-                    <div className="AdminUpdateCategory_section">
-                        <label htmlFor="description">Description :</label>
-                        <textarea className={`${errorInput}`} name="description" defaultValue={category.description} onChange={e=>setDescription(e.target.value)} type="text" />
-                    </div>
-                    <button type="submit">Change this category</button>
-                </form>
-            </>
+            <form className="AdminUpdateCategory main" onSubmit={handleSubmit}>
+                <h1>Change this category</h1>
+                <p className='errorMessage'>{errorMessage}</p>
+                <div className="AdminUpdateCategory_section">
+                    <label htmlFor="name">Name :</label>
+                    <input className={`${errorInput}`} name="name" defaultValue={category.name} onChange={e=>setName(e.target.value)} type="text" />
+                </div>
+                <div className="AdminUpdateCategory_section">
+                    <label htmlFor="description">Description :</label>
+                    <textarea className={`${errorInput}`} name="description" defaultValue={category.description} onChange={e=>setDescription(e.target.value)} type="text" />
+                </div>
+                <button type="submit">Change this category</button>
+            </form>
         )
     }
 

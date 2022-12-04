@@ -5,22 +5,35 @@ import hostName from '../../../config';
 import AdminPostCard from '../AdminPostCard/AdminPostCard';
 import './AdminSeeAllPosts.css';
 
+import Loading from '../../Partials/Loading/Loading';
+
 function AdminSeeAllPosts(){
+    const [loading, setLoading] = useState(true)
     const [posts, setPosts] = useState(null);
     const [managerMod, setManagerMode] = useState(false);
     const [refreshPage, setRefreshPage] = useState(false);
+
     useEffect(()=>{
-        setRefreshPage(true)
-        axios.defaults.baseURL = hostName;
-        axios.get('/post/all')
-        .then(posts=>{
-            if(posts){
-                setPosts(posts.data.posts)
-                setRefreshPage(false)
-            }else{
-                alert('no post')
-            }
-        }) 
+        try{
+            setRefreshPage(true)
+            axios.defaults.baseURL = hostName;
+            axios.get('/post/all')
+            .then(posts=>{
+                if(posts){
+                    setPosts(posts.data.posts)
+                    setRefreshPage(false)
+                    setLoading(false)
+                }else{
+                    alert('no post')
+                }
+            }) 
+            .catch((e)=>{                
+                console.log(e)
+                setLoading(false)
+            })
+        }catch(e){
+            location.reload();
+        }
     }, [managerMod, refreshPage])
 
     const changeMod = (e)=>{
@@ -44,24 +57,30 @@ function AdminSeeAllPosts(){
 
     const deletePost = (e, postId)=>{
         if(window.confirm("You're sur to delete this post ?")){
+            setLoading(true)
             e.preventDefault();
             e.stopPropagation();
             try{
                 axios.delete(`/post/delete/${postId}`)
-                .then(axios=>{
-                        setRefreshPage(true)
+                .then(response=>{
+                    if(response.status == 200){
+                        setRefreshPage(true);
+                        setLoading(false);
+                    }
+                })
+                .catch((e)=>{
+                    console.log(e);
                 })
             }catch(e){
-                console.log(e)
+                console.log(e);
+                location.reload();
             }
         }
     }
 
-    if(posts == null){
+    if(loading == true){
         return(
-            <>
-                <p>Chargement</p>
-            </>
+            <Loading/>
         )
     }else if(managerMod){
         return(

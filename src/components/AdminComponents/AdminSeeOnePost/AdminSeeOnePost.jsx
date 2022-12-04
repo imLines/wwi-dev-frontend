@@ -3,41 +3,53 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import hostName from "../../../config";
 import './AdminSeeOnePost.css';
-import AdminNavbar from "../AdminNavbar/AdminNavbar";
+import Loading from '../../Partials/Loading/Loading';
+
 
 function AdminSeeOnePost(){
+    const [loading, setLoading] = useState(true);
     const [post, setPost] = useState(null);
-    const [category, setCategory] = useState(null)
-    const [dateOfPost, setDateOfPost] = useState(null)
+    const [category, setCategory] = useState(null);
+    const [dateOfPost, setDateOfPost] = useState(null);
 
     const navigate = useNavigate();
 
     let {postId} = useParams();
     useEffect(()=>{
-        axios.defaults.baseURL = hostName;
-        async function getPost(){
-            const responsePost = await axios.get(`/post/${postId}`)
-            setPost(responsePost.data.post)
-        }
-        async function getCategory(){
-            const responseCategory = await axios.get(`/category/${post.categoryId}`)
-            setCategory(responseCategory.data.category)
-        }
-        
-        if(post == null){
-            getPost()
-        }else{
-            function setDateForBestLook(date){
-                const toDate = new Date(date)
-                setDateOfPost(new Intl.DateTimeFormat("en-GB", {
-                    year: "numeric",
-                    month: "long",
-                    day: "2-digit"
-                  }).format(toDate))
-    
-            } 
-            setDateForBestLook(post.createdAt)
-            getCategory()
+        try{
+            axios.defaults.baseURL = hostName;
+            axios.get(`/post/${postId}`)
+            .then(responseGetPost=>{
+                setPost(responseGetPost.data.post)
+                function setDateForBestLook(date){
+                    const toDate = new Date(date)
+                    setDateOfPost(new Intl.DateTimeFormat("en-GB", {
+                        year: "numeric",
+                        month: "long",
+                        day: "2-digit"
+                        }).format(toDate))
+                } 
+                setDateForBestLook(responseGetPost.data.post.createdAt)
+                axios.get(`/category/${responseGetPost.data.post.categoryId}`)
+                .then(responseGetCategory=>{
+                    setCategory(responseGetCategory.data.category)
+                    
+                    setLoading(false)
+                })
+                .catch((e)=>{
+                    console.log(e)
+                    setLoading(false)
+                })
+            })
+            .catch((e)=>{
+                console.log(e)
+                setLoading(false);
+            })
+
+        }catch(e){
+            console.log(e);
+            setLoading(false);
+            location.reload();
         }
     }, [post, category])
 
@@ -46,11 +58,9 @@ function AdminSeeOnePost(){
         navigate(`/admin/post/update/${post.id}`)
     }
 
-    if(post == null || category == null){
+    if(loading == true && category == null){
         return(
-            <section>
-                <p>Chargement</p>
-            </section>
+            <Loading/>
         )
     }else{
         return(
