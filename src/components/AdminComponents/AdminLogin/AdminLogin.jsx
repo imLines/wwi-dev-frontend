@@ -45,7 +45,7 @@ function AdminLogin(){
                 <div>
                     <img src={logo} alt='logo du blog' className='adminLogin-logo'/>
                 </div>
-                <p className='errorMessage'>{errorMessage}</p>
+                <p className='error-message'>{errorMessage}</p>
                 <div className='AdminLogin_section'>
                     <label htmlFor='email'>Email</label>
                     <input className={errorInput} type="email" name="email" placeholder="Email" onChange={event=>setEmail(event.target.value)}/>

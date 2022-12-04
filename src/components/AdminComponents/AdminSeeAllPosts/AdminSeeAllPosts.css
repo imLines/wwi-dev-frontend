@@ -15,7 +15,7 @@
         flex-flow: column nowrap;
         align-items: center;
     }
-    .AdminSeeAllPosts_change-mode{
+    .AdminSeeAllPosts button{
         border: none;
         background: linear-gradient(0.55turn,#3B58CF, #1F232C);
         font-weight: 600;
@@ -23,42 +23,22 @@
         border-radius: 20px;
         color: white;
     }
-    .AdminSeeAllPosts_change-mode:hover{
+    .AdminSeeAllPosts button:hover{
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
         cursor: pointer;
     }
-    .AdminSeeAllPostsManagerMode{
-        margin: auto;
-        width: 90%;
+    .AdminSeeAllPosts_tools-container{
         display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-    }
-    .AdminSeeAllPostsManagerMode table{
+        flex-direction: row nowrap;
         width: 100%;
-        margin-top: 20px;
-        border: black solid 2px;
+        justify-content: space-between;  
+        align-items: center;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
     }
-    .AdminSeeAllPostsManagerMode th[scope="col"]{
-        background-color: #1F232C;
-        font-weight: 600;
-        color: white;
-    }
-    .AdminSeeAllPostsManagerMode_delete-button{
-        background-image: url('../../../assets/icons/allOther/delete.png');
-        background-size: cover;
-        background-position: center;
-        width: 30px;
-        height: 30px;
-        background-color: white;
-        border: none;
-    }
-    .AdminSeeAllPostsManagerMode_delete-button:hover{
-        cursor: pointer;
-        border: solid #3B58CF 2px;
-    }
-    .AdminSeeAllPosts table, th{
-        border: 1px solid;
+    .AdminSeeAllPosts_tools-container p{
+        font-size: 20px;
+        font-weight: 700;
     }
 }
 
@@ -79,7 +59,7 @@
         flex-flow: row wrap;
         justify-content: center;
     }  
-    .AdminSeeAllPosts_change-mode{
+    .AdminSeeAllPosts button{
         border: none;
         background: linear-gradient(0.55turn,#3B58CF, #1F232C);
         font-weight: 600;
@@ -88,42 +68,22 @@
         color: white;
         font-size: 20px;
     }
-    .AdminSeeAllPosts_change-mode:hover{
+    .AdminSeeAllPosts button:hover{
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
         cursor: pointer;
     }
-    .AdminSeeAllPostsManagerMode{
-        margin: auto;
-        width: 90%;
+    .AdminSeeAllPosts_tools-container{
         display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-    }
-    .AdminSeeAllPostsManagerMode table{
+        flex-direction: row nowrap;
         width: 100%;
-        margin-top: 20px;
-        border: black solid 2px;
+        justify-content: space-between;  
+        align-items: center;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
     }
-    .AdminSeeAllPostsManagerMode th[scope="col"]{
-        background-color: #1F232C;
-        font-weight: 600;
-        color: white;
-    }
-    .AdminSeeAllPostsManagerMode_delete-button{
-        background-image: url('../../../assets/icons/allOther/delete.png');
-        background-size: cover;
-        background-position: center;
-        width: 30px;
-        height: 30px;
-        background-color: white;
-        border: none;
-    }
-    .AdminSeeAllPostsManagerMode_delete-button:hover{
-        cursor: pointer;
-        border: solid #3B58CF 2px;
-    }
-    .AdminSeeAllPosts table, th{
-        border: 1px solid;
+    .AdminSeeAllPosts_tools-container p{
+        font-size: 20px;
+        font-weight: 700;
     }
 }
 
@@ -145,7 +105,7 @@
         flex-flow: row wrap;
         justify-content: center;
     }  
-    .AdminSeeAllPosts_change-mode{
+    .AdminSeeAllPosts button{
         border: none;
         background: linear-gradient(0.55turn,#3B58CF, #1F232C);
         font-weight: 600;
@@ -154,42 +114,22 @@
         color: white;
         font-size: 20px;
     }
-    .AdminSeeAllPosts_change-mode:hover{
+    .AdminSeeAllPosts button:hover{
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
         cursor: pointer;
     }
-    .AdminSeeAllPostsManagerMode{
-        margin: auto;
-        width: 90%;
+    .AdminSeeAllPosts_tools-container{
         display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-    }
-    .AdminSeeAllPostsManagerMode table{
+        flex-direction: row nowrap;
         width: 100%;
-        margin-top: 20px;
-        border: black solid 2px;
+        justify-content: space-between;  
+        align-items: center;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
     }
-    .AdminSeeAllPostsManagerMode th[scope="col"]{
-        background-color: #1F232C;
-        font-weight: 600;
-        color: white;
-    }
-    .AdminSeeAllPostsManagerMode_delete-button{
-        background-image: url('../../../assets/icons/allOther/delete.png');
-        background-size: cover;
-        background-position: center;
-        width: 30px;
-        height: 30px;
-        background-color: white;
-        border: none;
-    }
-    .AdminSeeAllPostsManagerMode_delete-button:hover{
-        cursor: pointer;
-        border: solid #3B58CF 2px;
-    }
-    .AdminSeeAllPosts table, th{
-        border: 1px solid;
+    .AdminSeeAllPosts_tools-container p{
+        font-size: 25px;
+        font-weight: 800;
     }
 }
 
@@ -211,7 +151,7 @@
         flex-flow: row wrap;
         justify-content: center;
     }  
-    .AdminSeeAllPosts_change-mode{
+    .AdminSeeAllPosts button{
         border: none;
         background: linear-gradient(0.55turn,#3B58CF, #1F232C);
         font-weight: 600;
@@ -220,42 +160,22 @@
         color: white;
         font-size: 20px;
     }
-    .AdminSeeAllPosts_change-mode:hover{
+    .AdminSeeAllPosts button:hover{
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
         cursor: pointer;
     }
-    .AdminSeeAllPostsManagerMode{
-        margin: auto;
-        width: 90%;
+    .AdminSeeAllPosts_tools-container{
         display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-    }
-    .AdminSeeAllPostsManagerMode table{
+        flex-direction: row nowrap;
         width: 100%;
-        margin-top: 20px;
-        border: black solid 2px;
+        justify-content: space-between;  
+        align-items: center;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
     }
-    .AdminSeeAllPostsManagerMode th[scope="col"]{
-        background-color: #1F232C;
-        font-weight: 600;
-        color: white;
-    }
-    .AdminSeeAllPostsManagerMode_delete-button{
-        background-image: url('../../../assets/icons/allOther/delete.png');
-        background-size: cover;
-        background-position: center;
-        width: 30px;
-        height: 30px;
-        background-color: white;
-        border: none;
-    }
-    .AdminSeeAllPostsManagerMode_delete-button:hover{
-        cursor: pointer;
-        border: solid #3B58CF 2px;
-    }  
-    .AdminSeeAllPosts table, th{
-        border: 1px solid;
+    .AdminSeeAllPosts_tools-container p{
+        font-size: 25px;
+        font-weight: 800;
     }
 }
 
@@ -277,7 +197,7 @@
         flex-flow: row wrap;
         justify-content: center;
     }  
-    .AdminSeeAllPosts_change-mode{
+    .AdminSeeAllPosts button{
         border: none;
         background: linear-gradient(0.55turn,#3B58CF, #1F232C);
         font-weight: 600;
@@ -286,41 +206,21 @@
         color: white;
         font-size: 20px;
     }
-    .AdminSeeAllPosts_change-mode:hover{
+    .AdminSeeAllPosts button:hover{
         background: linear-gradient(0.50turn,#3B58CF, #1F232C);
         cursor: pointer;
     }
-    .AdminSeeAllPostsManagerMode{
-        margin: auto;
-        width: 80%;
+    .AdminSeeAllPosts_tools-container{
         display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-    }
-    .AdminSeeAllPostsManagerMode table{
+        flex-direction: row nowrap;
         width: 100%;
-        margin-top: 20px;
-        border: black solid 2px;
+        justify-content: space-between;  
+        align-items: center;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
     }
-    .AdminSeeAllPostsManagerMode th[scope="col"]{
-        background-color: #1F232C;
-        font-weight: 600;
-        color: white;
-    }
-    .AdminSeeAllPostsManagerMode_delete-button{
-        background-image: url('../../../assets/icons/allOther/delete.png');
-        background-size: cover;
-        background-position: center;
-        width: 30px;
-        height: 30px;
-        background-color: white;
-        border: none;
-    }
-    .AdminSeeAllPostsManagerMode_delete-button:hover{
-        cursor: pointer;
-        border: solid #3B58CF 2px;
-    } 
-    .AdminSeeAllPosts table, th{
-        border: 1px solid;
+    .AdminSeeAllPosts_tools-container p{
+        font-size: 25px;
+        font-weight: 800;
     }
 }

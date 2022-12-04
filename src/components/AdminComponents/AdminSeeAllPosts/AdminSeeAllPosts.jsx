@@ -10,19 +10,25 @@ import Loading from '../../Partials/Loading/Loading';
 function AdminSeeAllPosts(){
     const [loading, setLoading] = useState(true)
     const [posts, setPosts] = useState(null);
-    const [managerMod, setManagerMode] = useState(false);
+    const [postWithoutCategory, setPostWithoutCategory] = useState(null);
+    const [lookPostWithoutCategory, setLookPostWithoutCategory] = useState(false)
     const [refreshPage, setRefreshPage] = useState(false);
+
 
     useEffect(()=>{
         try{
-            setRefreshPage(true)
             axios.defaults.baseURL = hostName;
             axios.get('/post/all')
             .then(posts=>{
                 if(posts){
                     setPosts(posts.data.posts)
-                    setRefreshPage(false)
-                    setLoading(false)
+                    axios.get('/post/all/manage-category')
+                    .then(responsePostWithoutCategory=>{
+                        setPostWithoutCategory(responsePostWithoutCategory.data.posts)
+                        setRefreshPage(false)
+                        setLoading(false)
+                    })
+
                 }else{
                     alert('no post')
                 }
@@ -34,96 +40,84 @@ function AdminSeeAllPosts(){
         }catch(e){
             location.reload();
         }
-    }, [managerMod, refreshPage])
+    }, [refreshPage])
 
-    const changeMod = (e)=>{
+
+    // function setDateForBestLook(date){
+    //     const toDate = new Date(date)
+    //     const dateGoodFormat = new Intl.DateTimeFormat("en-GB", {
+    //         year: "numeric",
+    //         month: "long",
+    //         day: "2-digit"
+    //       }).format(toDate)
+    //       return dateGoodFormat
+    // }
+
+    // const deletePost = (e, postId)=>{
+    //     if(window.confirm("You're sur to delete this post ?")){
+    //         setLoading(true)
+    //         e.preventDefault();
+    //         e.stopPropagation();
+    //         try{
+    //             axios.delete(`/post/delete/${postId}`)
+    //             .then(response=>{
+    //                 if(response.status == 200){
+    //                     setRefreshPage(true);
+    //                     setLoading(false);
+    //                 }
+    //             })
+    //             .catch((e)=>{
+    //                 console.log(e);
+    //             })
+    //         }catch(e){
+    //             console.log(e);
+    //             location.reload();
+    //         }
+    //     }
+    // }
+
+    const FunctionChangeLookPostWithoutCategory = (e)=>{
         e.preventDefault();
         e.stopPropagation();
-        if(managerMod == false){
-            setManagerMode(true)
-        }else{
-            setManagerMode(false)
+        if(lookPostWithoutCategory){
+            setLookPostWithoutCategory(false)
+            return setRefreshPage(true)
         }
-    }
-    function setDateForBestLook(date){
-        const toDate = new Date(date)
-        const dateGoodFormat = new Intl.DateTimeFormat("en-GB", {
-            year: "numeric",
-            month: "long",
-            day: "2-digit"
-          }).format(toDate)
-          return dateGoodFormat
-    }
-
-    const deletePost = (e, postId)=>{
-        if(window.confirm("You're sur to delete this post ?")){
-            setLoading(true)
-            e.preventDefault();
-            e.stopPropagation();
-            try{
-                axios.delete(`/post/delete/${postId}`)
-                .then(response=>{
-                    if(response.status == 200){
-                        setRefreshPage(true);
-                        setLoading(false);
-                    }
-                })
-                .catch((e)=>{
-                    console.log(e);
-                })
-            }catch(e){
-                console.log(e);
-                location.reload();
-            }
-        }
+        setLookPostWithoutCategory(true)
+        setRefreshPage(true)
     }
 
     if(loading == true){
         return(
             <Loading/>
         )
-    }else if(managerMod){
-        return(
-            <section className="AdminSeeAllPostsManagerMode main">
-                <h2>Manager Mode</h2>
-                <button className='AdminSeeAllPosts_change-mode' onClick={changeMod}>Change Mode</button>
-                <table cellSpacing="0">
-                    <tbody >
-                        <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">created At</th>
-                            <th scope="col">Change</th>
-                            <th scope="col">Delete</th>
-                        </tr>
-                        {posts?.map((element, index)=>{
-                            return(
-                                <tr key={index}>
-                                    <th scope="row"><Link to={`/admin/post/${element.id}`}>{element?.title}</Link></th>
-                                    <th scope="row">{setDateForBestLook(element?.createdAt)}</th>
-                                    <th scope="row"><Link to={`/admin/post/update/${element.id}`}>Modifier</Link></th>
-                                    <th scope="row"><button className='AdminSeeAllPostsManagerMode_delete-button' onClick={event=>deletePost(event, element.id)}></button> </th>
-                                </tr>
-                            )
-                        })}
-
-                    </tbody>
-                </table>
-            </section>
-        )
-    }else if(!managerMod){
+    }else if(loading == false && lookPostWithoutCategory == false){
         return( 
             <section className='AdminSeeAllPosts main'>
+                <div className='AdminSeeAllPosts_tools-container'>
+                    <button onClick={FunctionChangeLookPostWithoutCategory}>Look all posts without category</button>
+                </div>
                 <h1>All posts</h1>
-                <h3>Viewer Mode</h3>
-                <button className='AdminSeeAllPosts_change-mode' onClick={changeMod}>Change Mode</button>
-                    <div className='AdminSeeAllPosts_card-container'>
-                        {posts?.map(post=><AdminPostCard post={post} key={post.id} />)}
-                    </div>
+                <div className='AdminSeeAllPosts_card-container'>
+                    {posts?.map(post=><AdminPostCard post={post} key={post.id} />)}
+                </div>
             </section>
         )
     
 
 
+    }else{
+        return(
+            <section className='AdminSeeAllPosts main'>
+                <div className='AdminSeeAllPosts_tools-container'>
+                    <button onClick={FunctionChangeLookPostWithoutCategory}>Look all posts</button>
+                </div>
+                <h1>All posts without category</h1>
+                <div className='AdminSeeAllPosts_card-container'>
+                    {postWithoutCategory?.map(post=><AdminPostCard post={post} key={post.id} />)}
+                </div>
+            </section>
+        )
     }
 };
 

@@ -66,9 +66,9 @@ function ReaderSeeOnePost(){
             <section className="ReaderSeeOnePost">
                 <div className="ReaderSeeOnePost_header">
                     <h1>{post.title}</h1>
-                    <img src={post.picture}/>
                     <p>In the category <b>{category.name}</b></p>
                     <p>Author : <b>{post.author}</b>, created the {dateOfPost}</p>
+                    <img src={post.picture}/>
                 </div>
                 <div className="ReaderSeeOnePost_content-container">
                     <div className="ReaderSeeOnePost_content" dangerouslySetInnerHTML={{__html: post.content}} />

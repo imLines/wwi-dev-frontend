@@ -112,7 +112,7 @@ function AdminUpdatePost(){
                     })
                     .catch((e)=>{
                         setLoading(false)
-                        location.reload()
+                        location.reload() 
                         console.log(e)
                     })
                 })
