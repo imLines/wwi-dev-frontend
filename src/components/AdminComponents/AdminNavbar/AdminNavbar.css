@@ -1,3 +1,9 @@
+@keyframes slideToBottom{
+    from{height: 0vh;}
+    to{height: 100vh;}
+}
+
+
 /* MOBILE */
 @media screen and (max-width: 576px){
     .AdminNavbar{
@@ -25,22 +31,26 @@
         height: 50px;
         width: 50px; 
     }
+    .AdminNavbar_hamburger-button:hover{
+        cursor: pointer;
+    }
     .AdminNavbar_hamburger-open{
-        background-image: url('../../../assets/icons/navbar/hamburger-close.png');
+        background-image: url('../../../assets/icons/navbar/white-cross.png');
         background-position: center;
         background-size: cover;
-        border: 2px solid black;
-        background-color: white;
+        background-color: transparent;
+        border: none;
     }
     .AdminNavbar_hamburger-close{
-        background-image: url('../../../assets/icons/navbar/hamburger-open.png');
+        background-image: url('../../../assets/icons/navbar/white-hamburger.png');
         background-position: center;
         background-size: cover;
-        border: 2px solid black;
-        background-color: white;
+        background-color: transparent;
+        border: none;
     }
     .AdminNavbar_no-see-ul{
         display: none;
+
     }
     .AdminNavbar_see-ul{
         border-top: white 2px solid;
@@ -51,6 +61,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        animation-name: slideToBottom;
+        animation-duration: 1s ;
     }
     .AdminNavbar_li{
         list-style: none;
@@ -93,18 +105,21 @@
         width: 50px; 
     }
     .AdminNavbar_hamburger-open{
-        background-image: url('../../../assets/icons/navbar/hamburger-close.png');
+        background-image: url('../../../assets/icons/navbar/white-cross.png');
         background-position: center;
         background-size: cover;
-        border: 2px solid black;
-        background-color: white;
+        background-color: transparent;
+        border: none;
     }
     .AdminNavbar_hamburger-close{
-        background-image: url('../../../assets/icons/navbar/hamburger-open.png');
+        background-image: url('../../../assets/icons/navbar/white-hamburger.png');
         background-position: center;
         background-size: cover;
-        border: 2px solid black;
-        background-color: white;
+        background-color: transparent;
+        border: none;
+    }
+    .AdminNavbar_hamburger-button:hover{
+        cursor: pointer;
     }
     .AdminNavbar_no-see-ul{
         display: none;
@@ -118,6 +133,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        animation-name: slideToBottom;
+        animation-duration: 1s ;
     }
     .AdminNavbar_li{
         list-style: none;

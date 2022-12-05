@@ -8,7 +8,7 @@ function ReaderHome(){
         <>
             <ReaderNavbar/>
             <section className='ReaderHome main'>
-                <h1>Welcome to wwiDEV</h1>
+                <h1 className='font-title'>Welcome to wwiDEV</h1>
                 <div className='ReaderHome_img-paragraphe'>
                     <img src={avatar}/>
                     <p>wwiDEV, or  "We work into Development" is a personal blog create by me. I'm Tony, I've 23yo and I want to transmit my knowledge. This blog is built with the MERN stack (wait ! 

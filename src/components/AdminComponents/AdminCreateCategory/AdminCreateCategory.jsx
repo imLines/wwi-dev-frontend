@@ -1,5 +1,5 @@
 import { useState } from "react";
-import hostName from '../../../config';
+import hostName from '../../../config/hostName';
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import './AdminCreateCategory.css';
@@ -40,6 +40,7 @@ function AdminCreateCategory(){
             console.log(e)
         }
     }
+
 
     if(loading == true){
         return(

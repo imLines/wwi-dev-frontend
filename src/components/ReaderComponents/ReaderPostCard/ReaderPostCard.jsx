@@ -13,7 +13,7 @@ const ReaderPostCard = function({post}){
         <Link className='ReaderPostCard' to={`/reader/post/${post.id}`}>
             <img className='ReaderPostCard_picture' src={post.picture}/>
             <div className='ReaderPostCard_title-container'>
-                <p>{post.title}</p>
+                <p className='font-title'>{post.title}</p>
             </div>
         </Link> 
     );

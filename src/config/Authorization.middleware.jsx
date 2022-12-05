@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Navigate, useNavigate} from 'react-router-dom';
-import hostName from '../config.js';
+import hostName from './hostName';
 
 
 const ProtectedRoute = ({children})=>{

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import './Newsletter.css'
-import hostName from '../../../config';
+import hostName from '../../../config/hostName';
 
 
 function Newsletter(){
@@ -43,7 +43,7 @@ function Newsletter(){
                 <h4>Suscribe to the newsletter : </h4>
                 <div className="Newsletter_input-button">
                     <input placeholder="You're email here" onChange={e=>setRecipientEmail(e.target.value)} type="email" required />
-                    <button type="submit" >Suscribe</button>
+                    <button className="font-title" type="submit" >Suscribe</button>
                 </div>
             </form>
         )

@@ -31,23 +31,26 @@
         height: 50px;
         width: 50px; 
     }
+    .ReaderNavbar_hamburger-button:hover{
+        cursor: pointer;
+    }
     
     .ReaderNavbar_hamburger-button:active:after{
         transform: rotate(360deg);
     }
     .ReaderNavbar_hamburger-open{
-        background-image: url('../../../assets/icons/navbar/hamburger-close.png');
+        background-image: url('../../../assets/icons/navbar/white-cross.png');
         background-position: center;
         background-size: cover;
-        border: 2px solid black;
-        background-color: white;
+        background-color: transparent;
+        border: none;
     }
     .ReaderNavbar_hamburger-close{
-        background-image: url('../../../assets/icons/navbar/hamburger-open.png');
+        background-image: url('../../../assets/icons/navbar/white-hamburger.png');
         background-position: center;
         background-size: cover;
-        border: 2px solid black;
-        background-color: white;
+        background-color: transparent;
+        border: none;
     }
     .ReaderNavbar_no-see-ul{
         display: none;
@@ -109,19 +112,22 @@
         height: 50px;
         width: 50px; 
     }
+    .ReaderNavbar_hamburger-button:hover{
+        cursor: pointer;
+    }
     .ReaderNavbar_hamburger-open{
-        background-image: url('../../../assets/icons/navbar/hamburger-close.png');
+        background-image: url('../../../assets/icons/navbar/white-cross.png');
         background-position: center;
         background-size: cover;
-        border: 2px solid black;
-        background-color: white;
+        background-color: transparent;
+        border: none;
     }
     .ReaderNavbar_hamburger-close{
-        background-image: url('../../../assets/icons/navbar/hamburger-open.png');
+        background-image: url('../../../assets/icons/navbar/white-hamburger.png');
         background-position: center;
         background-size: cover;
-        border: 2px solid black;
-        background-color: white;
+        background-color: transparent;
+        border: none;
     }
     .ReaderNavbar_no-see-ul{
         display: none;

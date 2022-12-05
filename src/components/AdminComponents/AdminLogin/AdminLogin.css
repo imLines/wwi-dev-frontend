@@ -37,21 +37,21 @@
         width: 100%;
         font-weight: 700;
     }
+    .AdminLogin input:focus{
+        outline: none;
+        border: #3B58CF solid 2px;
+    }
     .AdminLogin button{
         width: 30%;
         height: 5%;
         border: white 2px solid;
         border-radius: 30px;
-        background-color: #3B58CF;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
         color: white;
-    }
-    .AdminLogin input:focus{
-        outline: none;
-        border: #3B58CF solid 2px;
     }
     .AdminLogin button:hover{
         background-color: white;
-        color: #3B58CF;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
         font-weight: 900;
         cursor: pointer;
     }
@@ -96,31 +96,25 @@
         width: 100%;
         font-weight: 700;
     }
+    .AdminLogin input:focus{
+        outline: none;
+        border: #3B58CF solid 2px;
+    }
     .AdminLogin button{
         width: 30%;
         height: 5%;
         border: white 2px solid;
         border-radius: 30px;
-        background-color: #3B58CF;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
         color: white;
-    } 
-    .AdminLogin input:focus{
-        outline: none;
-        border: #3B58CF solid 2px;
     }
     .AdminLogin button:hover{
         background-color: white;
-        color: #3B58CF;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
         font-weight: 900;
         cursor: pointer;
     }
-        .errorMessage{
-        color: red;
-        font-weight: 900;
-    }
-    .error-input{
-        border: 3px red solid !important;
-    }
+
 }
 
 /* Tablette */
@@ -162,21 +156,21 @@
         width: 100%;
         font-weight: 700;
     }
+    .AdminLogin input:focus{
+        outline: none;
+        border: #3B58CF solid 2px;
+    }
     .AdminLogin button{
         width: 30%;
         height: 5%;
         border: white 2px solid;
         border-radius: 30px;
-        background-color: #3B58CF;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
         color: white;
-    } 
-    .AdminLogin input:focus{
-        outline: none;
-        border: #3B58CF solid 2px;
     }
     .AdminLogin button:hover{
         background-color: white;
-        color: #3B58CF;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
         font-weight: 900;
         cursor: pointer;
     }
@@ -221,21 +215,21 @@
         width: 100%;
         font-weight: 700;
     }
+    .AdminLogin input:focus{
+        outline: none;
+        border: #3B58CF solid 2px;
+    }
     .AdminLogin button{
         width: 30%;
         height: 5%;
         border: white 2px solid;
         border-radius: 30px;
-        background-color: #3B58CF;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
         color: white;
-    }  
-    .AdminLogin input:focus{
-        outline: none;
-        border: #3B58CF solid 2px;
     }
     .AdminLogin button:hover{
         background-color: white;
-        color: #3B58CF;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
         font-weight: 900;
         cursor: pointer;
     }
@@ -280,21 +274,21 @@
         width: 100%;
         font-weight: 700;
     }
-    .AdminLogin button{
-        width: 20%;
-        height: 5%;
-        border: white 2px solid;
-        border-radius: 30px;
-        background-color: #3B58CF;
-        color: white;
-    }  
     .AdminLogin input:focus{
         outline: none;
         border: #3B58CF solid 2px;
     }
+    .AdminLogin button{
+        width: 30%;
+        height: 5%;
+        border: white 2px solid;
+        border-radius: 30px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+    }
     .AdminLogin button:hover{
         background-color: white;
-        color: #3B58CF;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
         font-weight: 900;
         cursor: pointer;
     }

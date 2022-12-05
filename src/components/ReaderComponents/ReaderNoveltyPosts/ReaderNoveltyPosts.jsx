@@ -3,9 +3,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ReaderPostCard from '../ReaderPostCard/ReaderPostCard';
 import './ReaderNoveltyPosts.css';
-import hostName from '../../../config';
+import hostName from '../../../config/hostName';
 import Loading from "../../Partials/Loading/Loading";
-import Newsletter from "../../Partials/Newsletter/Newsletter";
 import { useNavigate } from "react-router-dom";
 
 
@@ -51,7 +50,7 @@ function ReaderNoveltyPosts(){
     }else{
         return(
             <section className="ReaderNoveltyPosts main">
-                <h1>All new posts</h1>
+                <h1 className="font-title">All new posts</h1>
                 <p>(since 15 days)</p>
                 <div className="ReaderNoveltyPosts_card-container">
                     {posts?.map(post=><ReaderPostCard post={post} key={post.id} />)}

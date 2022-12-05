@@ -2,7 +2,7 @@ import './App.css';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from "axios";
-import hostName from './config';
+import hostName from './config/hostName';
 
 
 import ProtectedRoute from './config/Authorization.middleware';

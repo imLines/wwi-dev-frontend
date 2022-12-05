@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import hostName from '../../../config';
+import hostName from '../../../config/hostName';
 import './AdminUpdateCategory.css';
 import Loading from "../../Partials/Loading/Loading";
 
@@ -68,6 +68,9 @@ function AdminUpdateCategory(){
             location.reload()
         }
     }
+
+
+    
     if(loading == true){
         return(
             <Loading/>

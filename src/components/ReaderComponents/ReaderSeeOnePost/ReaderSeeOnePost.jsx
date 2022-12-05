@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './ReaderSeeOnePost.css';
 import axios from 'axios';
-import hostName from "../../../config";
+import hostName from "../../../config/hostName";
 import {FacebookShareButton, FacebookIcon,
         TwitterShareButton, TwitterIcon,
         WhatsappShareButton, WhatsappIcon
 } from 'react-share'; 
+import Loading from "../../Partials/Loading/Loading";
 
 function ReaderSeeOnePost(){
+    const [loading, setLoading] = useState(true)
     const [post, setPost] = useState(null);
     const [dateOfPost, setDateOfPost] = useState(null);
     const [category, setCategory] = useState(null)
@@ -16,34 +18,53 @@ function ReaderSeeOnePost(){
     const [copiedPath, setCopiedPath] = useState('Copy Link');
 
     let {postId} = useParams();
+
     useEffect(()=>{
-        axios.defaults.baseURL = hostName;
-        async function getPost(){
-            const responsePost = await axios.get(`/post/${postId}`)
-            setPost(responsePost.data.post)
+        try{
+            axios.defaults.baseURL = hostName;
+            // async function getPost(){
+            //     const responsePost = await axios.get(`/post/${postId}`)
+            //     setPost(responsePost.data.post)
+            // }
+            // async function getCategory(){
+            //     const responseCategory = await axios.get(`/category/${post.categoryId}`)
+            //     setCategory(responseCategory.data.category)
+            // }
+            function setDateForBestLook(date){
+                const toDate = new Date(date)
+                setDateOfPost(new Intl.DateTimeFormat("en-GB", {
+                    year: "numeric",
+                    month: "long",
+                    day: "2-digit"
+                  }).format(toDate))
+            } 
+            axios.get(`/post/${postId}`)
+            .then(responseAxiosPost=>{
+                setPost(responseAxiosPost.data.post)
+                console.log(responseAxiosPost.data.post)
+                setDateForBestLook(responseAxiosPost.data.post.createdAt)
+                axios.get(`/category/${responseAxiosPost.data.post.categoryId}`)
+                .then(responseAxiosCategory=>{
+                    if(responseAxiosCategory.status == 200){
+                        setCategory(responseAxiosCategory.data.category)
+                        setLoading(false)
+                        setPathInLocation(location.origin+location.pathname)
+                    }
+                })
+                .catch((e)=>{
+                    setLoading(false)
+                    console.log(e)
+                })
+            })
+            .catch((e)=>{
+                setLoading(false)
+                console.log(e)
+            })
+        }catch(e){
+            setLoading(false)
+            console.log(e)
         }
-        async function getCategory(){
-            const responseCategory = await axios.get(`/category/${post.categoryId}`)
-            setCategory(responseCategory.data.category)
-        }
-        function setDateForBestLook(date){
-            const toDate = new Date(date)
-            setDateOfPost(new Intl.DateTimeFormat("en-GB", {
-                year: "numeric",
-                month: "long",
-                day: "2-digit"
-              }).format(toDate))
-
-        } 
-
-        if(post == null){
-            getPost()
-        }else{
-            setDateForBestLook(post.createdAt)
-            getCategory()
-        }
-        setPathInLocation(location.origin+location.pathname)
-    }, [post])
+    }, [])
 
     function copyLink(){
         navigator.clipboard.writeText(pathInLocation)
@@ -54,18 +75,16 @@ function ReaderSeeOnePost(){
     }
 
 
-    if(post == null || category == null){
+    if(loading == true){
         return(
-            <section>
-                <p>Chargement...</p>
-            </section>
+            <Loading/>
         )
     }else{
         return(
             <>
             <section className="ReaderSeeOnePost">
                 <div className="ReaderSeeOnePost_header">
-                    <h1>{post.title}</h1>
+                    <h1 className="font-title">{post.title}</h1>
                     <p>In the category <b>{category.name}</b></p>
                     <p>Author : <b>{post.author}</b>, created the {dateOfPost}</p>
                     <img src={post.picture}/>
@@ -84,7 +103,7 @@ function ReaderSeeOnePost(){
                     <WhatsappShareButton className="ReaderSeeOnePost_link" url={pathInLocation}>
                         <WhatsappIcon size={40} round={true}/>
                     </WhatsappShareButton>
-                    <button className={`ReaderSeeOnePost_button-copy-link ${copiedPath}`} onClick={copyLink}>{copiedPath}</button>
+                    <button className={`ReaderSeeOnePost_button-copy-link font-title ${copiedPath}`} onClick={copyLink}>{copiedPath}</button>
                 </div>
 
             </section> 

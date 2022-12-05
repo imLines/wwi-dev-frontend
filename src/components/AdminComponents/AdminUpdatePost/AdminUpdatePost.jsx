@@ -5,7 +5,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { firebase } from "../../../config/firebaseInit";
 
 import './AdminUpdatePost.css';
-import hostName from '../../../config';
+import hostName from '../../../config/hostName';
 import { useState } from "react";
 import Loading from "../../Partials/Loading/Loading";
 
@@ -140,7 +140,6 @@ function AdminUpdatePost(){
         }
     }
 
-    
 
     if(loading == true){
         return( 
@@ -151,7 +150,7 @@ function AdminUpdatePost(){
             <form className="AdminUpdatePost main"  onSubmit={handleSubmit}>
             <div className="AdminUpdatePost_section-container">
                 <label htmlFor="category">Choose a category :</label>
-                <select required className={`AdminUpdatePost_category `} name="category" value={categorySelected} onChange={event=>setCategorySelected(event.target.value)}>
+                <select required className={`AdminUpdatePost_category font-title`} name="category" value={categorySelected} onChange={event=>setCategorySelected(event.target.value)}>
                         <option value='' >Select a catégorie</option>
                         {allCategories?.map((e, key) => {
                         return <option key={key}  value={e.name}>{e.name}</option>;
@@ -165,7 +164,7 @@ function AdminUpdatePost(){
             <div className="AdminUpdatePost_section-container">
                 <label htmlFor="backgroundPicture">Choose a background picture :</label>
                 <input id="backgroundPicture" type='file' accept=".png,.jpg,.svg" name='backgroundPicture' onChange={event=>setFile(event.target.files[0])}/>
-                <button type="button" onClick={deletePicture}>Delete picture</button>
+                <button className="font-title" type="button" onClick={deletePicture}>Delete picture</button>
             </div>
             <div className="AdminUpdatePost_section-container">
                 <label>Content : </label>
@@ -189,7 +188,7 @@ function AdminUpdatePost(){
 
             </div>
             <div className="AdminUpdatePost_button-container">
-                <button className="AdminUpdatePost_button-send" type='submit'>Send</button>
+                <button className="AdminUpdatePost_button-send font-title" type='submit'>Send</button>
             </div>
         </form>
         )

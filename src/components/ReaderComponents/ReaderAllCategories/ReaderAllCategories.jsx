@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import hostName from '../../../config';
+import hostName from '../../../config/hostName';
 import Loading from "../../Partials/Loading/Loading";
 import './ReaderAllCategories.css'
  
@@ -47,6 +47,7 @@ function ReaderAllCategories(){
         return(
             
                 <section className="ReaderAllCategories main">
+                    <h1 className="font-title">All Categories</h1>
                     {categories?.map((item, index) => {
                             return   <Link className="ReaderAllCategories_link" key={index} to={`/reader/category/${item.id}`} >{item.name} : {item.description}</Link>
                             })}

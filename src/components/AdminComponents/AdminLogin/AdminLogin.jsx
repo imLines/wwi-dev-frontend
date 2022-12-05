@@ -3,7 +3,7 @@ import './AdminLogin.css';
 import {useState} from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import hostName from '../../../config';
+import hostName from '../../../config/hostName';
 import Loading from '../../Partials/Loading/Loading';
  
 function AdminLogin(){
@@ -54,7 +54,7 @@ function AdminLogin(){
                     <label htmlFor='password'>Password</label>
                     <input className={errorInput} type="password" name="password" placeholder="Mot de passe" onChange={event=>setPassword(event.target.value)}/>
                 </div>
-                <button type='submit'>Me connecter</button>
+                <button className='font-title' type='submit'>Me connecter</button>
             </form>
         )
 

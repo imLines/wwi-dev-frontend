@@ -1,5 +1,5 @@
 import { Editor } from '@tinymce/tinymce-react';
-import hostName from '../../../config';
+import hostName from '../../../config/hostName';
 import axios from 'axios';
 import './AdminCreatePost.css';
 import hostReactApp from '../../../config/hostReactApp.config';
@@ -41,6 +41,8 @@ function AdminCreatePost(){
         }
     }, [])
 
+
+
     const handleSubmit = async (event)=>{
         try{
             setLoading(true)
@@ -55,10 +57,7 @@ function AdminCreatePost(){
                 const storageRef = firebase.storage().ref(`/${categorySelected}/${title}`)
                 const snapshot = await storageRef.put(file)
                 const url = await snapshot.ref.getDownloadURL();
-                return url
-                console.log("Picture : "+picture)
-                console.log('URL :'+url)
-    
+                return url    
             }        
             async function SendPost(){
                 const urlByFirebase = await firebaseRun()
@@ -105,9 +104,10 @@ function AdminCreatePost(){
     }else{
         return(
             <form className="AdminCreatePost main" onSubmit={handleSubmit}>
+                <h1 className='font-title'>Create a Post</h1>
                 <div className="AdminCreatePost_section-container">
                     <label htmlFor="category">Choose a category :</label>
-                    <select  name="category" value={categorySelected} className={`AdminCreatePost_category ${errorInputCategory}`} onChange={event=>setCategorySelected(event.target.value)}>
+                    <select  name="category" value={categorySelected} className={`AdminCreatePost_category font-title ${errorInputCategory}`} onChange={event=>setCategorySelected(event.target.value)}>
                             <option value=''>Select a catégorie</option>
                             {allCategories?.map((e, key) => {
                             return <option key={key}  value={e.name}>{e.name}</option>;
@@ -120,7 +120,7 @@ function AdminCreatePost(){
                 </div>
                 <div className="AdminCreatePost_section-container">
                     <label htmlFor="backgroundPicture">Choose a background picture :</label>
-                    <input required className="AdminCreatePost_picture" type='file' accept=".png,.jpg,.svg" name='backgroundPicture' onChange={event=>setFile(event.target.files[0])}/>
+                    <input required className="AdminCreatePost_picture font-title" type='file' accept=".png,.jpg,.svg" name='backgroundPicture' onChange={event=>setFile(event.target.files[0])}/>
                 </div>
                 <div className="AdminCreatePost_section-container">
                     <label>Content :</label>

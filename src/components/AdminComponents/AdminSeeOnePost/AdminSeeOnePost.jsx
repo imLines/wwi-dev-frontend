@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import hostName from "../../../config";
+import hostName from "../../../config/hostName";
 import './AdminSeeOnePost.css';
 import Loading from '../../Partials/Loading/Loading';
 
@@ -92,10 +92,10 @@ function AdminSeeOnePost(){
     }else if(category != null){
         return(
             <section className="AdminSeeOnePost main">
-                <button onClick={e=>deletePost(e, post.id)}>Delete this post</button>
-                <button onClick={modifiePost}>Update this post</button>
+                <button className="font-title" onClick={e=>deletePost(e, post.id)}>Delete this post</button>
+                <button className="font-title" onClick={modifiePost}>Update this post</button>
                 <div className="AdminSeeOnePost_header"> 
-                    <h1>{post.title}</h1>
+                    <h1 className="font-title">{post.title}</h1>
                     <h2>{category?.name}</h2> 
                     <p>{post.author}, created the {dateOfPost}</p>
                     <img src={post.picture}/>
@@ -110,7 +110,7 @@ function AdminSeeOnePost(){
                 <button onClick={e=>deletePost(e, post.id)}>Delete this post</button>
                 <button onClick={modifiePost}>Update this post</button>
                 <div className="AdminSeeOnePost_header"> 
-                    <h1>{post.title}</h1>
+                    <h1 className="font-title">{post.title}</h1>
                     <p>{post.author}, created the {dateOfPost}</p>
                     <img src={post.picture}/>
                     <h2 className="error-message">Any Category, need to provide this for publish in reader mode.</h2>

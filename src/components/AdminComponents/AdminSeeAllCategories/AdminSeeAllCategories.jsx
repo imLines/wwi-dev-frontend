@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import hostName from '../../../config';
+import hostName from '../../../config/hostName';
 import './AdminSeeAllCategories.css';
 
 

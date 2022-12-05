@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import hostName from '../../../config';
+import hostName from '../../../config/hostName';
 import Loading from "../../Partials/Loading/Loading";
 import './AdminAccount.css'
 
@@ -126,7 +126,7 @@ function AdminAccount(){
                     <p>Last Email : {admin?.email}</p>
                     <input type='email' onChange={e=>setNewMail(e.target.value)} placeholder="new adress mail"/>
                     <input type='email' onChange={e=>setConfirmNewMail(e.target.value)} placeholder="confirm new adress mail"/>
-                    <button className="AdminAccount_submit" type="submit">Change email</button>
+                    <button className="AdminAccount_submit font-title" type="submit">Change email</button>
                 </form>
                 <form onSubmit={changeName} className={`popup ${namePopupSee}`}>
                     <div className="close-button-container">
@@ -134,7 +134,7 @@ function AdminAccount(){
                     </div>
                     <p>Last Name : {admin?.name}</p>
                     <input type='text' onChange={e=>setNewName(e.target.value)} placeholder="new name"/>
-                    <button className="AdminAccount_submit" type="submit">Change name</button>
+                    <button className="AdminAccount_submit font-title" type="submit">Change name</button>
                 </form>
                 <form onSubmit={changePassword} className={`popup ${passwordPopupSee}`}>
                     <div className="close-button-container">
@@ -142,15 +142,15 @@ function AdminAccount(){
                     </div>
                     <input autoComplete="new-password" type='password' onChange={e=>setNewPassword(e.target.value)} placeholder="new password"/>
                     <input autoComplete="new-password" type='password' onChange={e=>setConfirmNewPassword(e.target.value)} placeholder="confirm new password"/>
-                    <button className="AdminAccount_submit" type="submit">Change password</button>
+                    <button className="AdminAccount_submit font-title" type="submit">Change password</button>
                 </form>
                 <section className={`AdminAccount ${backgroundBlur}`}>
-                    <h2>account setting of {admin?.name}</h2>
+                    <h2 className="font-title">account setting of {admin?.name}</h2>
                     <p>Email : {admin?.email}</p>
                     <p>Name : {admin?.name}</p>
-                    <button className="AdminAccount_button-select-change" onClick={emailPopup}>Modifie email</button>
-                    <button className="AdminAccount_button-select-change" onClick={namePopup}>Modifie Name</button>
-                    <button className="AdminAccount_button-select-change" onClick={passwordPopup}>Modifie password</button>
+                    <button className="AdminAccount_button-select-change font-title" onClick={emailPopup}>Modifie email</button>
+                    <button className="AdminAccount_button-select-change font-title" onClick={namePopup}>Modifie Name</button>
+                    <button className="AdminAccount_button-select-change font-title" onClick={passwordPopup}>Modifie password</button>
                 </section>
             </section>
         )
