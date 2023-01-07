@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import axios from "axios";
 import hostName from './config/hostName';
 
-
 import ProtectedRoute from './config/Authorization.middleware';
 
 import Reader from "./components/Reader";
