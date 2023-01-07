@@ -1,0 +1,263 @@
+/* Mobile  */
+@media screen and (max-width: 576px){
+    .AdminCreateCategory{
+        width: 90%;
+        padding: 20px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .AdminCreateCategory h1{
+        margin-bottom: 30px;
+        text-decoration: underline 2px;
+    }
+    .AdminCreateCategory_section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .AdminCreateCategory_section label{
+        font-weight: 700;
+    }
+    .AdminCreateCategory input{
+        border-radius: 15px;
+        border: solid black 1px;
+        padding: 10px;
+    }
+    .AdminCreateCategory textarea{
+        border-radius: 15px;
+        border: solid black 1px;
+        padding: 10px;
+        margin-top: 5px;
+    }
+    .AdminCreateCategory button{
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 20px;
+        width: 40%;
+        font-weight: 700;
+    }
+    .AdminCreateCategory button:hover{
+        cursor: pointer;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+    }
+}
+
+/* Mobile portrait */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    .AdminCreateCategory{
+        width: 90%;
+        padding: 20px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .AdminCreateCategory h1{
+        margin-bottom: 30px;
+        text-decoration: underline 2px;
+    }
+    .AdminCreateCategory_section{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        width: 80%;
+    }
+    .AdminCreateCategory_section label{
+        font-weight: 700;
+    }
+    .AdminCreateCategory input{
+        border-radius: 15px;
+        border: solid black 1px;
+        padding: 10px;
+        margin-left: 20px;
+    }
+    .AdminCreateCategory textarea{
+        border-radius: 15px;
+        border: solid black 1px;
+        padding: 10px;
+        margin-top: 5px;
+        margin-left: 20px;
+    }
+    .AdminCreateCategory button{
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 20px;
+        width: 40%;
+        font-weight: 700;
+    }
+    .AdminCreateCategory button:hover{
+        cursor: pointer;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+    }
+}
+
+/* Tablette */
+@media screen and (min-width: 769px) and (max-width: 992px){
+    .AdminCreateCategory{
+        width: 90%;
+        padding: 20px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .AdminCreateCategory h1{
+        margin-bottom: 30px;
+        text-decoration: underline 2px;
+    }
+    .AdminCreateCategory_section{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        width: 80%;  
+    }
+    .AdminCreateCategory_section label{
+        font-weight: 700;
+    }
+    .AdminCreateCategory input{
+        border-radius: 15px;
+        border: solid black 1px;
+        padding: 10px;
+        width: 40%;
+        margin-left: 20px;
+    }
+    .AdminCreateCategory textarea{
+        border-radius: 15px;
+        border: solid black 1px;
+        padding: 10px;
+        margin-top: 5px;
+        margin-left: 20px;
+    }
+    .AdminCreateCategory button{
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+        border: none;
+        width: 40%;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .AdminCreateCategory button:hover{
+        cursor: pointer;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+    }
+}
+
+/* Ordinateur portable */
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    .AdminCreateCategory{
+        width: 90%;
+        padding: 20px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .AdminCreateCategory h1{
+        margin-bottom: 30px;
+        text-decoration: underline 2px;
+    }
+    .AdminCreateCategory_section{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        width: 80%;   
+    }
+    .AdminCreateCategory_section label{
+        font-weight: 700;
+    }
+    .AdminCreateCategory input{
+        border-radius: 15px;
+        border: solid black 1px;
+        padding: 10px;
+        width: 40%;
+        margin-left: 20px;
+    }
+    .AdminCreateCategory textarea{
+        border-radius: 15px;
+        border: solid black 1px;
+        padding: 10px;
+        margin-top: 5px;
+        margin-left: 20px;
+    }
+    .AdminCreateCategory button{
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+        border: none;
+        width: 40%;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .AdminCreateCategory button:hover{
+        cursor: pointer;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+    }
+}
+
+/* Ordinateur  */
+@media screen and (min-width: 1201px){
+    .AdminCreateCategory{
+        width: 90%;
+        padding: 20px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .AdminCreateCategory h1{
+        margin-bottom: 30px;
+        text-decoration: underline 2px;
+    }
+    .AdminCreateCategory_section{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        width: 80%;   
+    }
+    .AdminCreateCategory_section label{
+        font-weight: 700;
+    }
+    .AdminCreateCategory input{
+        border-radius: 15px;
+        border: solid black 1px;
+        padding: 10px;
+        width: 40%;
+        margin-left: 20px;
+    }
+    .AdminCreateCategory textarea{
+        border-radius: 15px;
+        border: solid black 1px;
+        padding: 10px;
+        margin-top: 5px;
+        margin-left: 20px;
+    }
+    .AdminCreateCategory button{
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+        border: none;
+        width: 40%;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .AdminCreateCategory button:hover{
+        cursor: pointer;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+    }
+}

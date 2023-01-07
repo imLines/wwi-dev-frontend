@@ -1,0 +1,21 @@
+.ErrorServer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1F232C;
+}
+
+.ErrorServer img{
+    width: 50%;
+    height: auto;
+}
+.ErrorServer h1{
+    color: white;
+    font-weight: 800;
+}
+.ErrorServer p{
+    color: white;
+}

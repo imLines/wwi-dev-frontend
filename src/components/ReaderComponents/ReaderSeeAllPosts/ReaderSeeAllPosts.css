@@ -1,0 +1,97 @@
+/* Mobile  */
+@media screen and (max-width: 576px){
+    .ReaderSeeAllPosts{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+    .ReaderSeeAllPosts h1{
+        margin-bottom: 20px;
+        font-weight: 900;
+        text-decoration: underline 3px;
+    }
+    .ReaderSeeAllPosts_card-container{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+}
+
+/* Mobile portrait */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    .ReaderSeeAllPosts{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+    .ReaderSeeAllPosts h1{
+        margin-bottom: 20px;
+        font-weight: 900;
+        text-decoration: underline 3px;
+    } 
+    .ReaderSeeAllPosts_card-container{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }  
+}
+
+/* Tablette */
+@media screen and (min-width: 769px) and (max-width: 992px){
+    .ReaderSeeAllPosts{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+    .ReaderSeeAllPosts h1{
+        font-size: 30px;
+        margin-bottom: 20px;
+        font-weight: 900;
+        text-decoration: underline 3px;
+    } 
+    .ReaderSeeAllPosts_card-container{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }  
+}
+
+/* Ordinateur portable */
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    .ReaderSeeAllPosts{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+    .ReaderSeeAllPosts h1{
+        font-size: 30px;
+        margin-bottom: 20px;
+        font-weight: 900;
+        text-decoration: underline 3px;
+    } 
+    .ReaderSeeAllPosts_card-container{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }    
+}
+
+/* Ordinateur  */
+@media screen and (min-width: 1201px){
+    .ReaderSeeAllPosts{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+    .ReaderSeeAllPosts h1{
+        font-size: 30px;
+        margin-bottom: 20px;
+        font-weight: 900;
+        text-decoration: underline 3px;
+    } 
+    .ReaderSeeAllPosts_card-container{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }   
+}

@@ -1,0 +1,130 @@
+/* Mobile  */
+@media screen and (max-width: 576px){
+    .ReaderHome{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+    .ReaderHome_img-paragraphe{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .ReaderHome img{
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+}
+
+/* Mobile portrait */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    .ReaderHome{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+    .ReaderHome_img-paragraphe{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .ReaderHome img{
+        width: 200px;
+        height: 200px;
+        margin-bottom: 20px;
+        object-fit: cover;
+
+    } 
+    .ReaderHome h1{
+        font-size: 25px;
+    }
+}
+
+/* Tablette */
+@media screen and (min-width: 769px) and (max-width: 992px){
+    .ReaderHome{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+    .ReaderHome_img-paragraphe{
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+    }
+    .ReaderHome img{
+        width: 400px;
+        height: 400px;
+        margin-bottom: 20px;
+        object-fit: cover;
+
+    } 
+    .ReaderHome h1{
+        font-size: 25px;
+    }
+}
+
+/* Ordinateur portable */
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    .ReaderHome{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+    .ReaderHome_img-paragraphe{
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+    }
+    .ReaderHome img{
+        width: 400px;
+        height: 400px;
+        margin-bottom: 20px;
+        object-fit: cover;
+
+    } 
+    .ReaderHome p{
+        font-size: 21px;
+    }
+    .ReaderHome h1{
+        font-size: 30px;
+    }
+}
+
+/* Ordinateur  */
+@media screen and (min-width: 1201px){
+    .ReaderHome{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+    .ReaderHome_img-paragraphe{
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+    }
+    .ReaderHome img{
+        width: 500px;
+        height: 500px;
+        margin-bottom: 20px;
+        object-fit: cover;
+    } 
+    .ReaderHome p{
+        font-size: 24px;
+    }
+    .ReaderHome h1{
+        font-size: 34px;
+    }
+}

@@ -1,0 +1,181 @@
+
+
+/* Mobile  */
+@media screen and (max-width: 576px){
+    .Newsletter{
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+    .Newsletter_input-button{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .Newsletter input{
+        width: 30%;
+        height: 28px;
+        border-radius: 30px 0px 0px 30px;
+        border: none;
+        padding-left: 5px;
+    }
+    .Newsletter button{
+        width: 15%;
+        height: 30px;
+        border-radius: 0px 30px 30px 0px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+        font-weight: 800;
+        border: white solid 1px;
+    }
+    .Newsletter button:hover{
+        cursor: pointer;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+    }
+}
+
+/* Mobile portrait */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    .Newsletter{
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+    .Newsletter_input-button{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .Newsletter input{
+        width: 30%;
+        height: 28px;
+        border-radius: 30px 0px 0px 30px;
+        border: none;
+        padding-left: 10px;
+    }
+    .Newsletter button{
+        width: 15%;
+        height: 30px;
+        border-radius: 0px 30px 30px 0px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+        font-weight: 800;
+        border: white solid 1px;
+    }
+    .Newsletter button:hover{
+        cursor: pointer;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+    }
+}
+
+/* Tablette */
+@media screen and (min-width: 769px) and (max-width: 992px){
+    .Newsletter{
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+    .Newsletter_input-button{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .Newsletter input{
+        width: 30%;
+        height: 32px;
+        border-radius: 30px 0px 0px 30px;
+        border: none;
+        padding-left: 10px;
+    }
+    .Newsletter button{
+        width: 15%;
+        height: 34px;
+        border-radius: 0px 30px 30px 0px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+        font-weight: 800;
+        border: white solid 1px;
+    }
+    .Newsletter button:hover{
+        cursor: pointer;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+    }
+}
+
+/* Ordinateur portable */
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    .Newsletter{
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+    .Newsletter_input-button{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .Newsletter input{
+        width: 30%;
+        height: 32px;
+        border-radius: 30px 0px 0px 30px;
+        border: none;
+        padding-left: 10px;
+    }
+    .Newsletter button{
+        width: 15%;
+        height: 34px;
+        border-radius: 0px 30px 30px 0px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+        font-weight: 800;
+        border: white solid 1px;
+    }
+    .Newsletter button:hover{
+        cursor: pointer;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+    }
+}
+
+/* Ordinateur  */
+@media screen and (min-width: 1201px){
+    .Newsletter{
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+    .Newsletter_input-button{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .Newsletter input{
+        width: 30%;
+        height: 37px;
+        border-radius: 30px 0px 0px 30px;
+        border: none;
+        padding-left: 10px;
+    }
+    .Newsletter button{
+        width: 15%;
+        height: 40px;
+        border-radius: 0px 30px 30px 0px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+        font-weight: 800;
+        border: white solid 1px;
+    }
+    .Newsletter button:hover{
+        cursor: pointer;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+    }
+}

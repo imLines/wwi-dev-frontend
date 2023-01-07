@@ -1,0 +1,297 @@
+@keyframes slideToBottom{
+    from{height: 0vh;}
+    to{height: 100vh;}
+}
+
+
+/* MOBILE */
+@media screen and (max-width: 576px){
+    .AdminNavbar{
+        border-bottom: 2px black solid;
+        margin-bottom: 20px;
+        background-color: #1F232C;
+    }
+    .AdminNavbar_header{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 30px;
+    }
+    .AdminNavbar_logo{
+        width: 250px;
+        height: 70px;
+    }
+    .AdminNavbar_p{
+        font-size: 25px;
+        font-weight: 700;
+        color: white;
+    }
+    .AdminNavbar_hamburger-button{
+        height: 50px;
+        width: 50px; 
+    }
+    .AdminNavbar_hamburger-button:hover{
+        cursor: pointer;
+    }
+    .AdminNavbar_hamburger-open{
+        background-image: url('../../../assets/icons/navbar/white-cross.png');
+        background-position: center;
+        background-size: cover;
+        background-color: transparent;
+        border: none;
+    }
+    .AdminNavbar_hamburger-close{
+        background-image: url('../../../assets/icons/navbar/white-hamburger.png');
+        background-position: center;
+        background-size: cover;
+        background-color: transparent;
+        border: none;
+    }
+    .AdminNavbar_no-see-ul{
+        display: none;
+
+    }
+    .AdminNavbar_see-ul{
+        border-top: white 2px solid;
+        padding: 20px;
+        display: block;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        animation-name: slideToBottom;
+        animation-duration: 1s ;
+    }
+    .AdminNavbar_li{
+        list-style: none;
+        text-decoration: none;
+        margin-top: 15px;
+    }
+    .AdminNavbar_link{
+        list-style: none;
+        text-decoration: none;
+        font-size: 24px;
+        color: white;
+    }    
+}
+
+/* Mobile portrait */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    .AdminNavbar{
+        border-bottom: 2px black solid;
+        margin-bottom: 20px;
+        background-color: #1F232C;
+    }
+    .AdminNavbar_header{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-right: 30px;
+    }
+    .AdminNavbar_logo{
+        width: 250px;
+        height: 70px;
+    }
+    .AdminNavbar_p{
+        font-size: 25px;
+        font-weight: 700;
+        color: white;
+    }
+    .AdminNavbar_hamburger-button{
+        height: 50px;
+        width: 50px; 
+    }
+    .AdminNavbar_hamburger-open{
+        background-image: url('../../../assets/icons/navbar/white-cross.png');
+        background-position: center;
+        background-size: cover;
+        background-color: transparent;
+        border: none;
+    }
+    .AdminNavbar_hamburger-close{
+        background-image: url('../../../assets/icons/navbar/white-hamburger.png');
+        background-position: center;
+        background-size: cover;
+        background-color: transparent;
+        border: none;
+    }
+    .AdminNavbar_hamburger-button:hover{
+        cursor: pointer;
+    }
+    .AdminNavbar_no-see-ul{
+        display: none;
+    }
+    .AdminNavbar_see-ul{
+        border-top: white 2px solid;
+        padding: 20px;
+        display: block;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        animation-name: slideToBottom;
+        animation-duration: 1s ;
+    }
+    .AdminNavbar_li{
+        list-style: none;
+        text-decoration: none;
+        margin-top: 15px;
+    }
+    .AdminNavbar_link{
+        list-style: none;
+        text-decoration: none;
+        font-size: 24px;
+        color: white;
+    }    
+}
+
+/* Tablette */
+@media screen and (min-width: 769px) and (max-width: 992px){
+    .AdminNavbar{
+        border-bottom: 2px black solid;
+        margin-bottom: 20px;
+        background-color: #1F232C;
+    }
+    .AdminNavbar_header{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        margin-right: 30px;
+    }
+    .AdminNavbar_header p {
+        text-align: center;
+    }
+    .AdminNavbar_logo{
+        width: 250px;
+        height: 70px;
+    }
+    .AdminNavbar_hamburger-button{
+        display: none;
+    }
+    .AdminNavbar_p{
+        font-size: 25px;
+        font-weight: 700;
+        color: white;
+    }
+    .AdminNavbar_hamburger-container ul{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        border-top: solid 3px white;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .AdminNavbar_link{
+        color: white;
+        text-decoration: none;
+        list-style: none;
+        font-size: 25px;
+    }
+    .AdminNavbar_link:hover{
+        color: #3B58CF;
+        text-decoration: underline;
+    }
+}
+
+/* Ordinateur portable */
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    .AdminNavbar{
+        border-bottom: 2px black solid;
+        margin-bottom: 20px;
+        background-color: #1F232C;
+    }
+    .AdminNavbar_header{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        margin-right: 30px;
+    }
+    .AdminNavbar_header p {
+        text-align: center;
+    }
+    .AdminNavbar_logo{
+        width: 240px;
+        height: 80px;
+    }
+    .AdminNavbar_hamburger-button{
+        display: none;
+    }
+    .AdminNavbar_p{
+        font-size: 25px;
+        font-weight: 700;
+        color: white;
+    }
+    .AdminNavbar_hamburger-container ul{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        border-top: solid 3px white;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .AdminNavbar_link{
+        color: white;
+        text-decoration: none;
+        list-style: none;
+        font-size: 25px;
+    }
+    .AdminNavbar_link:hover{
+        color: #3B58CF;
+        text-decoration: underline;
+    }   
+}
+
+/* Ordinateur  */
+@media screen and (min-width: 1201px){
+    .AdminNavbar{
+        border-bottom: 2px black solid;
+        margin-bottom: 20px;
+        background-color: #1F232C;
+    }
+    .AdminNavbar_header{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        margin-right: 30px;
+    }
+    .AdminNavbar_header p {
+        text-align: center;
+    }
+    .AdminNavbar_logo{
+        width: 240px;
+        height: 80px;
+    }
+    .AdminNavbar_hamburger-button{
+        display: none;
+    }
+    .AdminNavbar_p{
+        font-size: 25px;
+        font-weight: 700;
+        color: white;
+    }
+    .AdminNavbar_hamburger-container ul{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        border-top: solid 3px white;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .AdminNavbar_link{
+        color: white;
+        text-decoration: none;
+        list-style: none;
+        font-size: 25px;
+    }
+    .AdminNavbar_link:hover{
+        color: #3B58CF;
+        text-decoration: underline;
+    }   
+} 

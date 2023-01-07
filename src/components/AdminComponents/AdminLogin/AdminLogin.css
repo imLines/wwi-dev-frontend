@@ -1,0 +1,295 @@
+
+/*Mobile */
+@media screen and (max-width: 576px){
+    .AdminLogin{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        background-color: #1F232C;
+    }
+    .adminLogin-logo{
+        height: 100px;
+        width: 200px;
+        margin-bottom: 20px;
+    }
+    .AdminLogin_section{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 80%;
+        justify-content: center;
+        align-items: center;
+    }
+    .AdminLogin_section label{
+        color: white;
+    }
+    .AdminLogin input{
+        height: 30px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        border: none;
+        padding: 5px 10px;
+        font-size: 18x;
+        width: 100%;
+        font-weight: 700;
+    }
+    .AdminLogin input:focus{
+        outline: none;
+        border: #3B58CF solid 2px;
+    }
+    .AdminLogin button{
+        width: 30%;
+        height: 5%;
+        border: white 2px solid;
+        border-radius: 30px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+    }
+    .AdminLogin button:hover{
+        background-color: white;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+        font-weight: 900;
+        cursor: pointer;
+    }
+}
+
+/* Mobile portrait */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    .AdminLogin{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        background-color: #1F232C;
+    }
+    .adminLogin-logo{
+        height: 200px;
+        width: 400px;
+        margin-bottom: 20px;
+    }
+    .AdminLogin_section{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 60%;
+        margin-bottom: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .AdminLogin_section label{
+        color: white;
+    }
+    .AdminLogin input{
+        height: 30px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        border: none;
+        padding: 5px 10px;
+        font-size: 18x;
+        width: 100%;
+        font-weight: 700;
+    }
+    .AdminLogin input:focus{
+        outline: none;
+        border: #3B58CF solid 2px;
+    }
+    .AdminLogin button{
+        width: 30%;
+        height: 5%;
+        border: white 2px solid;
+        border-radius: 30px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+    }
+    .AdminLogin button:hover{
+        background-color: white;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+        font-weight: 900;
+        cursor: pointer;
+    }
+
+}
+
+/* Tablette */
+@media screen and (min-width: 769px) and (max-width: 992px){
+    .AdminLogin{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        background-color: #1F232C;
+    }
+    .adminLogin-logo{
+        height: 200px;
+        width: 400px;
+        margin-bottom: 20px;
+    }
+    .AdminLogin_section{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 60%;
+        margin-bottom: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .AdminLogin_section label{
+        color: white;
+    }
+    .AdminLogin input{
+        height: 30px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        border: none;
+        padding: 5px 10px;
+        font-size: 18x;
+        width: 100%;
+        font-weight: 700;
+    }
+    .AdminLogin input:focus{
+        outline: none;
+        border: #3B58CF solid 2px;
+    }
+    .AdminLogin button{
+        width: 30%;
+        height: 5%;
+        border: white 2px solid;
+        border-radius: 30px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+    }
+    .AdminLogin button:hover{
+        background-color: white;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+        font-weight: 900;
+        cursor: pointer;
+    }
+}
+
+/* Ordinateur portable */
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    .AdminLogin{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        background-color: #1F232C;
+    }
+    .adminLogin-logo{
+        height: 200px;
+        width: 400px;
+        margin-bottom: 100px;
+    }
+    .AdminLogin_section{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 40%;
+        margin-bottom: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .AdminLogin_section label{
+        color: white;
+    }
+    .AdminLogin input{
+        height: 30px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        border: none;
+        padding: 5px 10px;
+        font-size: 18x;
+        width: 100%;
+        font-weight: 700;
+    }
+    .AdminLogin input:focus{
+        outline: none;
+        border: #3B58CF solid 2px;
+    }
+    .AdminLogin button{
+        width: 30%;
+        height: 5%;
+        border: white 2px solid;
+        border-radius: 30px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+    }
+    .AdminLogin button:hover{
+        background-color: white;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+        font-weight: 900;
+        cursor: pointer;
+    }
+}
+
+/* Ordinateur  */
+@media screen and (min-width: 1201px){
+    .AdminLogin{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        background-color: #1F232C;
+    }
+    .adminLogin-logo{
+        height: 300px;
+        width: 500px;
+        margin-bottom: 100px;
+    }
+    .AdminLogin_section{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 40%;
+        margin-bottom: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    .AdminLogin_section label{
+        color: white;
+    }
+    .AdminLogin input{
+        height: 30px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        border: none;
+        padding: 5px 10px;
+        font-size: 18x;
+        width: 100%;
+        font-weight: 700;
+    }
+    .AdminLogin input:focus{
+        outline: none;
+        border: #3B58CF solid 2px;
+    }
+    .AdminLogin button{
+        width: 30%;
+        height: 5%;
+        border: white 2px solid;
+        border-radius: 30px;
+        background: linear-gradient(0.55turn,#3B58CF, #1F232C);
+        color: white;
+    }
+    .AdminLogin button:hover{
+        background-color: white;
+        background: linear-gradient(0.50turn,#3B58CF, #1F232C);
+        font-weight: 900;
+        cursor: pointer;
+    }
+}

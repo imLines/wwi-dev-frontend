@@ -1,0 +1,29 @@
+{
+  "name": "wwi-dev-fronted",
+  "homepage": "http://wwidev.tech",
+  "private": true,
+  "version": "1.0.0",
+  "proxy": "http://localhost:8005",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tinymce/tinymce-react": "^4.2.0",
+    "axios": "^1.1.3",
+    "firebase": "^8.10.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2",
+    "react-share": "^4.4.1",
+    "react-trix": "^0.10.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "@vitejs/plugin-react": "^2.2.0",
+    "vite": "^3.2.0"
+  }
+}
