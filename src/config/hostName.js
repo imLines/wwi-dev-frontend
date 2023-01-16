@@ -1,3 +1,3 @@
-const hostName = 'http://145.14.158.215/api/';
+const hostName = 'http://localhost:8005';
 
 export default hostName;
