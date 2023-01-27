@@ -1,11 +1,11 @@
-# Welcome to wwiDEV 
+# 👋🏻 Welcome to wwiDEV (frontend) 👋🏻
+
 
 ---
 ![Background](https://raw.githubusercontent.com/imLines/imLines/458bc5dcc37b7c99f673863f8c73675ce0f9ecc2/wwiDEV%20Logo%20black%20on%20white.svg)
 
 ---
 
-# 👋🏻 Welcome to wwiDEV (frontend) 👋🏻
 
 >This App has been developed to be accessed by web and mobile. 
 It is intended to work with [wwiDEV Backend](https://github.com/imLines/wwi-dev-backend).
