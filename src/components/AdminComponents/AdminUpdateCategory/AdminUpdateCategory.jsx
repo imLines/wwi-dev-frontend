@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import './AdminUpdateCategory.css';
 import Loading from "../../Partials/Loading/Loading";
+import api from "../../../config/apiHost.config";
 
 
 function AdminUpdateCategory(){
@@ -24,7 +25,7 @@ function AdminUpdateCategory(){
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'}
             }
-            fetch(`/api/category/${categoryId}`, requestOptions)
+            fetch(`${api}/category/${categoryId}`, requestOptions)
             .then(response=>{
                 return response.json();
             })
@@ -54,7 +55,7 @@ function AdminUpdateCategory(){
                 },
                 body: JSON.stringify({name, description})
             };
-            const response = await fetch(`/api/category/update/${categoryId}`, requestOptions);
+            const response = await fetch(`${api}/category/update/${categoryId}`, requestOptions);
             if(response.status == 200){
                 navigate('/admin/category/all');
             }else if(response.status == 400){

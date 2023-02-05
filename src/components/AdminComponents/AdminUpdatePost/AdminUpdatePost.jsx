@@ -5,7 +5,7 @@ import { firebase } from "../../../config/firebaseInit";
 import './AdminUpdatePost.css';
 import { useState } from "react";
 import Loading from "../../Partials/Loading/Loading";
-
+import api from "../../../config/apiHost.config";
 
 
 function AdminUpdatePost(){
@@ -30,14 +30,14 @@ function AdminUpdatePost(){
                     method: 'GET',
                     headers: {'Content-Type': 'application/json'}
                 }
-                const getPost = await fetch(`/api/post/${postId}`, requestOptions);
+                const getPost = await fetch(`${api}/post/${postId}`, requestOptions);
                 const dataPost = await getPost.json();
                 setPost(dataPost.post);
                 setPicture(dataPost.post.picture);
                 setTitle(dataPost.post.title);
                 setContent(dataPost.post.content);
 
-                const getAllCategories = await fetch('/api/category/all', requestOptions);
+                const getAllCategories = await fetch(`${api}/category/all`, requestOptions);
                 const dataAllCartegories = await getAllCategories.json();
                 setAllCategories(dataAllCartegories.categories);
                 setLoading(false);
@@ -86,7 +86,7 @@ function AdminUpdatePost(){
                             category: categorySelected
                         })
                     };
-                    fetch(`/api/post/update/${postId}`, requestOptions)
+                    fetch(`${api}/post/update/${postId}`, requestOptions)
                     .then(response=>{
                         if(response.status == 200){
                             navigate(`/admin/post/${postId}`)
@@ -108,7 +108,7 @@ function AdminUpdatePost(){
                         category: categorySelected
                     })
                 };
-                fetch(`/api/post/update/${postId}`, requestOptions)
+                fetch(`${api}/post/update/${postId}`, requestOptions)
                 .then(response=>{
                     if(response.status == 200){
                         navigate(`/admin/post/${postId}`)

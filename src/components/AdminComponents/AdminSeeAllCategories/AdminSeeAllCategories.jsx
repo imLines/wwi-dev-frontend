@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 import './AdminSeeAllCategories.css';
-
+import api from "../../../config/apiHost.config";
 
 function AdminSeeAllCategories(){
     const [loading, setLoading] = useState(true)
@@ -17,7 +17,7 @@ function AdminSeeAllCategories(){
                     'Content-Type': 'application/json'
                 }
             };
-            fetch('/api/category/all', requestOptions)
+            fetch(`${api}/category/all`, requestOptions)
             .then(response=>{
                 return response.json()
             })
@@ -44,7 +44,7 @@ function AdminSeeAllCategories(){
                         'Authorization': token
                     }
                 };
-                const response = await fetch(`/api/category/delete/${categoryId}`, requestOptions)
+                const response = await fetch(`${api}/category/delete/${categoryId}`, requestOptions)
                 if(response.status == 200){
                     setRefreshPage(true);
                 }

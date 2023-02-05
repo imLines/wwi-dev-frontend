@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AdminPostCard from "../AdminPostCard/AdminPostCard";
 import "./AdminSeeAllPosts.css";
-
+import api from "../../../config/apiHost.config";
 import Loading from "../../Partials/Loading/Loading";
 
 function AdminSeeAllPosts() {
@@ -23,12 +23,12 @@ function AdminSeeAllPosts() {
         };
 
         async function getAllPostsWithCategory(){
-          const responseWith = await fetch('/api/post/all', requestOptions);
+          const responseWith = await fetch(`${api}/post/all`, requestOptions);
           const dataWith = await responseWith.json();
           return dataWith.posts
         }
         async function getAllPostsWithoutCategory(){
-          const responseWithout = await fetch('/api/post/all/manage-category', requestOptions);
+          const responseWithout = await fetch(`${api}/post/all/manage-category`, requestOptions);
           const dataWithout = await responseWithout.json();
           return dataWithout.posts
         }

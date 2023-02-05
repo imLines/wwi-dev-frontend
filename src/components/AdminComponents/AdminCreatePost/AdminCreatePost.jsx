@@ -5,6 +5,7 @@ import { firebase } from "../../../config/firebaseInit";
 import {useEffect, useState} from 'react'; 
 import { useNavigate } from "react-router-dom";
 import Loading from '../../Partials/Loading/Loading';
+import api from '../../../config/apiHost.config';
 
 
 function AdminCreatePost(){
@@ -27,7 +28,7 @@ function AdminCreatePost(){
                 method: 'GET',
                 headers: {"Content-Type": "application/json"}
             }
-            fetch('/api/category/all', requestOptions)
+            fetch(`${api}/category/all`, requestOptions)
             .then(response=>{
                 return response.json()
             })
@@ -71,7 +72,7 @@ function AdminCreatePost(){
                     },
                     body: JSON.stringify({title, content, picture: urlByFirebase, category: categorySelected, novelty: true})
                 };
-                const responsePost = await fetch('/api/post/new', requestOptionsPost);
+                const responsePost = await fetch(`${api}/post/new`, requestOptionsPost);
                 const dataPost = await responsePost.json()
                 if(responsePost.status == 201){
                     setLoading(true)
@@ -83,7 +84,7 @@ function AdminCreatePost(){
                         },
                         body: JSON.stringify({picture: urlByFirebase, title, url: `${hostReactApp}/reader/post/${dataPost.post.id}`})
                     };
-                    fetch('/api/newsletter/letter/new', requestOptionsNewsletter);
+                    fetch(`${api}/newsletter/letter/new`, requestOptionsNewsletter);
                     navigate('/admin/home')
                     
                 }else{

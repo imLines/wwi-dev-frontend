@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ReaderPostCard from "../ReaderPostCard/ReaderPostCard";
 import "./ReaderSeeAllPosts.css";
-
+import api from "../../../config/apiHost.config";
 import Loading from "../../Partials/Loading/Loading";
 
 function ReaderSeeAllPosts() {
@@ -18,7 +18,7 @@ function ReaderSeeAllPosts() {
             'Content-Type': 'application/json'
           }
         };
-        fetch('/api/post/all', requestOptions)
+        fetch(`${api}/post/all`, requestOptions)
           .then(response => {
             return response.json();
           })

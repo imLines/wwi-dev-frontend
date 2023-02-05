@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import ReaderPostCard from "../ReaderPostCard/ReaderPostCard";
 import './ReaderAllPostOnCategory.css';
 import Loading from "../../Partials/Loading/Loading";
+import api from "../../../config/apiHost.config";
 
 
 
@@ -21,7 +22,7 @@ function ReaderAllPostOnCategory(){
                     method: 'GET',
                     headers: { 'content-Type' : 'application/json' }
                 };
-                const responseCategory = await fetch(`/api/category/${categoryId}`, requestOptions);
+                const responseCategory = await fetch(`${api}/category/${categoryId}`, requestOptions);
                 const dataCategory = await responseCategory.json();
                 setCategory(dataCategory.category)
             }
@@ -30,7 +31,7 @@ function ReaderAllPostOnCategory(){
                     method: 'GET',
                     headers: { 'Content-Type' : 'application/json' }
                 };
-                const responsePosts = await fetch(`/api/post/category/${categoryId}`, requestOptions);
+                const responsePosts = await fetch(`${api}/post/category/${categoryId}`, requestOptions);
                 const dataPosts = await responsePosts.json();
                 setPosts(dataPosts.posts)
                 setLoading(false)

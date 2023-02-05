@@ -6,6 +6,7 @@ import {FacebookShareButton, FacebookIcon,
         WhatsappShareButton, WhatsappIcon
 } from 'react-share'; 
 import Loading from "../../Partials/Loading/Loading";
+import api from "../../../config/apiHost.config";
 
 function ReaderSeeOnePost(){
     const [loading, setLoading] = useState(true)
@@ -35,14 +36,14 @@ function ReaderSeeOnePost(){
                         'Content-Type': "application/json"
                     }
                 };
-                const responsePost = await fetch(`/api/post/${postId}`, requestOptions)
+                const responsePost = await fetch(`${api}/post/${postId}`, requestOptions)
                 if(responsePost.status != 200){
                     navigateTo('/')
                 }
                 const dataPost = await responsePost.json();
                 setPost(dataPost.post)
                 setDateForBestLook(dataPost.post.createdAt)
-                const responseCategory = await fetch(`/api/category/${dataPost.post.categoryId}`, requestOptions)
+                const responseCategory = await fetch(`${api}/category/${dataPost.post.categoryId}`, requestOptions)
                 const dataCategory = await responseCategory.json()
                 setCategory(dataCategory.category)
                 setLoading(false)

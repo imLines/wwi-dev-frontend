@@ -2,6 +2,7 @@ import { useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import './AdminCreateCategory.css';
 import Loading from "../../Partials/Loading/Loading"; 
+import api from "../../../config/apiHost.config";
 
 
 function AdminCreateCategory(){
@@ -27,7 +28,7 @@ function AdminCreateCategory(){
                 },
                 body: JSON.stringify({name, description})
             };
-            fetch('/api/category/new', requestOptions)
+            fetch(`${api}/category/new`, requestOptions)
             .then(response=>{
                 if(response.status == 200){
                     setLoading(false);

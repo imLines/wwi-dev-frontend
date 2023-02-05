@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import './Newsletter.css'
-
+import api from "../../../config/apiHost.config";
 
 function Newsletter(){
     const [recipientEmail, setRecipientEmail] = useState('');
@@ -23,7 +23,7 @@ function Newsletter(){
                     email : recipientEmail
                 })
             };
-            const response = await fetch('/api/newsletter/recipient/new', requestOptions);
+            const response = await fetch(`${api}/newsletter/recipient/new`, requestOptions);
             const data = await response.json();
             if(response.status == 200){
                 setSuccessMessage(data.message)

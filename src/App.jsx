@@ -29,6 +29,7 @@ import NoFound from './components/Other/NoFound/NoFound';
 import NoFoundAdmin from './components/Other/NoFound/NoFoundAdmin';
 import ErrorServer from './components/Other/ErrorServer/ErrorServer';
 import { useState } from 'react';
+import api from './config/apiHost.config';
 
 function App() {
   const [errorConnection, setErrorConnection] = useState(false);
@@ -39,7 +40,7 @@ function App() {
       const requestOptions = {
         method: 'GET'
       }
-      fetch('/api', requestOptions)
+      fetch(`${api}`, requestOptions)
       .then(response=>{
         if(response.status == 200){
           console.log('Connected.')

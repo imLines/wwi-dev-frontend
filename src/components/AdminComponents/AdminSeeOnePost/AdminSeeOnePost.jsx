@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
 import './AdminSeeOnePost.css';
 import Loading from '../../Partials/Loading/Loading';
+import api from "../../../config/apiHost.config";
 
 
 function AdminSeeOnePost(){
@@ -31,12 +32,12 @@ function AdminSeeOnePost(){
                     method: 'GET',
                     headers: {'Content-Type': 'application/json'}
                 }
-                const responseGetPosts = await fetch(`/api/post/${postId}`, requestOptions);
+                const responseGetPosts = await fetch(`${api}/post/${postId}`, requestOptions);
                 const dataGetPosts = await responseGetPosts.json();
                 setPost(dataGetPosts.post);
                 setDateForBestLook(dataGetPosts.post.createdAt);
                 if(dataGetPosts.post.categoryId != null){
-                    const responseGetCategory = await fetch(`/api/category/${dataGetPosts.post.categoryId}`, requestOptions);
+                    const responseGetCategory = await fetch(`${api}/category/${dataGetPosts.post.categoryId}`, requestOptions);
                     const dataGetCategory = await responseGetCategory.json();
                     setCategory(dataGetCategory.category)
                     setLoading(false)
@@ -64,7 +65,7 @@ function AdminSeeOnePost(){
                         'Authorization': token
                     }
                 }
-                fetch(`/api/post/delete/${postId}`, requestOptions);
+                fetch(`${api}/post/delete/${postId}`, requestOptions);
                 navigate('/admin/post/all');
             }catch(e){
                 location.reload();

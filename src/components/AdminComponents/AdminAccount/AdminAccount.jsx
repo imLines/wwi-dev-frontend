@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Partials/Loading/Loading";
-import './AdminAccount.css'
+import './AdminAccount.css';
+import api from '../../../config/apiHost.config'
 
 function AdminAccount(){
     const [loading, setLoading] = useState(true) 
@@ -153,7 +154,7 @@ function AdminAccount(){
                         name: admin.name
                     })
                 }
-                const response = await fetch(`/api/admin/update/${admin.id}`, requestOptions);
+                const response = await fetch(`${api}}/admin/update/${admin.id}`, requestOptions);
                 if(response.status == 200){
                     location.reload();
                 }else{

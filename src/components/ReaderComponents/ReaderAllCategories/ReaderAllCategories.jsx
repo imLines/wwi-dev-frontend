@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../../../config/apiHost.config";
 import Loading from "../../Partials/Loading/Loading";
 import './ReaderAllCategories.css'
  
@@ -19,7 +20,7 @@ function ReaderAllCategories(){
                     'Content-Type': 'application/json' 
                 }
             };
-            fetch('/api/category/all', requestOptions)
+            fetch(`${api}/category/all`, requestOptions)
             .then(response=>{
                 if(response.status != 200){
                     setLoading(false)

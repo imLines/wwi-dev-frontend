@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import ReaderPostCard from '../ReaderPostCard/ReaderPostCard';
 import './ReaderNoveltyPosts.css';
 import Loading from "../../Partials/Loading/Loading";
-
+import api from "../../../config/apiHost.config";
 
 function ReaderNoveltyPosts(){
     const [loading, setLoading] = useState(true)
@@ -16,7 +16,7 @@ function ReaderNoveltyPosts(){
                 method: 'GET',
                 headers : { 'Content-Type': 'application/json' }
             };
-            fetch('/api/post/novelty', requestOptions)
+            fetch(`${api}/post/novelty`, requestOptions)
             .then(response=>{
                 return response.json();
             })

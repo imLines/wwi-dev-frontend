@@ -3,6 +3,7 @@ import './AdminLogin.css';
 import {useState} from 'react';
 import { useNavigate } from 'react-router';
 import Loading from '../../Partials/Loading/Loading';
+import api from '../../../config/apiHost.config';
  
 function AdminLogin(){
     const [loading, setLoading] = useState(false) 
@@ -23,7 +24,7 @@ function AdminLogin(){
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
             };
-            fetch('/api/admin/login', requestOptions)
+            fetch(`${api}/admin/login`, requestOptions)
             .then(response=>{
                 if(response.status != 200){
                     setErrorInput('error-input')
