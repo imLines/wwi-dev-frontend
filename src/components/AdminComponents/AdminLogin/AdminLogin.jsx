@@ -2,8 +2,6 @@ import logo from '../../../assets/logo-white.png';
 import './AdminLogin.css';
 import {useState} from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
-import hostName from '../../../config/hostName';
 import Loading from '../../Partials/Loading/Loading';
  
 function AdminLogin(){
@@ -16,20 +14,30 @@ function AdminLogin(){
 
     const handleSubmit = async (event)=>{
         try{
+            setErrorMessage('')
             event.preventDefault()
             event.stopPropagation()
             setLoading(true)
-            axios.defaults.baseURL = hostName;
-            axios.post('/admin/login', {email, password})
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            };
+            fetch('/api/admin/login', requestOptions)
             .then(response=>{
-                localStorage.setItem('token', response.data.token)
-                navigate('/admin/home')
+                if(response.status != 200){
+                    setErrorInput('error-input')
+                    setLoading(false)
+                }
+                return response.json()
             })
-            .catch((e=>{
-                setErrorMessage(e.response.data.message);
-                setErrorInput('error-input')
-                console.log(errorInput)
-            }))
+            .then(data=>{ 
+                if(data.token){
+                    localStorage.setItem('token', data.token)
+                    navigate('/admin/home')
+                }
+                setErrorMessage(data.message)
+            })
         }catch(e){
             location.reload()
         }

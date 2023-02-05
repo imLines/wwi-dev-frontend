@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
-import axios from 'axios';
-import hostName from '../../../config/hostName';
 import './AdminSeeAllCategories.css';
 
 
@@ -9,19 +7,23 @@ function AdminSeeAllCategories(){
     const [loading, setLoading] = useState(true)
     const [categories, setCategories] = useState(null)
     const [refreshPage, setRefreshPage] = useState(false)
-    axios.defaults.baseURL = hostName;
 
     useEffect(()=>{
         try{
             setRefreshPage(true)
-            axios.get('/category/all')
-            .then(axios=>{
-                setCategories(axios.data.categories)
+            const requestOptions = {
+                method: 'GET',
+                headers: { 
+                    'Content-Type': 'application/json'
+                }
+            };
+            fetch('/api/category/all', requestOptions)
+            .then(response=>{
+                return response.json()
+            })
+            .then(data=>{
+                setCategories(data.categories)
                 setRefreshPage(false)
-            }) 
-            .catch((e)=>{
-                console.log(e)
-                setLoading(false)
             })
         }catch(e){
             location.reload()
@@ -29,19 +31,24 @@ function AdminSeeAllCategories(){
 
     }, [refreshPage])
 
-    const deleteCategory = (e, categoryId)=>{
+    const deleteCategory = async (e, categoryId)=>{
         e.preventDefault();
         e.stopPropagation();
         if(window.confirm("You're sur to delete this category ?")){
             try{
-                axios.delete(`/category/delete/${categoryId}`)
-                .then(axios=>{
-                   if(axios.status == 200){
-                        setRefreshPage(true)
-                   }
-                })
+                const token = localStorage.getItem('token')
+                const requestOptions = {
+                    method: "DELETE",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    }
+                };
+                const response = await fetch(`/api/category/delete/${categoryId}`, requestOptions)
+                if(response.status == 200){
+                    setRefreshPage(true);
+                }
             }catch(e){
-                console.log(e)
             }
         }
     }

@@ -1,7 +1,5 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import hostName from '../../../config/hostName';
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../Partials/Loading/Loading";
 import './ReaderAllCategories.css'
  
@@ -10,22 +8,26 @@ function ReaderAllCategories(){
     const [loading, setLoading] = useState(true)
     const [noFound, setNoFound] = useState(false)
     const [categories, setCategories] = useState(null);
-    axios.defaults.baseURL = hostName;
+
+    const navigateTo = useNavigate()
 
     useEffect(()=>{
         async function getCategories(){
-            axios.get('/category/all')
+            const requestOptions = {
+                method: 'GET',
+                headers: { 
+                    'Content-Type': 'application/json' 
+                }
+            };
+            fetch('/api/category/all', requestOptions)
             .then(response=>{
-                if(response.status == 200){
+                if(response.status != 200){
                     setLoading(false)
-                    setCategories(response.data.categories)
                 }
-
+                return response.json()
             })
-            .catch((e)=>{
-                if(e.response.status == 404){
-                    setNoFound(true)
-                }
+            .then(data=>{
+                setCategories(data.categories)
                 setLoading(false)
             })
         }

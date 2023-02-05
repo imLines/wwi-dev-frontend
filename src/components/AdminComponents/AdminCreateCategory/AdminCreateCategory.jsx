@@ -1,6 +1,4 @@
 import { useState } from "react";
-import hostName from '../../../config/hostName';
-import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import './AdminCreateCategory.css';
 import Loading from "../../Partials/Loading/Loading"; 
@@ -13,7 +11,6 @@ function AdminCreateCategory(){
     const [errorMessage, setErrorMessage] = useState('')
     const [errorInput, setErrorInput] = useState('')
     
-    axios.defaults.baseURL = hostName;
     const navigate = useNavigate();
     
     const handleSubmit = (e)=>{
@@ -21,23 +18,33 @@ function AdminCreateCategory(){
         e.preventDefault();
         e.stopPropagation();
         try{
-            axios.post('/category/new', {name, description}) 
-            .then(axios=>{
-                if(axios.status == 200){
-                    setLoading(false)
+            const token = localStorage.getItem('token');
+            const requestOptions = {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify({name, description})
+            };
+            fetch('/api/category/new', requestOptions)
+            .then(response=>{
+                if(response.status == 200){
+                    setLoading(false);
                     navigate('/admin/category/all')
+                }else{
+                    setErrorInput('error-input')
+                    setLoading(false) 
+                    return response.json()
                 }
             })
-            .catch((e)=>{
-                if(e.response.status == 400){
-                    setErrorMessage(e.response.data.message)
-                    setErrorInput('error-input')
-                    setLoading(false)
+            .then(data=>{
+                if(data.message){
+                    setErrorMessage(data.message)
                 }
             })
         }catch(e){
             setLoading(false)
-            console.log(e)
         }
     }
 

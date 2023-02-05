@@ -1,23 +1,36 @@
-import axios from 'axios';
+import { useState } from 'react';
 import {Navigate, useNavigate} from 'react-router-dom';
-import hostName from './hostName';
 
 
 const ProtectedRoute = ({children})=>{
+    const [success, setSuccess] = useState(false);
     const token = localStorage.getItem('token');
     const navigate = useNavigate()
     if(token == null){
         return <Navigate to='/login' />
     }else{
-        axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-        axios.defaults.baseURL = hostName;
-        axios.get('/admin/authorization')
-        .catch(function (error) {
-            if (error) {
+
+        const requestOptions = {
+            method: 'GET',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': token 
+        },
+            
+        };
+        fetch('/api/admin/authorization', requestOptions)
+        .then(response=>{
+            if(response.status == 200){
+                setSuccess(true);
+            }else{
                 return navigate('/login')   
+
             }
-          });
-        return children;
+        })
+        if(success){
+            return children
+        }
+        
     }
 };
 

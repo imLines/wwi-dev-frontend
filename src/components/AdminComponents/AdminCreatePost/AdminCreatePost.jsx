@@ -1,6 +1,4 @@
 import { Editor } from '@tinymce/tinymce-react';
-import hostName from '../../../config/hostName';
-import axios from 'axios';
 import './AdminCreatePost.css';
 import hostReactApp from '../../../config/hostReactApp.config';
 import { firebase } from "../../../config/firebaseInit";
@@ -18,25 +16,26 @@ function AdminCreatePost(){
     const [picture, setPicture] = useState('');
     const [content, setContent] = useState('');
 
+    const [errorMessage, setErrorMessage] = useState('')
     const [errorInputCategory, setErrorInputCategory] = useState('')
 
     const navigate = useNavigate();
 
     useEffect(()=>{
         try{
-            axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-            axios.defaults.baseURL = hostName;
-            axios.get('/category/all')
-            .then(allcategories=>{
-                setAllcategories(allcategories.data.categories)
-                setLoading(false)
+            const requestOptions = {
+                method: 'GET',
+                headers: {"Content-Type": "application/json"}
+            }
+            fetch('/api/category/all', requestOptions)
+            .then(response=>{
+                return response.json()
             })
-            .catch((e)=>{
-                console.log(e)
+            .then(data=>{
+                setAllcategories(data.categories)
                 setLoading(false)
             })
         }catch(e){
-            console.log(e)
             setLoading(false)
         }
     }, [])
@@ -45,7 +44,7 @@ function AdminCreatePost(){
 
     const handleSubmit = async (event)=>{
         try{
-            setLoading(true)
+            setErrorMessage('')
             event.preventDefault()
             event.stopPropagation()
     
@@ -62,34 +61,37 @@ function AdminCreatePost(){
             async function SendPost(){
                 const urlByFirebase = await firebaseRun()
                 setPicture(urlByFirebase)
-                axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-                axios.defaults.baseURL = hostName;
-                axios.post('/post/new',  {title, content, picture: urlByFirebase, category: categorySelected, novelty: true}) 
-                .then(response=>{
-                    if(response.status == 200){
-                        axios.post('/newsletter/letter/new', {picture: urlByFirebase, title, url: `${hostReactApp}/reader/post/${response.data.post.id}`}) 
-                            .then(newsletter=>{
-                                console.log(newsletter)
-                            })
-                            .catch((e=>{
-                                setLoading(false)
-                            }))
-                        navigate('/admin/home')
-                    }else if(response.status == 400){
-                        console.log(response)
-                        setLoading(false)
-                    }else{
-                        location.reload()
-                    }
-                })
-                .catch((e)=>{
-                    console.log(e)
-                    setLoading(false) 
-                })
+
+                const token = localStorage.getItem('token');
+                const requestOptionsPost = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': "application/json",
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({title, content, picture: urlByFirebase, category: categorySelected, novelty: true})
+                };
+                const responsePost = await fetch('/api/post/new', requestOptionsPost);
+                const dataPost = await responsePost.json()
+                if(responsePost.status == 201){
+                    setLoading(true)
+                    const requestOptionsNewsletter = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': "application/json",
+                            'Authorization': token
+                        },
+                        body: JSON.stringify({picture: urlByFirebase, title, url: `${hostReactApp}/reader/post/${dataPost.post.id}`})
+                    };
+                    fetch('/api/newsletter/letter/new', requestOptionsNewsletter);
+                    navigate('/admin/home')
+                    
+                }else{
+                    setErrorMessage(dataPost.message)
+                }
             }
             SendPost()
         }catch(e){
-            console.log(e)
             setLoading(false)
         }
 
@@ -104,6 +106,7 @@ function AdminCreatePost(){
         return(
             <form className="AdminCreatePost main" onSubmit={handleSubmit}>
                 <h1 className='font-title'>Create a Post</h1>
+                <p className='error-message'>{errorMessage}</p>
                 <div className="AdminCreatePost_section-container">
                     <label htmlFor="category">Choose a category :</label>
                     <select  name="category" value={categorySelected} className={`AdminCreatePost_category font-title ${errorInputCategory}`} onChange={event=>setCategorySelected(event.target.value)}>

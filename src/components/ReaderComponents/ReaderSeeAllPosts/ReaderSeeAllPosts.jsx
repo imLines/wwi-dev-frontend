@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import hostName from "../../../config/hostName";
 import ReaderPostCard from "../ReaderPostCard/ReaderPostCard";
 import "./ReaderSeeAllPosts.css";
 
@@ -9,18 +7,28 @@ import Loading from "../../Partials/Loading/Loading";
 function ReaderSeeAllPosts() {
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(true);
-  axios.defaults.baseURL = hostName;
-  
+
   useEffect(() => {
     setLoading(true);
     try {
-      async function getAllPosts(){
-        const response  = await axios.get('/post/all');
-          const postsByAPI = await response.data.posts;
-          setPosts(postsByAPI)
-          setLoading(false)
+      async function getAllPosts() {
+        const requestOptions = {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
+        fetch('/api/post/all', requestOptions)
+          .then(response => {
+            return response.json();
+          })
+          .then(data => {
+            setPosts(data.posts)
+            setLoading(false)
+
+          })
       }
-      if(posts == null){
+      if (posts == null) {
         getAllPosts()
       }
 
@@ -29,8 +37,17 @@ function ReaderSeeAllPosts() {
     }
   }, []);
 
+
   if (loading == true || posts == null) {
     return <Loading />;
+  } else if (posts.length < 1) {
+    return (
+
+      <section className="ReaderSeeAllPosts main">
+        <h1 className="font-title">All posts</h1>
+        <p>Any post found for the moment</p>
+      </section>
+    )
   } else {
     return (
       <section className="ReaderSeeAllPosts main">

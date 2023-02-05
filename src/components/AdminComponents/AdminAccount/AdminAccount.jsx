@@ -1,7 +1,5 @@
-import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
-import hostName from '../../../config/hostName';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../Partials/Loading/Loading";
 import './AdminAccount.css'
 
@@ -19,16 +17,27 @@ function AdminAccount(){
     const [passwordPopupSee, setPasswordPopupSee] = useState('password-popup-no-see')
     const [backgroundBlur, setBackgroundBlur] = useState('');
     
+    const navigateTo = useNavigate()
+
     useEffect(()=>{
         try{
-            axios.defaults.baseURL = hostName;
-            axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-            
             async function getAdmin(){
-                const response = await axios.get('/admin/info');
+                const token = localStorage.getItem('token');
+                const requestOptions = {
+                    method: 'GET',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization' : token
+                    }
+                }
+                const response = await fetch('/api/admin/info', requestOptions);
                 if(response.status == 200){
-                    setAdmin(response.data.admin)
+                    const data = await response.json();
+                    setAdmin(data.admin)
                     setLoading(false)
+                }else{
+                    localStorage.removeItem('token');
+                    navigateTo('/')
                 }
             }
             getAdmin()
@@ -50,17 +59,29 @@ function AdminAccount(){
         e.preventDefault()
         try{
             setLoading(true)
-            if(confirmNewMail == newMail){
-                axios.put(`/admin/update/${admin.id}`, {email: newMail, password: admin.password, name: admin.name})
-                .then(response=>{
-                    if(response.status == 200){
-                        location.reload();
-                    }
-                })      
+            if(confirmNewMail == newMail && newMail != admin.email){
+                const token = localStorage.getItem('token')
+                const requestOptions = {
+                    method: "PUT",
+                    headers: {
+                        'Content-Type' : 'application/json',
+                        'Authorization' : token
+                    },
+                    body: JSON.stringify({
+                        email: newMail,
+                        password: admin.password,
+                        name: admin.name
+                    })
+                }
+                const response = await fetch(`/api/admin/update/${admin.id}`, requestOptions);
+                if(response.status == 200){
+                    location.reload();
+                }else{
+                    navigateTo('/login')
+                }    
             }
         }catch(e){
             setLoading(false)
-            console.log(e)
         }
     }
 
@@ -77,12 +98,27 @@ function AdminAccount(){
         e.preventDefault();
         try{
             setLoading(true)
-            axios.put(`/admin/update/${admin.id}`, {name: newName, password: admin.password, email: admin.email})
-            .then(response=>{
-                if(response.status == 200){
-                    location.reload()
+            if(newName != admin.name){
+                const token = localStorage.getItem('token')
+                const requestOptions = {
+                    method: "PUT",
+                    headers: {
+                        'Content-Type' : 'application/json',
+                        'Authorization' : token
+                    },
+                    body: JSON.stringify({
+                        email: admin.email,
+                        password: admin.password,
+                        name: newName
+                    })
                 }
-            })
+                const response = await fetch(`/api/admin/update/${admin.id}`, requestOptions);
+                if(response.status == 200){
+                    location.reload();
+                }else{
+                    navigateTo('/login')
+                }    
+            }
         }catch(e){
             setLoading(false)
             console.log(e)
@@ -98,21 +134,41 @@ function AdminAccount(){
         setPasswordPopupSee('password-popup-no-see')
         setBackgroundBlur('')
     }
-    function changePassword(e){ 
+    async function changePassword(e){ 
         e.preventDefault();
         try{
             setLoading(true)
+            setLoading(true)
             if(newPassword == confirmNewPassword){
-                axios.put(`/admin/update/${admin.id}`, {name: admin.name, password: newPassword, email: admin.email})
-                .then(response=>{
-                    if(response.status == 200){
-                        setLoading(false)
-                        location.reload();
-                    }
-                })
+                const token = localStorage.getItem('token')
+                const requestOptions = {
+                    method: "PUT",
+                    headers: {
+                        'Content-Type' : 'application/json',
+                        'Authorization' : token
+                    },
+                    body: JSON.stringify({
+                        email: admin.email,
+                        password: newPassword,
+                        name: admin.name
+                    })
+                }
+                const response = await fetch(`/api/admin/update/${admin.id}`, requestOptions);
+                if(response.status == 200){
+                    location.reload();
+                }else{
+                    navigateTo('/login')
+                }    
             }
         }catch(e){
-            console.log(e)
+        }
+    }
+
+    function logout(){
+        try{
+            localStorage.removeItem('token');
+            navigateTo('/login')
+        }catch(e){
         }
     }
 
@@ -151,6 +207,7 @@ function AdminAccount(){
                     <button className="AdminAccount_button-select-change font-title" onClick={emailPopup}>Modifie email</button>
                     <button className="AdminAccount_button-select-change font-title" onClick={namePopup}>Modifie Name</button>
                     <button className="AdminAccount_button-select-change font-title" onClick={passwordPopup}>Modifie password</button>
+                    <button className="AdminAccount_button-select-change font-title" onClick={logout}>Logout</button>
                 </section>
             </section>
         )

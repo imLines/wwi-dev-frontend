@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
-import axios from 'axios';
-import hostName from "../../../config/hostName";
 import './AdminSeeOnePost.css';
 import Loading from '../../Partials/Loading/Loading';
 
@@ -19,10 +17,8 @@ function AdminSeeOnePost(){
 
     useEffect(()=>{
         try{
-            axios.defaults.baseURL = hostName;
-            axios.get(`/post/${postId}`)
-            .then(responseGetPost=>{
-                setPost(responseGetPost.data.post)
+            async function getPostsAndCategory(){
+
                 function setDateForBestLook(date){
                     const toDate = new Date(date)
                     setDateOfPost(new Intl.DateTimeFormat("en-GB", {
@@ -31,30 +27,23 @@ function AdminSeeOnePost(){
                         day: "2-digit"
                         }).format(toDate))
                 } 
-                setDateForBestLook(responseGetPost.data.post.createdAt)
-                if(responseGetPost.data.post.categoryId != null){
-                    axios.get(`/category/${responseGetPost.data.post.categoryId}`)
-                    .then(responseGetCategory=>{
-                        setCategory(responseGetCategory.data.category)
-                        
-                        setLoading(false)
-                    })
-                    .catch((e)=>{
-                        console.log(e)
-                        setLoading(false)
-                    })
+                const requestOptions = {
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/json'}
                 }
-                setLoading(false)
-            })
-            .catch((e)=>{
-                if(e.response.status == 404){
-                    navigate('/admin/nofound')
+                const responseGetPosts = await fetch(`/api/post/${postId}`, requestOptions);
+                const dataGetPosts = await responseGetPosts.json();
+                setPost(dataGetPosts.post);
+                setDateForBestLook(dataGetPosts.post.createdAt);
+                if(dataGetPosts.post.categoryId != null){
+                    const responseGetCategory = await fetch(`/api/category/${dataGetPosts.post.categoryId}`, requestOptions);
+                    const dataGetCategory = await responseGetCategory.json();
+                    setCategory(dataGetCategory.category)
+                    setLoading(false)
                 }
-                setLoading(false);
-            })
-
+            }
+            getPostsAndCategory()
         }catch(e){
-            console.log(e);
             setLoading(false);
             location.reload();
         }
@@ -67,18 +56,17 @@ function AdminSeeOnePost(){
             e.preventDefault();
             e.stopPropagation();
             try{
-                axios.delete(`/post/delete/${postId}`)
-                .then(response=>{
-                    if(response.status == 200){
-                        navigate('/admin/post/all')
+                const token = localStorage.getItem('token');
+                const requestOptions = {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
                     }
-                })
-                .catch((e)=>{
-                    setLoading(false)
-                    console.log(e);
-                })
+                }
+                fetch(`/api/post/delete/${postId}`, requestOptions);
+                navigate('/admin/post/all');
             }catch(e){
-                console.log(e);
                 location.reload();
             }
         }

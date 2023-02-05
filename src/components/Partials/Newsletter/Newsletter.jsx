@@ -1,8 +1,6 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import './Newsletter.css'
-import hostName from '../../../config/hostName';
 
 
 function Newsletter(){
@@ -13,27 +11,32 @@ function Newsletter(){
     useEffect(()=>{
     }, [successMessage, errorMessage])
     
-    axios.defaults.baseURL = hostName;
-    const handleSubmit =  (e)=>{ 
+    const handleSubmit = async (e)=>{ 
         e.preventDefault();
         try{
-            axios.post('/newsletter/recipient/new', {email: recipientEmail}) 
-            .then(response=>{
-                if(response.status == 200){
-                    setSuccessMessage(response.data.message)
-                    setTimeout(function(){
-                        setSuccessMessage(null)
-                    }, 8000)
-                }
-            })
-            .catch((e=>{
-                setErrorMessage(e.response.data.message)
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email : recipientEmail
+                })
+            };
+            const response = await fetch('/api/newsletter/recipient/new', requestOptions);
+            const data = await response.json();
+            if(response.status == 200){
+                setSuccessMessage(data.message)
+                setTimeout(function(){
+                    setSuccessMessage(null)
+                }, 8000)
+            }else{
+                setErrorMessage(data.message)
                 setTimeout(function(){
                     setErrorMessage(null)
                 }, 8000)
-            }))
+            }
         }catch(e){
-            console.log(e); 
         }
     }
 

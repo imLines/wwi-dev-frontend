@@ -1,8 +1,7 @@
 import './App.css';
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import { useEffect } from 'react';
-import axios from "axios";
-import hostName from './config/hostName';
+
 
 import ProtectedRoute from './config/Authorization.middleware';
 
@@ -30,27 +29,24 @@ import NoFound from './components/Other/NoFound/NoFound';
 import NoFoundAdmin from './components/Other/NoFound/NoFoundAdmin';
 import ErrorServer from './components/Other/ErrorServer/ErrorServer';
 import { useState } from 'react';
-import Loading from './components/Partials/Loading/Loading';
 
 function App() {
   const [errorConnection, setErrorConnection] = useState(false);
 
-  const navigate = useNavigate();
-  axios.defaults.baseURL = hostName;
 
   useEffect(()=>{
     try{
-      axios.get('/')
+      const requestOptions = {
+        method: 'GET'
+      }
+      fetch('/api', requestOptions)
       .then(response=>{
         if(response.status == 200){
-          console.log('connection app.js')
+          console.log('Connected.')
+        }else{
+          setErrorConnection(true)
         }
       })
-      .catch((e)=>{
-        console.log(e)
-        setErrorConnection(true)
-      })
-
     }catch(e){
       console.log(e)
     }

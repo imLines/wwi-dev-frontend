@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-
-import hostName from '../../../config/hostName';
 import './AdminUpdateCategory.css';
 import Loading from "../../Partials/Loading/Loading";
 
@@ -18,53 +15,54 @@ function AdminUpdateCategory(){
 
     
 
-    axios.defaults.baseURL = hostName;
     const navigate = useNavigate();
     let {categoryId} = useParams();
     
     useEffect(()=>{
         try{
-            axios.get(`/category/${categoryId}`)
+            const requestOptions = {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'}
+            }
+            fetch(`/api/category/${categoryId}`, requestOptions)
             .then(response=>{
-                setCategory(response.data.category);
-                setName(response.data.category.name);
-                setDescription(response.data.category.description);
+                return response.json();
+            })
+            .then(data=>{
+                setCategory(data.category);
+                setName(data.category.name);
+                setDescription(data.category.description);
                 setLoading(false);
-            }) 
-            .catch((e)=>{
-                setLoading(false)
-                console.log(e)
             })
         }catch(e){
             setLoading(false);
-            console.log(e);
             location.reload();
         }
     },[])
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();
         e.stopPropagation();
         try{
             setLoading(true)
-            axios.put(`/category/update/${categoryId}`, {name, description})
-            .then(axios=>{
-                if(axios.status === 200){
-                    navigate('/admin/category/all')
-                }else{
-                    setLoading(false)
-                    console.log(axios.status)
-                }
-            })
-            .catch((e)=>{
-                if(e.response.status == 400){
-                    setErrorInput('error-input')
-                    setErrorMessage(e.response.data.message)
-                    setLoading(false)
-                }
-            })
+            const token = localStorage.getItem('token');
+            const requestOptions = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify({name, description})
+            };
+            const response = await fetch(`/api/category/update/${categoryId}`, requestOptions);
+            if(response.status == 200){
+                navigate('/admin/category/all');
+            }else if(response.status == 400){
+                setErrorInput('error-input')
+                setErrorMessage(e.response.data.message)
+                setLoading(false)
+            }
         }catch(e){
-            console.log(e)
             location.reload()
         }
     }

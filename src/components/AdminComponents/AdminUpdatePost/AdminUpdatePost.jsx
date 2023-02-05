@@ -1,11 +1,8 @@
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Editor } from '@tinymce/tinymce-react';
 import { firebase } from "../../../config/firebaseInit";
-
 import './AdminUpdatePost.css';
-import hostName from '../../../config/hostName';
 import { useState } from "react";
 import Loading from "../../Partials/Loading/Loading";
 
@@ -22,56 +19,31 @@ function AdminUpdatePost(){
     const [content, setContent] = useState(post?.content);
 
     const navigate = useNavigate();
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
-    axios.defaults.baseURL = hostName;
+
 
     let {postId} = useParams();
-    axios.defaults.baseURL = hostName;
 
     useEffect(()=>{
-        // async function getPost(){
-        //     const response = await axios.get(`/post/${postId}`)
-        //     setPost(response.data.post)
-
-        // }
-        // async function getAllCategory(){
-        //     const response = await axios.get('/category/all')
-        //     setAllCategories(response.data.categories)
-
-        // }
-        // getPost();
-        // getAllCategory();
-        // if(post == null){
-        //     getPost()
-        // }else{
-        //     setPicture(post.picture)
-        //     setTitle(post.title)
-        //     setContent(post.content)
-        // }
-
         try{
-            axios.get(`/post/${postId}`)
-            .then(responseGetPost=>{
-                setPost(responseGetPost.data.post);
-                setPicture(responseGetPost.data.post.picture);
-                setTitle(responseGetPost.data.post.title);
-                setContent(responseGetPost.data.post.content);
-                axios.get('/category/all')
-                .then(responseGetCategory=>{
-                    setAllCategories(responseGetCategory.data.categories);
-                    setLoading(false);
-                })
-                .catch((e)=>{
-                    console.log(e);
-                    setLoading(false)
-                })
-            })
-            .catch((e)=>{
-                console.log(e);
+            async function getPostAndAllCategories(){
+                const requestOptions = {
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/json'}
+                }
+                const getPost = await fetch(`/api/post/${postId}`, requestOptions);
+                const dataPost = await getPost.json();
+                setPost(dataPost.post);
+                setPicture(dataPost.post.picture);
+                setTitle(dataPost.post.title);
+                setContent(dataPost.post.content);
+
+                const getAllCategories = await fetch('/api/category/all', requestOptions);
+                const dataAllCartegories = await getAllCategories.json();
+                setAllCategories(dataAllCartegories.categories);
                 setLoading(false);
-            })
+            }
+            getPostAndAllCategories()
         }catch(e){
-            console.log(e);
             setLoading(false);
             location.reload();
         }
@@ -100,40 +72,51 @@ function AdminUpdatePost(){
             if(file != null){
                 firebaseRun()
                 .then(urlOfFirebase=>{
-                    axios.put(`/post/update/${postId}`, {title, content, picture: urlOfFirebase, category: categorySelected}) 
+                    const token = localStorage.getItem('token');
+                    const requestOptions = {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': token
+                        },
+                        body: JSON.stringify({
+                            title,
+                            content,
+                            picture : urlOfFirebase,
+                            category: categorySelected
+                        })
+                    };
+                    fetch(`/api/post/update/${postId}`, requestOptions)
                     .then(response=>{
                         if(response.status == 200){
                             navigate(`/admin/post/${postId}`)
-                        }else{
-                            setLoading(false)
-                            console.log(response)
                         }
-                    })
-                    .catch((e)=>{
-                        setLoading(false)
-                        location.reload() 
-                        console.log(e)
                     })
                 })
             }else{
-                axios.put(`/post/update/${postId}`, {title, content, picture, category: categorySelected}) 
+                const token = localStorage.getItem('token');
+                const requestOptions = {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({
+                        title,
+                        content,
+                        picture,
+                        category: categorySelected
+                    })
+                };
+                fetch(`/api/post/update/${postId}`, requestOptions)
                 .then(response=>{
                     if(response.status == 200){
                         navigate(`/admin/post/${postId}`)
-                    }else{
-                        setLoading(false)
-                        console.log(response)
                     }
-                })
-                .catch((e)=>{
-                    setLoading(false)
-                    console.log(e)
-                    location.reload()
                 })
             }
         }catch(e){
             setLoading(false)
-            console.log(e)
             location.reload()
         }
     }

@@ -1,11 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import ReaderPostCard from '../ReaderPostCard/ReaderPostCard';
 import './ReaderNoveltyPosts.css';
-import hostName from '../../../config/hostName';
 import Loading from "../../Partials/Loading/Loading";
-import { useNavigate } from "react-router-dom";
 
 
 function ReaderNoveltyPosts(){
@@ -13,25 +10,27 @@ function ReaderNoveltyPosts(){
     const [noFoundNoveltyPosts, setNoFoundNoveltyPosts] = useState(false)
     const [noveltyPosts, setNoveltyPosts] = useState(null)
     
-    axios.defaults.baseURL = hostName;
     useEffect(()=>{
         try{
-            async function getNoveltyPosts(){
-                const response = await axios.get('/post/novelty');
-                const noveltyPostByAPI = await response.data.posts
-                setNoveltyPosts(noveltyPostByAPI);
-                if(response.data.length < 1){
+            const requestOptions = {
+                method: 'GET',
+                headers : { 'Content-Type': 'application/json' }
+            };
+            fetch('/api/post/novelty', requestOptions)
+            .then(response=>{
+                return response.json();
+            })
+            .then(data=>{
+                if(data.posts.length < 1){
                     setNoFoundNoveltyPosts(true)
+                    setLoading(false)
+                }else{
+                    setNoveltyPosts(data.posts)
+                    setLoading(false)
                 }
-                setLoading(false)
-            }
-            if(noveltyPosts == null){
-                getNoveltyPosts()
-            }
+            })
         }catch(e){
-            console.log(e)
         }
-
     }, [])
 
 

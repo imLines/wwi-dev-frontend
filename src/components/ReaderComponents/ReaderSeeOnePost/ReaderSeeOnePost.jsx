@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import './ReaderSeeOnePost.css';
-import axios from 'axios';
-import hostName from "../../../config/hostName";
+import { useNavigate, useParams } from "react-router-dom";
+import './ReaderSeeOnePost.css'; 
 import {FacebookShareButton, FacebookIcon,
         TwitterShareButton, TwitterIcon,
         WhatsappShareButton, WhatsappIcon
@@ -14,14 +12,13 @@ function ReaderSeeOnePost(){
     const [post, setPost] = useState(null);
     const [dateOfPost, setDateOfPost] = useState(null);
     const [category, setCategory] = useState(null)
-    const [pathInLocation, setPathInLocation] = useState('')
     const [copiedPath, setCopiedPath] = useState('Copy Link');
 
     let {postId} = useParams();
+    const navigateTo = useNavigate();
 
     useEffect(()=>{
         try{
-            axios.defaults.baseURL = hostName;
             function setDateForBestLook(date){
                 const toDate = new Date(date)
                 setDateOfPost(new Intl.DateTimeFormat("en-GB", {
@@ -30,35 +27,34 @@ function ReaderSeeOnePost(){
                     day: "2-digit"
                   }).format(toDate))
             } 
-            axios.get(`/post/${postId}`)
-            .then(responseAxiosPost=>{
-                setPost(responseAxiosPost.data.post)
-                setDateForBestLook(responseAxiosPost.data.post.createdAt)
-                axios.get(`/category/${responseAxiosPost.data.post.categoryId}`)
-                .then(responseAxiosCategory=>{
-                    if(responseAxiosCategory.status == 200){
-                        setCategory(responseAxiosCategory.data.category)
-                        setLoading(false)
-                        setPathInLocation(location.origin+location.pathname)
+
+            async function getPostAndCategory(){
+                const requestOptions = {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': "application/json"
                     }
-                })
-                .catch((e)=>{
-                    setLoading(false)
-                    console.log(e)
-                })
-            })
-            .catch((e)=>{
+                };
+                const responsePost = await fetch(`/api/post/${postId}`, requestOptions)
+                if(responsePost.status != 200){
+                    navigateTo('/')
+                }
+                const dataPost = await responsePost.json();
+                setPost(dataPost.post)
+                setDateForBestLook(dataPost.post.createdAt)
+                const responseCategory = await fetch(`/api/category/${dataPost.post.categoryId}`, requestOptions)
+                const dataCategory = await responseCategory.json()
+                setCategory(dataCategory.category)
                 setLoading(false)
-                console.log(e)
-            })
+            }
+            getPostAndCategory()
         }catch(e){
             setLoading(false)
-            console.log(e)
         }
     }, [])
 
     function copyLink(){
-        navigator.clipboard.writeText(pathInLocation)
+        navigator.clipboard.writeText(window.location)
         setCopiedPath('copied')
         setTimeout(function(){
             setCopiedPath('Copy Link')
@@ -85,13 +81,13 @@ function ReaderSeeOnePost(){
                 </div>
                 <div className="ReaderSeeOnePost_share-container">
                     <p>Share :</p>
-                    <FacebookShareButton className="ReaderSeeOnePost_link" url={pathInLocation}>
+                    <FacebookShareButton className="ReaderSeeOnePost_link" url={window.location}>
                         <FacebookIcon size={40} round={true}/>
                     </FacebookShareButton>
-                    <TwitterShareButton className="ReaderSeeOnePost_link" url={pathInLocation}>
+                    <TwitterShareButton className="ReaderSeeOnePost_link" url={window.location}>
                         <TwitterIcon size={40} round={true}/>
                     </TwitterShareButton>
-                    <WhatsappShareButton className="ReaderSeeOnePost_link" url={pathInLocation}>
+                    <WhatsappShareButton className="ReaderSeeOnePost_link" url={window.location}>
                         <WhatsappIcon size={40} round={true}/>
                     </WhatsappShareButton>
                     <button className={`ReaderSeeOnePost_button-copy-link font-title ${copiedPath}`} onClick={copyLink}>{copiedPath}</button>

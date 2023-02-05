@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import hostName from "../../../config/hostName";
 import AdminPostCard from "../AdminPostCard/AdminPostCard";
 import "./AdminSeeAllPosts.css";
 
@@ -12,19 +9,28 @@ function AdminSeeAllPosts() {
   const [posts, setPosts] = useState(null);
   const [postWithoutCategory, setPostWithoutCategory] = useState(null);
   const [lookPostWithoutCategory, setLookPostWithoutCategory] = useState(false);
-  axios.defaults.baseURL = hostName;
 
   useEffect(() => {
     try {
       (async function(){
+        const token = localStorage.getItem('token');
+        const requestOptions = {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+          }
+        };
 
         async function getAllPostsWithCategory(){
-          const responseWith = await axios.get('/post/all');
-          return responseWith.data.posts
+          const responseWith = await fetch('/api/post/all', requestOptions);
+          const dataWith = await responseWith.json();
+          return dataWith.posts
         }
         async function getAllPostsWithoutCategory(){
-          const responseWithout = await axios.get('/post/all/manage-category');
-          return responseWithout.data.posts
+          const responseWithout = await fetch('/api/post/all/manage-category', requestOptions);
+          const dataWithout = await responseWithout.json();
+          return dataWithout.posts
         }
        
         const postWithByAPI = await getAllPostsWithCategory();
@@ -38,7 +44,6 @@ function AdminSeeAllPosts() {
 
 
     } catch (e) {
-      console.log(e);
     }
   }, []);
 
