@@ -22,4 +22,4 @@ jobs:
           username: ${{ secrets.HOSTINGER_USERNAME }}
           password: ${{ secrets.HOSTINGER_PASSWORD }}
           source: 'dist/**'
-          target: '/home/u434566844/domains/wwidev.tech/public_html'
+          target: '/var/www/wwidev-server'
