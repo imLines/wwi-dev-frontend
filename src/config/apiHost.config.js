@@ -1,3 +1,3 @@
-const api = 'http://145.14.158.215:8005';
+const api = 'https://localhost:8005';
 
 export default api;
